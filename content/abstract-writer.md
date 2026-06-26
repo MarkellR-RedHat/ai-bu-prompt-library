@@ -134,7 +134,7 @@ The comparison above illustrates the core dynamic: a naive prompt lets the model
 - Run the output through a word counter before submitting. LLMs often overshoot or undershoot word limits by 10-15%.
 - Iterate. Use the first output as a draft, then ask the model to tighten specific sentences or swap in stronger verbs. One round of revision usually improves the result noticeably.
 - If you are submitting to multiple venues, regenerate with each venue's name and audience rather than reusing the same abstract. Review committees notice when an abstract feels generic.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, pair this with the `/draft-announcement` slash command to create both a CFP abstract and a matching announcement in one workflow.
+- **Suite connection:** If you use [ai-bu-cfp-generator](../ai-bu-cfp-generator), generate the abstract here and then feed it into the CFP generator to build the full submission package. If you use `ai-bu-claude-commands`, the `/draft-announcement` slash command can create a matching announcement in one workflow.
 
 ## Example Output
 

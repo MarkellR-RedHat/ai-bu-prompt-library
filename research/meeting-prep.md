@@ -230,7 +230,7 @@ These techniques together explain the difference shown in the comparison above: 
 - For recurring meetings, save your prep documents and reference them in future prompts. This gives the model context about past discussions and decisions, which improves the prep over time.
 - Use the "Risks and Landmines" section to mentally rehearse difficult scenarios. Even if the risks do not materialize, thinking through them makes you more confident in the meeting.
 - For customer or partner meetings, supplement the prompt with the other party's recent press releases, product announcements, or LinkedIn profiles of key attendees. This context powers the stakeholder map.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/what-next` slash command can help prioritize action items that come out of the meeting you prepared for.
+- **Suite connection:** For daily context rather than specific meeting prep, use [ai-bu-daily-briefing](../ai-bu-daily-briefing). The daily briefing gives you a broad view of what happened overnight; this prompt gives you deep preparation for a specific meeting. If you use `ai-bu-claude-commands`, the `/what-next` slash command can help prioritize action items that come out of the meeting you prepared for.
 
 ## Example Output
 

@@ -199,7 +199,7 @@ These techniques together explain the difference shown in the comparison above: 
 - Share the "Strengths" section with your engineering team honestly. Understanding what a competitor does well is as valuable as knowing their weaknesses.
 - Use the "[UNVERIFIED]" flags as action items. Assign someone to verify each flagged claim before the analysis informs any real decisions.
 - For open-source competitors, supplement this analysis by actually deploying and testing the product. No amount of documentation review replaces hands-on experience.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/competitive-snapshot` slash command provides a lighter-weight version for quick competitor questions in meetings.
+- **Suite connection:** For continuous monitoring, pair this with [ai-bu-competitive-watch](../ai-bu-competitive-watch), which tracks competitors on an ongoing basis. This prompt is for deep one-off analysis; competitive-watch is for staying current between analyses. If you use `ai-bu-claude-commands`, the `/competitive-snapshot` slash command provides a lighter-weight version for quick competitor questions in meetings.
 
 ## Example Output
 

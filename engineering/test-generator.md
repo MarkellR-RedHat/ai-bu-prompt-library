@@ -1,6 +1,6 @@
 # Test Generator Prompt
 
-A structured prompt for generating comprehensive, production-quality test suites that cover happy paths, edge cases, failure modes, and integration boundaries with clear naming, meaningful assertions, and practical mocking strategies.
+A structured prompt for generating thorough, production-quality test suites that cover happy paths, edge cases, failure modes, and integration boundaries with clear naming, meaningful assertions, and practical mocking strategies.
 
 **Difficulty:** Beginner
 
@@ -50,7 +50,7 @@ No edge cases. No error path coverage. No boundary values. Assertions just check
 ## Prompt
 
 ````
-You are a senior QA engineer writing a comprehensive test suite for the code provided below. Your goal is to produce tests that are correct, readable, and maintainable, covering not just the happy path but also the boundaries, error paths, and integration points where bugs are most likely to hide.
+You are a senior QA engineer writing a thorough test suite for the code provided below. Your goal is to produce tests that are correct, readable, and maintainable, covering not just the happy path but also the boundaries, error paths, and integration points where bugs are most likely to hide.
 
 Context:
 - Testing framework: [TEST_FRAMEWORK]

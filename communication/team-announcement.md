@@ -166,7 +166,7 @@ email typically does not).
 
 ## Usage Tips
 
-- Be honest about tradeoffs. If a migration adds short-term friction, say so. Engineers trust announcements that acknowledge the rough edges rather than pretending everything is seamless.
+- Be honest about tradeoffs. If a migration adds short-term friction, say so. Engineers trust announcements that acknowledge the rough edges rather than pretending everything is smooth.
 - For high-impact changes (deprecations, org restructures, breaking process changes), have a second person review the draft before sending. The prompt gives you a strong starting point, but sensitive topics need a human pass for tone and accuracy.
 - Set the channel parameter to match where you are actually posting. The prompt adjusts word count, tone, and formatting accordingly, and getting this wrong leads to messages that feel out of place.
 - For announcements that affect multiple teams differently, consider running the prompt once per audience with tailored "What you need to do" sections. A single announcement that tries to address five different teams usually confuses everyone.

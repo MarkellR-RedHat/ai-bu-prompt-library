@@ -195,26 +195,30 @@ Every prompt applies these techniques consistently:
 
 For a deep dive into each technique: [Prompt Engineering Guide](meta/prompt-engineering-guide.md).
 
-## Using with ai-bu-claude-commands
+## Workflow: How This Fits the AI BU Suite
 
-If you use [ai-bu-claude-commands](../ai-bu-claude-commands) (Claude Code slash commands), many prompts here connect directly to specific commands. Each prompt's Usage Tips section notes the relevant connection.
+The prompt library is the starting point. Use a prompt in any LLM chat interface. When you want to automate the same task inside Claude Code, reach for the matching tool.
 
-| Prompt | Slash Command | How they connect |
-|--------|--------------|------------------|
-| [Code Review](engineering/code-review.md) | `/review` | Automates code review on your current diff |
-| [PR Description](engineering/pr-description.md) | `/changelog`, `/release-notes` | Release-facing summaries after merge |
-| [Debug Helper](engineering/debug-helper.md) | `/retro` | Turns debugging sessions into retrospectives |
-| [Incident Timeline](engineering/incident-timeline.md) | `/retro`, `/summarize-thread` | Feeds into retros, extracts incident data from threads |
-| [Blog Intro](content/blog-intro.md) | `/blog-from-pr` | Refines the intro the slash command generates |
-| [Blog Outline](content/blog-outline.md) | `/blog-from-pr` | Structures content before drafting |
-| [Stakeholder Update](communication/stakeholder-update.md) | `/draft-announcement`, `/release-notes` | Release-specific status communication |
-| [Incident Report](communication/incident-report.md) | `/retro`, `/summarize-thread` | Generates retros, extracts incident data |
-| [Team Announcement](communication/team-announcement.md) | `/draft-announcement` | Multi-channel announcements |
-| [Demo Script](devrel/demo-script.md) | `/demo-prep` | Automates demo preparation with environment checks |
-| [Community Response](devrel/community-response.md) | `/explain-for-customer` | Customer-facing explanations in support contexts |
-| [Architecture Review](engineering/architecture-review.md) | `/tldr-repo` | Summarizes an unfamiliar codebase before review |
+| Prompt | AI BU Tool | How they connect |
+|--------|-----------|------------------|
+| [Abstract Writer](content/abstract-writer.md) | [cfp-generator](../ai-bu-cfp-generator) | Generate the abstract here, then build the full CFP submission |
+| [Blog Intro](content/blog-intro.md) / [Blog Outline](content/blog-outline.md) | [claude-commands](../ai-bu-claude-commands) `/blog-from-pr` | Refine the intro or structure content before drafting |
+| [Stakeholder Update](communication/stakeholder-update.md) | [status-report](../ai-bu-status-report) | Prompt for ad-hoc updates, tool for recurring weekly reports |
+| [Code Review](engineering/code-review.md) | [claude-commands](../ai-bu-claude-commands) `/review` | Automates code review on your current diff |
+| [PR Description](engineering/pr-description.md) | [shipped-digest](../ai-bu-shipped-digest) | PR descriptions feed into weekly shipped digests |
+| [Competitive Analysis](research/competitive-analysis.md) | [competitive-watch](../ai-bu-competitive-watch) | Deep one-off analysis here, continuous monitoring there |
+| [Incident Report](communication/incident-report.md) | [claude-commands](../ai-bu-claude-commands) `/retro` | Generates retros, extracts incident data |
+| [Team Announcement](communication/team-announcement.md) | [claude-commands](../ai-bu-claude-commands) `/draft-announcement` | Multi-channel announcements |
+| [Demo Script](devrel/demo-script.md) | [claude-commands](../ai-bu-claude-commands) `/demo-prep` | Automates demo preparation with environment checks |
+| [Community Response](devrel/community-response.md) | [claude-commands](../ai-bu-claude-commands) `/explain-for-customer` | Customer-facing explanations in support contexts |
+| [Architecture Review](engineering/architecture-review.md) | [claude-commands](../ai-bu-claude-commands) `/tldr-repo` | Summarizes an unfamiliar codebase before review |
+| [Meeting Prep](research/meeting-prep.md) | [daily-briefing](../ai-bu-daily-briefing) | Prompt for specific meetings, tool for daily context |
 
-The prompts work in any LLM chat interface. The slash commands work in Claude Code. Use whichever fits, or combine them.
+Each prompt's Usage Tips section notes the specific connections. The prompts work in any LLM chat interface. The tools work in Claude Code. Use whichever fits, or combine them.
+
+## Real-World Tip
+
+The biggest time savings come from the prompts you did not expect to reuse. The [Stakeholder Update](communication/stakeholder-update.md) prompt, for example, was built for weekly status emails. In practice, the team uses it before every cross-functional meeting: paste your messy notes, get a structured brief in 30 seconds, walk in with talking points instead of scrambling to recall what happened last sprint. One engineer reported cutting meeting prep from 15 minutes to under 2 by keeping a running notes file and running the prompt right before standup.
 
 ## Contributing
 

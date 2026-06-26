@@ -104,7 +104,7 @@ Benefit categories:
   d) Risk reduction: security improvements, compliance, reduced
      outage frequency
   e) Strategic positioning: market differentiation, ecosystem
-     leverage, talent attraction
+     influence, talent attraction
 
 Present benefits in a table. Include a total for low, expected, and
 high scenarios. Keep qualitative benefits in a separate section so
