@@ -1,14 +1,16 @@
 # AI BU Prompt Library
 
-> "The difference between a mediocre prompt and a great one is the difference between 'it's fine I guess' and 'how did it produce something this good?'"
+**35+ engineered prompts for the work you already do, tuned to produce output you actually ship.**
 
-Most people who use AI daily have never been taught prompt engineering. They type a reasonable request, get a reasonable result, and assume that is just how AI works. It is not. The gap between a naive prompt and an engineered prompt is not incremental. It is the gap between output you throw away and output you ship.
+## The Problem
 
-This library is a set of prompts that have been engineered, tested, and refined for real work. Each one applies specific techniques (role setting, chain-of-thought reasoning, self-critique loops, anti-pattern avoidance) that make the difference between "okay" and "how did it know to do that?"
+You type a reasonable prompt. You get a reasonable result. You spend the next 20 minutes rewriting it before you can send it to anyone.
 
-## See the Difference
+That is the default AI experience for most teams, and it is a massive waste of time. The gap between a naive prompt and an engineered one is not incremental. It is the difference between output you throw away and output you ship.
 
-Here is what this library changes. Same task, two approaches:
+## Naive Prompt vs. Engineered Prompt
+
+Same task. Two approaches. One of them is ready to send.
 
 <table>
 <tr>
@@ -32,16 +34,16 @@ Uses the [Stakeholder Update](communication/stakeholder-update.md) prompt with r
 <tr>
 <td>
 
-**What you get:**
+**Result:**
 
 "The team has been working hard on several fronts this quarter. We made good progress on the API migration and are continuing to onboard partners. There have been some challenges with CI but we are working through them. Overall things are on track and we are optimistic about hitting our deadlines."
 
-That is what you get: accomplishments, risks, and plans mashed into one paragraph. The CI problem (which could slip your GA date) is buried in the middle behind "some challenges." No status indicator, no dates, no asks. You spend 20 minutes rewriting it before sending.
+Accomplishments, risks, and plans mashed into one paragraph. The CI problem (which could slip your GA date) is buried behind "some challenges." No status indicator, no dates, no asks. You rewrite it before sending.
 
 </td>
 <td>
 
-**What you get:**
+**Result:**
 
 **Status: At Risk**
 CI pipeline stability has degraded, putting the July 30 GA release at risk if not resolved by July 10.
@@ -56,221 +58,173 @@ CI pipeline stability has degraded, putting the July 30 GA release at risk if no
 **Asks**
 - Need VP-Eng approval on staging environment budget by July 5.
 
-*Scannable. Consistent. Status at the top, risks with mitigations, asks with deadlines. Ready to send.*
+Scannable. Consistent. Status at the top, risks with mitigations, asks with deadlines. Ready to send.
 
 </td>
 </tr>
 </table>
 
-That is not a cherry-picked example. Every prompt in this library produces this kind of difference because every prompt uses the same engineering techniques. The [Prompt Engineering Guide](meta/prompt-engineering-guide.md) explains what those techniques are and how to apply them yourself.
+Every prompt in this library produces this kind of difference because every prompt uses the same engineering techniques. The [Prompt Engineering Guide](meta/prompt-engineering-guide.md) explains exactly what those techniques are.
 
-## Start Here
+## Quick Start
 
-**New to this library?** Start with these prompts to get a feel for how they work:
+```bash
+# Clone the library
+git clone https://github.com/MarkellR-RedHat/ai-bu-prompt-library.git
+cd ai-bu-prompt-library
 
-1. **[Blog Intro](content/blog-intro.md)** (Beginner) - Quick win. Paste your topic and audience, get a strong opening paragraph.
-2. **[Stakeholder Update](communication/stakeholder-update.md)** (Beginner) - Paste your messy notes, get a clean executive update.
+# Or run the installer to set it up in one step
+curl -fsSL https://raw.githubusercontent.com/MarkellR-RedHat/ai-bu-prompt-library/main/install.sh | bash
+```
+
+Then pick a prompt, fill in the `[BRACKETED]` placeholders, and paste it into your LLM of choice.
+
+**First time?** Start with one of these:
+
+1. **[Blog Intro](content/blog-intro.md)** (Beginner) - Paste your topic, get a strong opening paragraph.
+2. **[Stakeholder Update](communication/stakeholder-update.md)** (Beginner) - Paste messy notes, get a clean executive update.
 3. **[Code Review](engineering/code-review.md)** (Intermediate) - Paste a diff, get structured feedback across correctness, security, and performance.
-4. **[OKR Writer](strategy/okr-writer.md)** (Intermediate) - Turn vague goals into measurable OKRs.
-5. **[Prompt Engineering Guide](meta/prompt-engineering-guide.md)** - Learn the techniques behind every prompt in this library.
+4. **[Prompt Engineering Guide](meta/prompt-engineering-guide.md)** - Learn the techniques behind every prompt.
 
-**Want to chain prompts together?** Check the [Prompt Chains](#prompt-chains) section for multi-step workflows like turning a blog post into a conference talk, or an incident into a full retrospective.
-
-## How to Use
-
-1. Browse the categories below or use the table to find the right prompt.
-2. Open the prompt file that matches your task.
-3. Copy the prompt, fill in the placeholders (marked with `[BRACKETS]`), and paste it into your LLM of choice.
-4. Check the "When to use" and "When NOT to use" sections to make sure you picked the right prompt.
-5. Review the self-critique checklist in each prompt to evaluate the output quality.
-6. See the usage tips in each file for better results.
-
-### Difficulty Ratings
-
-- **Beginner** - Straightforward prompts that work well with minimal customization. Good starting points.
-- **Intermediate** - Requires more context and careful placeholder filling. Benefits from iteration.
-- **Advanced** - Complex prompts that need domain expertise and detailed input to produce strong results.
-
-## Prompts by Category
+## All Prompts
 
 ### Content
 
-Prompts for writing blog posts, social media, newsletters, and conference materials.
-
-| Prompt | Description | Difficulty |
+| Prompt | What it does | Difficulty |
 |--------|-------------|------------|
-| [Blog Intro](content/blog-intro.md) | Write a compelling introduction for a technical blog post | Beginner |
-| [Blog Outline](content/blog-outline.md) | Structure a full technical blog post with sections and key points | Intermediate |
-| [Abstract Writer](content/abstract-writer.md) | Write an abstract for a paper or conference talk | Intermediate |
-| [Case Study Outline](content/case-study-outline.md) | Structure a customer case study from raw notes | Intermediate |
-| [Newsletter Blurb](content/newsletter-blurb.md) | Write a 2-3 sentence newsletter blurb about a topic | Beginner |
-| [LinkedIn Post](content/social-linkedin.md) | Write a LinkedIn post about technical content | Intermediate |
-| [Twitter/X Thread](content/social-twitter.md) | Write a Twitter/X thread about technical content | Intermediate |
-
-### Research
-
-Prompts for summarizing papers, analyzing competitors, mapping technology landscapes, and preparing for meetings.
-
-| Prompt | Description | Difficulty |
-|--------|-------------|------------|
-| [Paper Summary](research/paper-summary.md) | Summarize a technical paper into key findings and relevance | Intermediate |
-| [Competitive Analysis](research/competitive-analysis.md) | Analyze a competitor's product for strengths, gaps, and differentiation | Advanced |
-| [Market Landscape](research/market-landscape.md) | Map a technology landscape with key players and trends | Advanced |
-| [RFC Summary](research/rfc-summary.md) | Summarize an RFC or design proposal for busy reviewers | Intermediate |
-| [Meeting Prep](research/meeting-prep.md) | Prepare for a meeting by summarizing relevant docs and context | Beginner |
+| [Blog Intro](content/blog-intro.md) | Compelling intro for a technical blog post | Beginner |
+| [Blog Outline](content/blog-outline.md) | Full blog structure with sections and key points | Intermediate |
+| [Abstract Writer](content/abstract-writer.md) | Abstract for a paper or conference talk | Intermediate |
+| [Case Study Outline](content/case-study-outline.md) | Customer case study from raw notes | Intermediate |
+| [Newsletter Blurb](content/newsletter-blurb.md) | 2-3 sentence newsletter blurb | Beginner |
+| [LinkedIn Post](content/social-linkedin.md) | LinkedIn post about technical content | Intermediate |
+| [Twitter/X Thread](content/social-twitter.md) | Twitter/X thread about technical content | Intermediate |
 
 ### Engineering
 
-Prompts for code review, debugging, architecture review, test generation, PR descriptions, and incident timelines.
-
-| Prompt | Description | Difficulty |
+| Prompt | What it does | Difficulty |
 |--------|-------------|------------|
-| [Code Review](engineering/code-review.md) | Run a thorough code review covering correctness, security, and performance | Intermediate |
-| [Debug Helper](engineering/debug-helper.md) | Systematically debug an issue by reproducing, isolating, and fixing it | Intermediate |
-| [Architecture Review](engineering/architecture-review.md) | Review system architecture for scalability, reliability, and simplicity | Advanced |
-| [Test Generator](engineering/test-generator.md) | Generate test cases covering happy paths, edge cases, and failure modes | Intermediate |
-| [PR Description](engineering/pr-description.md) | Write a clear PR description from a diff | Beginner |
-| [Incident Timeline](engineering/incident-timeline.md) | Build an incident timeline from logs and Slack messages | Intermediate |
+| [Code Review](engineering/code-review.md) | Thorough review covering correctness, security, performance | Intermediate |
+| [Debug Helper](engineering/debug-helper.md) | Systematic debugging: reproduce, isolate, fix | Intermediate |
+| [Architecture Review](engineering/architecture-review.md) | Architecture review for scalability, reliability, simplicity | Advanced |
+| [Test Generator](engineering/test-generator.md) | Test cases: happy paths, edge cases, failure modes | Intermediate |
+| [PR Description](engineering/pr-description.md) | Clear PR description from a diff | Beginner |
+| [Incident Timeline](engineering/incident-timeline.md) | Incident timeline from logs and Slack messages | Intermediate |
+
+### Research
+
+| Prompt | What it does | Difficulty |
+|--------|-------------|------------|
+| [Paper Summary](research/paper-summary.md) | Technical paper into key findings and relevance | Intermediate |
+| [Competitive Analysis](research/competitive-analysis.md) | Competitor strengths, gaps, and differentiation | Advanced |
+| [Market Landscape](research/market-landscape.md) | Technology landscape with key players and trends | Advanced |
+| [RFC Summary](research/rfc-summary.md) | RFC or design proposal summary for busy reviewers | Intermediate |
+| [Meeting Prep](research/meeting-prep.md) | Meeting prep from relevant docs and context | Beginner |
 
 ### Communication
 
-Prompts for stakeholder updates, incident reports, team announcements, and executive briefs.
-
-| Prompt | Description | Difficulty |
+| Prompt | What it does | Difficulty |
 |--------|-------------|------------|
-| [Stakeholder Update](communication/stakeholder-update.md) | Write a concise executive update on project status | Beginner |
-| [Incident Report](communication/incident-report.md) | Write a blameless post-mortem for an incident | Intermediate |
-| [Team Announcement](communication/team-announcement.md) | Write an internal announcement for your team or org | Beginner |
-| [Executive Brief](communication/exec-brief.md) | Distill a complex topic into a 1-page executive brief | Intermediate |
+| [Stakeholder Update](communication/stakeholder-update.md) | Concise executive update on project status | Beginner |
+| [Incident Report](communication/incident-report.md) | Blameless post-mortem for an incident | Intermediate |
+| [Team Announcement](communication/team-announcement.md) | Internal announcement for your team or org | Beginner |
+| [Executive Brief](communication/exec-brief.md) | Complex topic distilled into a 1-page executive brief | Intermediate |
 
 ### DevRel
 
-Prompts for demos, tutorials, community engagement, and workshops.
-
-| Prompt | Description | Difficulty |
+| Prompt | What it does | Difficulty |
 |--------|-------------|------------|
-| [Demo Script](devrel/demo-script.md) | Create a time-boxed demo script with setup, steps, and talking points | Intermediate |
-| [Tutorial Outline](devrel/tutorial-outline.md) | Structure a tutorial with prerequisites, sections, and checkpoints | Intermediate |
-| [Community Response](devrel/community-response.md) | Draft a helpful response to a community question | Beginner |
-| [Workshop Outline](devrel/workshop-outline.md) | Structure a hands-on workshop with timed sections and exercises | Advanced |
+| [Demo Script](devrel/demo-script.md) | Time-boxed demo script with setup, steps, talking points | Intermediate |
+| [Tutorial Outline](devrel/tutorial-outline.md) | Tutorial with prerequisites, sections, checkpoints | Intermediate |
+| [Community Response](devrel/community-response.md) | Helpful response to a community question | Beginner |
+| [Workshop Outline](devrel/workshop-outline.md) | Hands-on workshop with timed sections and exercises | Advanced |
 
 ### Strategy
 
-Prompts for OKRs, decision-making frameworks, and stakeholder mapping.
-
-| Prompt | Description | Difficulty |
+| Prompt | What it does | Difficulty |
 |--------|-------------|------------|
-| [OKR Writer](strategy/okr-writer.md) | Write OKRs that are actually measurable with baselines and targets | Intermediate |
-| [Decision Matrix](strategy/decision-matrix.md) | Structure a decision with weighted criteria and sensitivity analysis | Advanced |
-| [Stakeholder Map](strategy/stakeholder-map.md) | Map stakeholders by influence, interest, and engagement strategy | Intermediate |
+| [OKR Writer](strategy/okr-writer.md) | Measurable OKRs with baselines and targets | Intermediate |
+| [Decision Matrix](strategy/decision-matrix.md) | Decision with weighted criteria and sensitivity analysis | Advanced |
+| [Stakeholder Map](strategy/stakeholder-map.md) | Stakeholders mapped by influence, interest, engagement | Intermediate |
 
 ### Leadership
 
-Prompts for 1:1 prep, feedback drafting, and team health assessment.
-
-| Prompt | Description | Difficulty |
+| Prompt | What it does | Difficulty |
 |--------|-------------|------------|
 | [1:1 Prep](leadership/one-on-one-prep.md) | Prepare for 1:1 meetings with reports | Intermediate |
-| [Feedback Draft](leadership/feedback-draft.md) | Write specific, actionable feedback using the SBI framework | Advanced |
-| [Team Health Check](leadership/team-health-check.md) | Assess team health across delivery, collaboration, sustainability, and purpose | Advanced |
+| [Feedback Draft](leadership/feedback-draft.md) | Specific, actionable feedback using the SBI framework | Advanced |
+| [Team Health Check](leadership/team-health-check.md) | Team health across delivery, collaboration, sustainability | Advanced |
 
 ### Analysis
 
-Prompts for root cause analysis, trade-off evaluation, and cost-benefit analysis.
-
-| Prompt | Description | Difficulty |
+| Prompt | What it does | Difficulty |
 |--------|-------------|------------|
-| [Root Cause Analysis](analysis/root-cause.md) | 5 Whys + Fishbone diagram for blameless incident analysis | Intermediate |
+| [Root Cause Analysis](analysis/root-cause.md) | 5 Whys + Fishbone for blameless incident analysis | Intermediate |
 | [Trade-off Analysis](analysis/trade-off.md) | Structured trade-off analysis for technical decisions | Advanced |
-| [Cost-Benefit Analysis](analysis/cost-benefit.md) | Cost-benefit analysis with three-point estimates for project proposals | Advanced |
+| [Cost-Benefit Analysis](analysis/cost-benefit.md) | Three-point estimates for project proposals | Advanced |
 
 ### Prompt Chains
 
-Multi-step workflows where each prompt feeds into the next. These produce dramatically better results than a single prompt because each step focuses on one task.
+Multi-step workflows where each prompt feeds into the next. These produce better results than a single prompt because each step focuses on one task.
 
-| Chain | Steps | Description | Difficulty |
+| Chain | Steps | What it does | Difficulty |
 |-------|-------|-------------|------------|
-| [Blog to Talk](prompt-chains/blog-to-talk.md) | 4 | Summarize blog, extract key points, build talk structure, generate CFP | Advanced |
-| [Incident to Retro](prompt-chains/incident-to-retro.md) | 5 | Timeline, root cause, action items, retro doc, prevention plan | Advanced |
-| [Idea to Proposal](prompt-chains/idea-to-proposal.md) | 5 | Brainstorm, validate, outline, full proposal, executive summary | Advanced |
+| [Blog to Talk](prompt-chains/blog-to-talk.md) | 4 | Blog post into a conference talk and CFP submission | Advanced |
+| [Incident to Retro](prompt-chains/incident-to-retro.md) | 5 | Incident into timeline, root cause, retro, prevention plan | Advanced |
+| [Idea to Proposal](prompt-chains/idea-to-proposal.md) | 5 | Raw idea into validated proposal with executive summary | Advanced |
 
 ### Meta
 
-Guides on prompt engineering techniques and how to evaluate prompt quality.
-
-| Guide | Description |
-|-------|-------------|
-| [Prompt Engineering Guide](meta/prompt-engineering-guide.md) | The definitive reference for every technique used in this library, with real examples and before/after comparisons |
+| Guide | What it covers |
+|-------|---------------|
+| [Prompt Engineering Guide](meta/prompt-engineering-guide.md) | Every technique used in this library, with examples and before/after comparisons |
 | [Testing Prompts](meta/testing-prompts.md) | How to evaluate whether a prompt is actually good |
 
-## What Makes These Prompts Different
+## Why These Prompts Work
 
-Every prompt in this library applies these techniques consistently. They are not optional additions. They are the reason the output is better.
+Every prompt applies these techniques consistently:
 
-1. **Role and context setting** - Each prompt starts with a specific expert role ("You are a senior SRE with 15+ years of experience conducting blameless post-mortems...") and names the audience. This is not decoration. It determines the vocabulary, depth, and framing of the entire response.
+| Technique | What it does | Why it matters |
+|-----------|-------------|----------------|
+| **Role and context setting** | Assigns a specific expert role and names the audience | Determines vocabulary, depth, and framing for the entire response |
+| **Chain-of-thought reasoning** | Walks the model through the thinking process step by step | Reduces errors and catches considerations a direct answer would miss |
+| **Self-critique checklist** | Verification checklist the model runs before delivering output | Catches severity miscalibration, missing evidence, vague recommendations |
+| **Anti-pattern avoidance** | Explicit instructions on what NOT to do | Blocks filler phrases, optimism bias, jargon overload, generic output |
+| **Edge case handling** | Instructions for unusual inputs and missing context | Model asks clarifying questions instead of hallucinating answers |
+| **Output format specification** | Detailed structure for consistent, scannable output | Same prompt produces structurally identical output every time |
 
-2. **Chain-of-thought reasoning** - Step-by-step reasoning instructions that walk the model through the thinking process, not just the output format. The model reasons through the problem before producing an answer, which reduces errors and catches considerations that a direct answer would miss.
+For a deep dive into each technique: [Prompt Engineering Guide](meta/prompt-engineering-guide.md).
 
-3. **Self-critique checklist** - Each prompt includes a verification checklist the model runs before delivering output. This catches severity miscalibration, missing evidence, vague recommendations, and other failure modes that naive prompts let through.
+## Using with ai-bu-claude-commands
 
-4. **Anti-pattern avoidance** - Explicit instructions about what NOT to do, based on real failure modes observed across hundreds of prompt runs. These block filler phrases, feedback sandwiches, optimism bias, jargon overload, and the other default behaviors that make AI output feel generic.
+If you use [ai-bu-claude-commands](../ai-bu-claude-commands) (Claude Code slash commands), many prompts here connect directly to specific commands. Each prompt's Usage Tips section notes the relevant connection.
 
-5. **Edge case handling** - Instructions for unusual inputs: empty data, ambiguous requirements, missing context, overly broad goals. Instead of hallucinating an answer, the model asks clarifying questions or flags gaps.
-
-6. **Output format specification** - Detailed structure so output is consistent and scannable across runs. The same prompt produces structurally identical output whether you run it on Monday or Friday, with sparse notes or dense ones.
-
-For a deep dive into each technique with real examples and before/after comparisons, read the [Prompt Engineering Guide](meta/prompt-engineering-guide.md).
-
-## Connection to ai-bu-claude-commands
-
-If you use the [ai-bu-claude-commands](../ai-bu-claude-commands) slash command library with Claude Code, many prompts in this library connect directly to specific slash commands. Each prompt's Usage Tips section notes the relevant connection. Here is the quick reference:
-
-| Prompt | Related Slash Command | How They Connect |
-|--------|----------------------|------------------|
+| Prompt | Slash Command | How they connect |
+|--------|--------------|------------------|
 | [Code Review](engineering/code-review.md) | `/review` | Automates code review on your current diff |
-| [PR Description](engineering/pr-description.md) | `/changelog`, `/release-notes` | Generates release-facing summaries after merge |
+| [PR Description](engineering/pr-description.md) | `/changelog`, `/release-notes` | Release-facing summaries after merge |
 | [Debug Helper](engineering/debug-helper.md) | `/retro` | Turns debugging sessions into retrospectives |
-| [Incident Timeline](engineering/incident-timeline.md) | `/retro`, `/summarize-thread` | Feeds into retros and extracts incident data from threads |
-| [Blog Intro](content/blog-intro.md) | `/blog-from-pr` | Refines the intro that the slash command generates |
+| [Incident Timeline](engineering/incident-timeline.md) | `/retro`, `/summarize-thread` | Feeds into retros, extracts incident data from threads |
+| [Blog Intro](content/blog-intro.md) | `/blog-from-pr` | Refines the intro the slash command generates |
 | [Blog Outline](content/blog-outline.md) | `/blog-from-pr` | Structures content before drafting |
-| [Stakeholder Update](communication/stakeholder-update.md) | `/draft-announcement`, `/release-notes` | Handles release-specific status communication |
-| [Incident Report](communication/incident-report.md) | `/retro`, `/summarize-thread` | Generates retros and extracts incident data |
-| [Team Announcement](communication/team-announcement.md) | `/draft-announcement` | Generates multi-channel announcements |
+| [Stakeholder Update](communication/stakeholder-update.md) | `/draft-announcement`, `/release-notes` | Release-specific status communication |
+| [Incident Report](communication/incident-report.md) | `/retro`, `/summarize-thread` | Generates retros, extracts incident data |
+| [Team Announcement](communication/team-announcement.md) | `/draft-announcement` | Multi-channel announcements |
 | [Demo Script](devrel/demo-script.md) | `/demo-prep` | Automates demo preparation with environment checks |
 | [Community Response](devrel/community-response.md) | `/explain-for-customer` | Customer-facing explanations in support contexts |
 | [Architecture Review](engineering/architecture-review.md) | `/tldr-repo` | Summarizes an unfamiliar codebase before review |
 
-The prompts in this library work in any LLM chat interface. The slash commands work specifically in Claude Code. Use whichever fits your workflow, or combine them for deeper coverage.
+The prompts work in any LLM chat interface. The slash commands work in Claude Code. Use whichever fits, or combine them.
 
 ## Contributing
 
-Want to add a prompt? Here is how:
-
 1. Pick the right category folder (or propose a new one).
-2. Read the [Prompt Engineering Guide](meta/prompt-engineering-guide.md) for the structure and techniques to use.
-3. Create a new `.md` file with this structure:
-   - **Title** (H1): A short name for the prompt.
-   - **Description** (one line): What it does.
-   - **Difficulty**: Beginner, Intermediate, or Advanced.
-   - **When to use**: 5+ bullet points describing good use cases.
-   - **When NOT to use**: 3+ bullet points describing when to skip this prompt.
-   - **Prompt** (in a code block): The actual prompt with role setting, chain-of-thought steps, output format, self-critique checklist, anti-patterns, and edge case handling.
-   - **Usage Tips**: 5+ practical tips for getting better results.
-   - **Example Output**: A realistic snippet showing what good output looks like.
-4. Test your prompt using the methodology in [Testing Prompts](meta/testing-prompts.md).
-5. Open a pull request with your new file.
+2. Read the [Prompt Engineering Guide](meta/prompt-engineering-guide.md) for structure and technique requirements.
+3. Create a `.md` file with: title, description, difficulty, when to use (5+ bullets), when NOT to use (3+ bullets), prompt (with role setting, chain-of-thought, output format, self-critique, anti-patterns, edge cases), usage tips (5+), and example output.
+4. Test your prompt at least three times using the [Testing Prompts](meta/testing-prompts.md) methodology.
+5. Open a pull request.
 
-### Guidelines
-
-- Keep prompts specific and actionable. Vague prompts produce vague output.
-- Include placeholders for all variable inputs using `[BRACKET]` syntax.
-- Test your prompt at least three times before submitting. If the output is inconsistent, the prompt needs more constraints.
-- Write in a direct, practical voice. Skip the marketing language.
-- Do not use em dashes. Use commas, periods, or "and" instead.
-- Include "When to use" and "When NOT to use" sections so users pick the right prompt.
-- Tag every prompt with a difficulty level (Beginner, Intermediate, or Advanced).
-- Include a self-critique checklist in every prompt.
-- Include at least 5 anti-patterns to avoid.
+**Style rules:** Direct, practical voice. No em dashes. No marketing language. All variable inputs use `[BRACKET]` placeholders. Every prompt includes a self-critique checklist and at least 5 anti-patterns.
 
 ## License
 
