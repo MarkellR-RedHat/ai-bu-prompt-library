@@ -1,47 +1,149 @@
 # Newsletter Blurb Writer
 
-Write a 2-3 sentence newsletter blurb that makes a reader want to click through and learn more.
+Generate a tight, high-signal newsletter blurb (2-4 sentences) that earns the click by leading with substance, not hype.
 
-**Difficulty:** Beginner
+**Difficulty:** Intermediate
 
 ## When to use
 
-- Writing a blurb for an internal or external newsletter
-- Summarizing a blog post, talk, or release for a newsletter audience
-- Need a quick, punchy summary that fits in a newsletter layout
-- Promoting a team's work to a broader audience
+- Writing a blurb for an internal engineering newsletter, external community digest, or cross-org roundup
+- Summarizing a blog post, conference talk, release announcement, or case study for a newsletter audience
+- You need a punchy summary that fits a constrained newsletter layout (under 80 words)
+- Promoting a team's work, an upstream contribution, or an open source milestone to a broader audience
+- Drafting multiple blurbs for a curated newsletter and you need consistent quality and tone across entries
+- Condensing a long-form piece into a teaser that respects the reader's time
+- Adapting a single piece of content for different audience segments (engineering, executive, community)
 
 ## When NOT to use
 
-- Writing the full article (use blog-outline and blog-intro instead)
-- The content needs a detailed summary with technical depth (use paper-summary instead)
+- Writing the full article or blog post (use `blog-outline` and `blog-intro` instead)
+- The content needs a detailed technical summary with depth and nuance (use `paper-summary` instead)
+- You need a social media post; newsletters and social have different cadence and character constraints
+- The content is confidential or embargoed and should not be summarized externally
 
 ## Prompt
 
 ```
-Write a newsletter blurb (2-3 sentences) about the following content.
+You are a senior technical editor at a large open source engineering organization.
+Your job is to write newsletter blurbs that are specific, credible, and worth
+reading. You value the reader's time above everything else.
 
-Content to summarize: [CONTENT_TITLE_AND_LINK]
-What the content covers: [BRIEF_DESCRIPTION]
-Target newsletter audience: [AUDIENCE, e.g., engineering org, open source community, AI/ML practitioners]
-Tone: [TONE, e.g., technical, conversational, executive-level]
+== INPUTS ==
 
-Requirements:
-- First sentence: state the core insight or result. Make the reader curious.
-- Second sentence: add one specific detail (a number, a tool name, a concrete outcome) that makes the content credible.
-- Third sentence (optional): give the reader a reason to click through. What will they learn or be able to do?
-- Keep it under 60 words total.
-- Do not use em dashes. Use commas, periods, or "and" instead.
-- No buzzwords. No "excited to share" or "we are thrilled." Just say what the content is about.
+Content title: [CONTENT_TITLE]
+Content link: [CONTENT_LINK]
+Brief description of what the content covers: [BRIEF_DESCRIPTION]
+Target newsletter audience: [AUDIENCE, e.g., platform engineering org, open source community, AI/ML practitioners, executive leadership]
+Desired tone: [TONE, e.g., technical-conversational, executive-brief, community-friendly]
+Word limit: [WORD_LIMIT, default 60]
+Any additional context or angle to emphasize: [OPTIONAL_CONTEXT]
+
+== STEP-BY-STEP REASONING ==
+
+Before writing, work through these steps internally:
+
+1. Identify the single most important takeaway from the content. What would
+   make an engineer stop scrolling? Write it down in one sentence.
+
+2. Find one concrete, specific detail that makes the takeaway credible. This
+   should be a number, a tool name, a benchmark result, a before-and-after
+   comparison, or a named technology. Vague claims do not count.
+
+3. Determine the reader's motivation. Why should someone in this audience care
+   enough to click? What will they learn, be able to do, or understand
+   differently after reading?
+
+4. Consider the tone. Match the register to the audience. An engineering
+   audience wants precision. An executive audience wants outcomes. A community
+   audience wants relevance and accessibility.
+
+5. Draft the blurb:
+   - Sentence 1: State the core insight or result. Lead with the "so what,"
+     not the "what." Make the reader curious.
+   - Sentence 2: Add the specific, credible detail you identified in step 2.
+     This is what separates a good blurb from a generic one.
+   - Sentence 3 (optional): Give the reader a concrete reason to click through.
+     What will they learn or be able to do? Frame it as a benefit, not a
+     description.
+
+6. Run the self-critique checklist (see below) and revise before outputting.
+
+== OUTPUT FORMAT ==
+
+Return your output in this structure:
+
+**Blurb:**
+> [Your 2-4 sentence blurb here, under the specified word limit]
+
+**Word count:** [number]
+
+**Key detail used:** [The specific number, name, or outcome you anchored on]
+
+**Audience fit note:** [One sentence on why this framing works for the
+specified audience]
+
+== SELF-CRITIQUE CHECKLIST ==
+
+Before finalizing, verify each of these. If any check fails, revise the blurb:
+
+- [ ] Does the first sentence state a result or insight, not just a topic?
+- [ ] Is there at least one specific, concrete detail (number, tool, outcome)?
+- [ ] Is the blurb under the word limit?
+- [ ] Would a busy engineer actually want to click through after reading this?
+- [ ] Is the tone consistent with the target audience?
+- [ ] Are there zero buzzwords, zero filler phrases, and zero hype language?
+- [ ] Does every sentence add new information (no redundancy)?
+- [ ] Is the blurb self-contained enough to make sense without prior context?
+
+== ANTI-PATTERNS TO AVOID ==
+
+1. Do NOT open with "Excited to share," "We are thrilled," "Check out," or
+   any throat-clearing. Start with the substance.
+2. Do NOT use vague language like "innovative," "cutting-edge," "next-gen,"
+   "game-changing," or "groundbreaking." Say what it actually does.
+3. Do NOT just restate the title. The blurb must add value beyond the headline.
+4. Do NOT use em dashes anywhere. Use commas, periods, semicolons, colons,
+   or the word "and" instead.
+5. Do NOT include more than one call to action. One "read more" or "check it
+   out" is fine. Two is clutter.
+6. Do NOT write a blurb that could apply to any content by swapping one noun.
+   It must be specific to this piece.
+7. Do NOT front-load the blurb with the author's name or team name. Lead with
+   the insight, not the attribution.
+
+== EDGE CASE HANDLING ==
+
+- If the content is a release announcement with no single "insight," lead with
+  the most impactful change and mention the release version.
+- If the content is a talk or video, mention the format so the reader knows
+  what to expect (e.g., "In this 20-minute talk..." or "This walkthrough
+  demonstrates...").
+- If multiple audiences are specified, write one blurb per audience and label
+  each clearly.
+- If the content is primarily visual (demo, diagram, architecture overview),
+  call out what the reader will see, not just what they will read.
+- If no word limit is specified, default to 60 words.
+- If the content is behind a login or paywall, note that in the audience fit
+  section so the newsletter editor can add appropriate access instructions.
 ```
 
 ## Usage Tips
 
-- Paste the actual title and link so the blurb matches the content precisely.
-- If the newsletter has a character limit, add that as a constraint in the prompt.
-- Run it twice and pick the version with the strongest opening line.
-- Works well for both internal engineering newsletters and external community digests.
+- Paste the actual title and link so the blurb matches the content precisely. The AI will anchor on the title if you leave the description vague, so be specific about what makes this piece worth featuring.
+- If your newsletter has a strict character or word limit, set that in the `[WORD_LIMIT]` field. The self-critique checklist will enforce it.
+- Run the prompt twice with different tones (e.g., "technical-conversational" and "executive-brief") to get two versions you can choose between or combine.
+- When writing blurbs for a curated newsletter with multiple entries, run the prompt once per entry but keep the audience and tone fields consistent. This gives you a uniform voice across the whole issue.
+- Use the "Key detail used" and "Audience fit note" fields in the output to quickly validate whether the blurb hit the right angle. If the key detail is weak, your source content may need a stronger hook.
+- For community-facing newsletters, set the tone to "community-friendly" and mention the open source project name in the description. This helps the AI frame the blurb around contribution and adoption, not just internal impact.
+- If the blurb still feels generic after one pass, add a line to `[OPTIONAL_CONTEXT]` like "Emphasize the performance improvement" or "Focus on the developer experience angle." Constraints produce better output.
 
 ## Example Output
 
-> GPU scheduling on Kubernetes wastes 30-50% of capacity because the default scheduler ignores model memory and cache state. This post walks through how llm-d fixes that with KV-cache-aware routing on OpenShift, cutting p99 latency by 35%. Worth a read if you are running inference workloads at scale.
+**Blurb:**
+> GPU scheduling on Kubernetes wastes 30-50% of cluster capacity because the default scheduler ignores model memory footprint and KV-cache state. This post walks through how llm-d fixes that with cache-aware routing on OpenShift, cutting p99 latency by 35% in production benchmarks. Worth a read if you run inference workloads at scale and want to stop paying for idle GPUs.
+
+**Word count:** 55
+
+**Key detail used:** 35% p99 latency reduction, 30-50% wasted capacity
+
+**Audience fit note:** This framing leads with the cost and performance problem, which resonates with platform engineers who own GPU infrastructure budgets and SLOs.

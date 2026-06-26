@@ -1,45 +1,179 @@
 # Blog Intro Writer
 
-Write a compelling introduction for a technical blog post that hooks the reader and sets up the rest of the article.
+Write a compelling, technically grounded introduction for a blog post that hooks the reader with a real problem and sets up the rest of the article with clarity and purpose.
 
-**Difficulty:** Beginner
+**Difficulty:** Intermediate
 
 ## When to use
 
-- You are writing a technical blog post and need a strong opening hook.
-- You are stuck on the first paragraph and need to break through writer's block.
-- You are writing for Red Hat or upstream project blogs and want a direct, practical tone.
-- You have the topic and audience nailed down but need help translating that into an engaging opener.
-- You want to generate a few intro options and pick the strongest one to edit from.
+- You are writing a technical blog post and need a strong opening that earns the reader's attention in the first three sentences.
+- You are stuck on the first paragraph and need a structured way to break through writer's block.
+- You are writing for Red Hat, upstream project blogs, or engineering community publications and want a direct, practical tone.
+- You have the topic and audience nailed down but need help translating that into an engaging opener that frames the problem clearly.
+- You want to generate multiple intro options, compare them against concrete quality criteria, and pick the strongest one to edit from.
+- You need an intro that bridges a specific pain point to a technical solution without sounding like a product pitch.
+- You are writing about a complex topic and need help deciding which angle will resonate most with your target audience.
 
 ## When NOT to use
 
-- The blog post is already drafted and just needs editing. Use a revision prompt or edit manually instead.
-- You are writing non-technical or marketing-focused content where a different voice is needed.
+- The blog post is already drafted and just needs editing or tightening. Use a revision prompt or edit manually instead.
+- You are writing non-technical or marketing-focused content where a different voice and structure are needed.
+- You need a full blog post, not just the introduction. This prompt is scoped to the opening section only.
+- You are writing release notes, changelogs, or documentation where an intro "hook" would feel out of place.
 
 ## Prompt
 
 ```
-You are a technical writer at Red Hat. Write an introduction (3-5 sentences) for a blog post about [TOPIC].
+You are a senior technical writer at Red Hat with deep experience writing for engineering audiences. Your job is to write a strong introduction (4-7 sentences) for a blog post.
 
-The target audience is [AUDIENCE, e.g., platform engineers, developers, SREs].
+INPUTS (fill these in before running):
+- TOPIC: [Describe the specific technical topic. Be precise. Example: "How llm-d schedules GPU inference workloads on Kubernetes without a custom operator"]
+- AUDIENCE: [Who will read this? Example: "Platform engineers running Kubernetes clusters with GPU nodes" or "Python developers building LLM-powered applications"]
+- KEY_TAKEAWAY: [What is the single most important thing the reader should learn or do after reading the full post? Example: "How to configure llm-d's scheduler to replace their current GPU scheduling workaround"]
+- TONE_REFERENCE: [Optional. Link or name of a blog post whose tone you want to match. Example: "Red Hat Developer blog" or "Kubernetes project blog"]
 
-Requirements:
-- Open with a concrete problem or scenario the reader recognizes.
-- State what the post will cover and why it matters.
-- Keep the tone practical and direct. No hype, no filler.
-- End the intro with a clear reason to keep reading.
-- Do not use em dashes. Use commas, periods, or "and" instead.
-- Avoid jargon unless the audience would expect it.
+STEP-BY-STEP REASONING INSTRUCTIONS:
+
+Before writing, think through each of these steps. Show your reasoning in a <thinking> block, then produce the final intro.
+
+Step 1 - Identify the pain point:
+  What specific, concrete problem does the target audience face today?
+  Do not use an abstract or philosophical opening. Start with something the reader
+  has personally experienced. Think about what makes this problem frustrating,
+  costly, or time-consuming in practice.
+
+Step 2 - Establish stakes:
+  Why does this problem matter right now? What happens if the reader ignores it?
+  Consider scale, reliability, cost, developer experience, or security.
+  Pick the angle that will resonate most with your stated audience.
+
+Step 3 - Bridge to the solution:
+  What does this post offer that addresses the pain point?
+  Be specific about the scope. Will the post show an architecture, walk through
+  a configuration, compare approaches, or demonstrate a workflow?
+  Do not promise more than the post delivers.
+
+Step 4 - Give a reason to keep reading:
+  End the intro with a concrete reason to continue. This could be a specific
+  outcome ("by the end, you will have a working configuration that..."), a
+  surprising fact, or a direct statement of what the reader will learn.
+
+Step 5 - Self-critique checklist:
+  Before producing your final output, review your draft against every item below.
+  If any check fails, revise before outputting.
+
+  [ ] Does the first sentence describe a real, specific problem (not a vague trend)?
+  [ ] Would a reader in the target audience nod and say "yes, I have hit that"?
+  [ ] Is the scope of the post clearly stated (not oversold, not undersold)?
+  [ ] Is the tone practical, direct, and free of hype words?
+  [ ] Is the intro between 4 and 7 sentences?
+  [ ] Does every sentence earn its place, or can any be cut without losing meaning?
+  [ ] Does the final sentence give the reader a clear reason to keep going?
+  [ ] Are there zero em dashes? Use commas, periods, semicolons, or "and" instead.
+  [ ] Is the intro free of marketing language, buzzwords, and unsupported claims?
+  [ ] Does the intro avoid starting with "In today's world" or any similar cliche?
+
+ANTI-PATTERNS TO AVOID:
+
+1. Hype openings: Do not start with "In the rapidly evolving world of..." or
+   "AI is transforming..." or any variation. These are filler.
+2. Dictionary definitions: Never open with "X is defined as..." The audience
+   already knows what the topic is.
+3. Question leads without substance: "Have you ever wondered...?" is weak.
+   If you use a question, make it specific and technical.
+4. Burying the point: The reader should know what the post is about within
+   the first two sentences. Do not build up slowly.
+5. Overpromising: Do not claim the post will "revolutionize" or "transform"
+   anything. State what it covers and let the reader decide.
+6. Passive voice overuse: Prefer active, direct sentences. "We will walk
+   through X" is better than "X will be explored."
+7. Jargon without context: If you use a term the audience might not know,
+   briefly explain it. If the audience would know it, skip the explanation.
+8. Empty transitions: Avoid "Let's dive in" or "Without further ado."
+   End on substance, not ceremony.
+
+EDGE CASE HANDLING:
+
+- If the TOPIC is broad (e.g., "Kubernetes"), ask the user to narrow it before
+  writing. A good intro needs a specific angle.
+- If the AUDIENCE is "everyone" or "general," default to "software engineers
+  with 2+ years of experience" and note this assumption.
+- If no KEY_TAKEAWAY is provided, infer one from the topic but flag it in your
+  response so the user can confirm or adjust.
+- If the topic is controversial or has competing approaches, acknowledge the
+  landscape briefly in the intro without taking a side unless the post is
+  explicitly an opinion piece.
+- If the topic is an announcement (new release, new feature), lead with the
+  problem the feature solves, not the feature itself.
+
+OUTPUT FORMAT:
+
+Provide your response in this structure:
+
+<thinking>
+[Your step-by-step reasoning through Steps 1-4. This is where you work
+through the pain point, stakes, bridge, and hook before writing.]
+</thinking>
+
+**Draft Introduction:**
+
+[Your 4-7 sentence introduction here. Plain paragraph, no bullet points,
+no headers. Just clean prose.]
+
+**Self-Critique Results:**
+
+[Run through the checklist from Step 5. Mark each item pass/fail.
+If any failed, show your revision below.]
+
+**Final Introduction:**
+
+[The polished version after self-critique. If all checks passed on the
+first draft, this can be identical to the draft.]
+
+**Assumptions and Notes:**
+
+[Any assumptions you made about topic, audience, or scope. Flag anything
+the user should verify before using the intro.]
 ```
 
 ## Usage Tips
 
-- Be specific with [TOPIC]. "Deploying LLMs on Kubernetes" works better than "AI stuff."
-- Match [AUDIENCE] to who will actually read the post. A post for SREs needs a different hook than one for data scientists.
-- If you have a working title for the blog, include it in the prompt for better alignment.
-- Run it 2-3 times and pick the strongest opening, then edit from there.
+- Be specific with your TOPIC input. "Deploying LLMs on Kubernetes with llm-d" works far better than "AI stuff" or even "AI on Kubernetes." The more precise your topic, the sharper the intro.
+- Match AUDIENCE to who will actually read the post. A post for SREs needs a different hook than one for data scientists. Think about what problems keep your audience up at night.
+- If you have a working title for the blog, include it alongside the TOPIC. This gives the model better alignment on scope and tone.
+- Run the prompt 2-3 times with the same inputs and compare the outputs. Pick the strongest opening, then edit it by hand. First drafts from any source benefit from human editing.
+- Include the KEY_TAKEAWAY even if it feels obvious. It anchors the intro to the post's actual content and prevents the opening from drifting into generalities.
+- If the intro feels generic on the first run, add more detail to your TOPIC. Swap "monitoring microservices" for "using OpenTelemetry to trace latency spikes across 50+ microservices in a production cluster."
+- Review the self-critique checklist output carefully. If the model flags a failure and revises, compare both versions. Sometimes the original is actually stronger.
+- For multi-part blog series, mention in the TOPIC that this is part of a series and which part. The intro should orient returning readers without alienating new ones.
 
 ## Example Output
 
-> Every team that runs inference workloads on Kubernetes hits the same wall: GPU scheduling is not built into the default scheduler, and bolting it on after the fact creates more problems than it solves. This post walks through how llm-d handles distributed inference scheduling natively, without requiring a custom operator or sidecar. We will cover the architecture, show a working configuration, and explain the tradeoffs compared to other approaches. If you have been fighting with GPU resource requests and limits, this is the post you have been looking for.
+Below is a realistic example of what this prompt produces when given the topic "How llm-d schedules GPU inference workloads on Kubernetes without a custom operator," targeting platform engineers.
+
+> **Draft Introduction:**
+>
+> Every team that runs inference workloads on Kubernetes hits the same wall: the default scheduler does not understand GPUs, and the workarounds (custom operators, resource hacks, manual node pinning) create fragile systems that break when you scale. The cost is not just engineering time. It is wasted GPU capacity, failed deployments, and on-call pages at 2 AM because a pod landed on a node without the right accelerator. llm-d takes a different approach by handling inference scheduling natively within the Kubernetes scheduling framework, without requiring a sidecar or a separate control plane. This post walks through the architecture, shows a working configuration on a multi-node GPU cluster, and explains the tradeoffs compared to alternatives like KubeRay and custom device plugins. If you have been patching around GPU scheduling limitations and want a cleaner path, this is where to start.
+>
+> **Self-Critique Results:**
+>
+> - [PASS] First sentence describes a specific, real problem.
+> - [PASS] Target audience (platform engineers) would recognize the scenario.
+> - [PASS] Scope is clearly stated: architecture, config, and tradeoff comparison.
+> - [PASS] Tone is practical and direct.
+> - [PASS] Intro is 5 sentences.
+> - [PASS] Every sentence carries weight.
+> - [PASS] Final sentence gives a reason to keep reading.
+> - [PASS] No em dashes used.
+> - [PASS] No marketing language or hype.
+> - [PASS] No cliche opening.
+>
+> **Final Introduction:**
+>
+> Every team that runs inference workloads on Kubernetes hits the same wall: the default scheduler does not understand GPUs, and the workarounds (custom operators, resource hacks, manual node pinning) create fragile systems that break when you scale. The cost is not just engineering time. It is wasted GPU capacity, failed deployments, and on-call pages at 2 AM because a pod landed on a node without the right accelerator. llm-d takes a different approach by handling inference scheduling natively within the Kubernetes scheduling framework, without requiring a sidecar or a separate control plane. This post walks through the architecture, shows a working configuration on a multi-node GPU cluster, and explains the tradeoffs compared to alternatives like KubeRay and custom device plugins. If you have been patching around GPU scheduling limitations and want a cleaner path, this is where to start.
+>
+> **Assumptions and Notes:**
+>
+> - Assumed the post covers a single-cluster setup. If multi-cluster scheduling is in scope, the intro should mention it.
+> - Assumed the reader has working knowledge of Kubernetes scheduling concepts (pods, nodes, resource requests). If the audience is broader, the intro may need a brief framing sentence.
+> - The comparison to KubeRay and device plugins is assumed based on the topic. Confirm these are the alternatives discussed in the post.
