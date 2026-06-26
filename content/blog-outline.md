@@ -9,9 +9,9 @@ Generate a structured, publication-ready outline for a technical blog post with 
 **Naive prompt:**
 > "Create an outline for a blog post about deploying LLMs on Kubernetes."
 
-**What you get:** A list of five generic headings ("Introduction," "Background," "Implementation," "Results," "Conclusion") with no detail on what each section should cover, no audience targeting, and no sense of how the sections connect. You end up doing all the structural thinking yourself anyway.
+**What you get:** "1. Introduction. 2. Background on LLMs and Kubernetes. 3. Implementation Details. 4. Results. 5. Conclusion and Future Work." Five headings, no key points, no audience definition, no supporting material callouts. You stare at it, realize you still need to figure out what each section actually says, and do the structural thinking yourself anyway.
 
-**This prompt produces:** A complete, publication-ready outline with specific section headings that tell the reader what they will learn, a stated audience with explicit assumptions you can verify, key points and supporting material callouts for every section, transition sentences linking each section to the next, and word count estimates that keep the post on target. The output follows a deliberate narrative arc chosen to match your post's goal.
+**This prompt produces:** A complete, publication-ready outline with specific section headings like "Why Default GPU Scheduling Wastes Cluster Resources" and "How llm-d Rethinks Inference Scheduling," a stated audience (platform engineers running GPU clusters on OpenShift), key points and supporting material callouts for every section (architecture diagrams for disaggregated prefill/decode, YAML for KV-cache-aware routing configuration), transition sentences linking each section to the next, and word count estimates that keep the post on target. The output follows a deliberate narrative arc chosen to match your post's goal.
 
 **The difference:** One gives you a skeleton you still need to design. The other gives you a blueprint an author can start writing from immediately.
 

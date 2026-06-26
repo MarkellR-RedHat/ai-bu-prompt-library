@@ -10,9 +10,25 @@ Most people paste a function and type something like:
 
 > **Naive prompt:** "Write tests for this code."
 
-**What you get:** Three or four happy-path tests that verify the code works when everything goes right. Assertions check `is not None` instead of specific values. Test names are generic (`test_1`, `test_2`). No edge cases, no error path coverage, no boundary values, and mocks are applied to internal functions instead of external dependencies, so the tests break every time you refactor.
+**What you get:** Three or four happy-path tests with vague assertions and generic names. Something like:
 
-**This prompt** produces a categorized test suite covering happy paths, boundary values, error handling, integration points, and state transitions, with descriptive names, specific assertions, and mocks applied at the right boundaries. The difference is the gap between `test_create_order_works` asserting `result is not None` and `test_create_order_with_empty_cart_raises_validation_error` asserting the exact error message text.
+> ```python
+> def test_1(self):
+>     result = create_order(user_id="user-123", cart=[{"sku": "A", "quantity": 1, "price": 10}])
+>     assert result is not None
+>
+> def test_2(self):
+>     result = create_order(user_id="user-456", cart=[{"sku": "B", "quantity": 2, "price": 20}])
+>     assert result.status is not None
+>
+> def test_3(self):
+>     result = create_order(user_id="user-789", cart=[{"sku": "C", "quantity": 5, "price": 5}])
+>     assert len(result.line_items) > 0
+> ```
+
+No edge cases. No error path coverage. No boundary values. Assertions just check that something exists instead of checking that it is correct. These tests pass even when the code is broken. They also mock internal functions instead of external dependencies, so they shatter every time you refactor.
+
+**This prompt** produces a categorized test suite covering happy paths, boundary values, error handling, integration points, and state transitions, with descriptive names, specific assertions, and mocks applied at the right boundaries. Instead of `test_1` asserting `result is not None`, you get `test_create_order_with_empty_cart_raises_validation_error` asserting `pytest.raises(ValidationError, match="Cart must not be empty")` and `test_create_order_when_inventory_service_down_raises_service_error` mocking the inventory client at the boundary.
 
 ## When to use
 

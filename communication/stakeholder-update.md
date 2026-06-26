@@ -8,9 +8,13 @@ A prompt for turning raw project notes into crisp, executive-ready status update
 
 **Naive prompt:** "Write a status update for my project for leadership."
 
-**What you get:** A rambling summary that lists activities ("worked on API migration," "had meetings about testing") without outcomes, defaults to "On Track" regardless of evidence, buries the one thing leadership actually needs to decide, and uses jargon that loses non-technical readers by the second paragraph.
+**What you get:** Something like this:
 
-**This prompt** produces a concise, outcome-focused update with a justified status indicator, quantified accomplishments, specific risks with mitigations, and clear asks with deadlines. The difference: leadership reads it in under two minutes, knows exactly whether to worry, and can act on your asks without a follow-up meeting.
+> *Status: On Track. The team has been working hard this sprint and making great progress. We continued work on the API migration and had several productive meetings about testing strategy. The new architecture is coming along nicely and we are excited about the direction. There are some risks we are monitoring but nothing major at this time. We will continue to iterate and keep stakeholders informed.*
+
+No outcomes, no numbers, no asks. "On Track" with zero evidence. Leadership reads it, learns nothing, and schedules a follow-up meeting to find out what is actually happening.
+
+**This prompt** produces a concise, outcome-focused update with a justified status indicator, quantified accomplishments, specific risks with mitigations, and clear asks with deadlines. For example, an llm-d project update would lead with "At Risk: KV-cache routing benchmarks missed the P99 latency target by 80ms, putting the July beta at risk unless GPU scheduling is resolved by July 10." Leadership reads it in under two minutes, knows exactly whether to worry, and can act on your asks without a follow-up meeting.
 
 ## When to use
 

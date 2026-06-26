@@ -10,9 +10,13 @@ Most people prompt something like this:
 
 > **Naive prompt:** "What are the main players in [technology area]?"
 
-**What you get:** A flat list of company names with one-sentence descriptions pulled from their websites, no segmentation, no trend analysis, and no insight into where the market is heading. It reads like a Google search results page, not a strategic analysis.
+**What you get:** Something like this:
 
-**This prompt** produces a segmented landscape map with maturity assessments, technology trends with adoption timelines, specific gaps and unmet needs scored by practitioner pain level, and actionable recommendations for your organization. The difference: instead of a directory of names, you get a strategic terrain map that tells your leadership team where to invest, what to watch, and which threats require a near-term response.
+> *The Kubernetes-native LLM inference space has several key players. vLLM is an open-source inference engine with high performance. TensorRT-LLM is NVIDIA's optimized solution. KServe provides model serving on Kubernetes. Ray Serve offers distributed serving capabilities. TGI is Hugging Face's inference solution. The market is growing rapidly with increasing interest from enterprises.*
+
+A list you could build from 10 minutes of Googling. No segmentation between inference engines, serving platforms, and gateway/routing layers. No trend analysis. No assessment of which gaps matter. No recommendation on what your team should actually build, watch, or ignore.
+
+**This prompt** produces a segmented landscape map with maturity assessments, technology trends with adoption timelines, specific gaps and unmet needs scored by practitioner pain level, and actionable recommendations for your organization. For Red Hat AI building llm-d, that means recommendations like "Invest in multi-model serving with GPU sharing and isolation, since this is the highest-pain unmet need and aligns directly with our Kubernetes-native, OpenShift-integrated approach. Watch the gateway/routing segment but do not build our own; integrate with LiteLLM and Kong instead." The difference: instead of a directory of names, you get a strategic terrain map that tells your leadership team where to invest, what to watch, and which threats require a near-term response.
 
 ## When to use
 

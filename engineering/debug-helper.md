@@ -10,9 +10,18 @@ Most people hit a bug and type something like:
 
 > **Naive prompt:** "I'm getting this error, how do I fix it?"
 
-**What you get:** The model guesses at a fix based on the error message alone. It suggests the most common cause it has seen in training data, which may have nothing to do with your situation. You try the fix, it does not work, you paste the new error, and you are now three rounds into a trial-and-error loop that is no better than Stack Overflow.
+**What you get:** The model guesses at a fix based on the error message alone. Something like:
 
-**This prompt** produces a structured investigation: restating the bug to confirm understanding, isolating the failure domain, generating ranked hypotheses with supporting evidence, and designing specific diagnostic steps you can run right now to confirm or eliminate each hypothesis. The difference is the gap between "try reinstalling the package" and "add this specific log line at line 34, run this curl command, and if you see X in the output, hypothesis 1 is confirmed."
+> This error usually happens when the database connection times out. Try these steps:
+> 1. Make sure your database is running.
+> 2. Check your connection string in the config file.
+> 3. Try increasing the timeout value.
+> 4. Restart the service and try again.
+> 5. If none of that works, try reinstalling the database driver.
+
+No root cause analysis. No hypotheses. No diagnostic steps. You try each suggestion, none of them work, you paste the new error, and you are now three rounds into a trial-and-error loop that is no better than Stack Overflow.
+
+**This prompt** produces a structured investigation: restating the bug to confirm understanding, isolating the failure domain, generating ranked hypotheses with supporting evidence, and designing specific diagnostic steps you can run right now to confirm or eliminate each hypothesis. Instead of "check your connection string," you get: "Add `logger.debug(f"pool_size={pool.size()}, active={pool.active()}")` at line 34 of `db/connection.py`, then send the failing request with `curl -X POST http://localhost:8000/api/v1/orders -d '{"sku":"W1"}'`. If pool active count equals pool size, hypothesis 1 (connection pool exhaustion) is confirmed."
 
 ## When to use
 

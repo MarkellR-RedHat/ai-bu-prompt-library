@@ -11,7 +11,7 @@ Craft a technically sharp Twitter/X thread that breaks down complex topics into 
 
 **What you get:** "Thread: Let's talk about AI inference on Kubernetes! 1/ AI is transforming how we deploy models. 2/ Our project makes it easier. 3/ It's really cool and you should check it out!" Seven tweets of vague, interchangeable claims with emoji bullets, hashtags scattered everywhere, and zero technical substance. The kind of thread people mute.
 
-**This prompt produces:** A 5-10 tweet thread with a hook that states a bold, specific, verifiable claim, one new fact per tweet, a clear narrative arc (problem to proof to call to action), every tweet under 280 characters with counts verified, and hashtags confined to the final tweet only. Each tweet is self-contained enough to make sense when seen out of order in someone's feed.
+**This prompt produces:** A 5-10 tweet thread where the hook states a specific, verifiable claim ("Most Kubernetes clusters waste 30-50% of their GPU capacity on inference workloads"), each tweet adds one new fact (disaggregated prefill/decode scheduling, KV-cache-aware routing, native OpenShift integration without custom operators), the narrative arc moves from the GPU scheduling problem through llm-d's architecture to proof and a call to action, every tweet stays under 280 characters with counts verified, and hashtags appear only in the final tweet. Each tweet is self-contained enough to make sense when seen out of order in someone's feed.
 
 **The difference:** One reads like a product announcement from a brand account. The other reads like an engineer breaking down a hard problem in public, which is the content that actually gets retweeted.
 

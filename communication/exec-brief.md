@@ -8,9 +8,13 @@ Distill a complex technical topic into a one-page executive brief that gives a n
 
 **Naive prompt:** "Summarize this project for my VP."
 
-**What you get:** A miniature essay that leads with background instead of the bottom line, mixes technical implementation details with business context, buries the ask (if there is one) in the last paragraph, and runs long enough that the VP stops reading halfway through.
+**What you get:** Something like this:
 
-**This prompt** produces a structured one-pager with a "bottom line up front" that stands alone, jargon-free language, explicit tradeoffs the executive can weigh, specific asks with dollar amounts and deadlines, and honestly stated risks. The difference: your VP reads the first two sentences and knows what to do. The rest of the brief supports that decision rather than building toward it slowly.
+> *The llm-d project is an open source initiative focused on building a Kubernetes-native inference platform for large language models. The team has been working on several key areas including routing optimization, KV-cache management, and GPU scheduling. The architecture leverages disaggregated inference patterns to enable more efficient resource utilization. There are many exciting developments to share, and the team has been making steady progress across multiple workstreams...*
+
+Three paragraphs in, the VP still does not know whether to approve the budget, what the deadline is, or whether the project is in trouble. The ask appears on page two, buried after a technical architecture summary the VP did not need.
+
+**This prompt** produces a structured one-pager with a "bottom line up front" that stands alone, jargon-free language, explicit tradeoffs the executive can weigh, specific asks with dollar amounts and deadlines, and honestly stated risks. For llm-d, that means leading with "The inference platform is on track for GA in Q3. We need $180K in GPU nodes approved by July 1 to run the beta load test at production scale." The difference: your VP reads the first two sentences and knows what to do. The rest of the brief supports that decision rather than building toward it slowly.
 
 ## When to use
 

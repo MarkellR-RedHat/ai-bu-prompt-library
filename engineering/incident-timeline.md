@@ -10,9 +10,20 @@ Most people dump a Slack thread into an AI tool and type something like:
 
 > **Naive prompt:** "Create a timeline from these incident messages."
 
-**What you get:** A cleaned-up list of the Slack messages in roughly the order they appeared, missing events from other sources, with no gap analysis, no detection delay calculation, no distinction between reliable automated timestamps and approximate human-reported times, and no confidence assessment. It looks organized, but it silently drops contradictions and fills gaps with plausible-sounding guesses.
+**What you get:** A cleaned-up list of the Slack messages in roughly the order they appeared, missing events from other sources. Something like:
 
-**This prompt** produces a fact-based, multi-source timeline with every event categorized and sourced, gaps explicitly flagged instead of papered over, timestamp conflicts called out, key milestones identified and measured, and a confidence rating that tells the review team where the weak spots are. The difference is the gap between "incident started around 2pm" and a structured table showing detection at 14:01, alert at 14:03, human response at 14:06, with an 8-minute gap from 14:14 to 14:22 flagged for follow-up because the decision to kill the migration was made during that period with no written record.
+> **Incident Timeline**
+> - Around 2:00 PM: The team noticed errors in the order service.
+> - 2:05 PM: Engineers began investigating the issue.
+> - 2:15 PM: The database team identified the problem.
+> - 2:30 PM: The fix was applied and the service recovered.
+> - 2:50 PM: The incident was resolved.
+>
+> **Summary:** A database issue caused errors in the order service. The team investigated and resolved the issue in about 50 minutes.
+
+No gap analysis. No detection delay calculation. No distinction between reliable automated timestamps and approximate human-reported times. No confidence assessment. It looks organized, but it silently drops contradictions and fills gaps with plausible-sounding guesses. You cannot tell where the actual evidence ends and the narrative begins.
+
+**This prompt** produces a fact-based, multi-source timeline with every event categorized and sourced, gaps explicitly flagged instead of papered over, timestamp conflicts called out, key milestones identified and measured, and a confidence rating that tells the review team where the weak spots are. Instead of "around 2:00 PM, the team noticed errors," you get a structured table showing detection at 14:01 (Grafana, automated), PagerDuty alert at 14:03 (alert ID #8834), human acknowledgment at 14:06, with an 8-minute gap from 14:14 to 14:22 flagged for follow-up because the decision to kill the schema migration was made during that period with no written record.
 
 ## When to use
 

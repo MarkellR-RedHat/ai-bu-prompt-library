@@ -8,7 +8,11 @@ A prompt for drafting clear, actionable internal announcements that respect your
 
 **Naive prompt:** "Write an announcement about migrating from Jenkins to Tekton for my engineering team."
 
-**What you get:** A generic, vague message that opens with "I'm excited to announce..." followed by a wall of text. No clear actions, no deadlines, no acknowledgment of tradeoffs. Readers skim it and ask five follow-up questions in the thread.
+**What you get:** Something like this:
+
+> *I'm excited to announce that we will be migrating from Jenkins to Tekton! This is a great step forward for our engineering organization and will bring many benefits. Tekton is a cloud-native CI/CD solution that will help us modernize our pipelines and improve developer productivity. More details to come. Please reach out if you have any questions!*
+
+No timeline. No action items. No acknowledgment that Tekton's UI is less mature, or that migration takes 2-5 days per project. Readers immediately post "when?", "what about my custom plugins?", and "who do I talk to?" in the thread.
 
 **This prompt** produces an announcement with a front-loaded headline, explicit action items with owners and deadlines, channel-appropriate formatting, and honest tradeoff disclosures. The difference: your team reads it once, knows exactly what to do, and trusts you enough not to flood the thread with "but what about...?" questions.
 

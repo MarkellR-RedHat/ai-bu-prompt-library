@@ -8,9 +8,13 @@ Generate a structured, checkpoint-driven tutorial outline that moves the reader 
 
 **Naive prompt:** "Create a tutorial outline for deploying a model with llm-d on OpenShift."
 
-**What you get:** A list of 8-10 section titles with one-sentence descriptions, no prerequisite details, no verification checkpoints, and no troubleshooting guidance. The outline reads like a table of contents, not a plan for a hands-on tutorial. Anyone who tries to write the tutorial from this outline will need to redesign every section from scratch.
+**What you get:** Something like this:
 
-**This prompt** produces an outline with explicit audience assumptions, precise prerequisites (tool names, versions, access levels), sections scoped to equal time blocks, binary pass/fail checkpoints at every stage, a troubleshooting section drawn from real failure modes, and actionable next steps. The difference: the outline is detailed enough that a technical writer can fill in the commands and ship it, or an engineer can follow it as a rough guide immediately.
+> *1. Introduction to llm-d. 2. Prerequisites. 3. Setting up the environment. 4. Deploying the model. 5. Configuring the serving runtime. 6. Testing the endpoint. 7. Monitoring and observability. 8. Cleanup. 9. Next steps. 10. Conclusion.*
+
+Ten section titles with no substance. "Prerequisites" does not say which version of `oc` or which OpenShift release. "Deploying the model" does not specify whether that takes 5 minutes or 30. No checkpoints, so a reader who misconfigured the secret in step 3 does not discover the problem until step 6 when inference requests fail with a cryptic error. No troubleshooting, so "CUDA out of memory" sends them to Stack Overflow instead of your docs.
+
+**This prompt** produces an outline with explicit audience assumptions, precise prerequisites (e.g., "oc CLI v4.15.2+, OpenShift 4.15+ cluster with NVIDIA A100 GPU nodes"), sections scoped to equal time blocks, binary pass/fail checkpoints at every stage ("oc get modelregistry my-model shows STATUS as Ready"), a troubleshooting section drawn from real failure modes like ImagePullBackOff and CUDA out of memory, and actionable next steps. The difference: the outline is detailed enough that a technical writer can fill in the commands and ship it, or an engineer can follow it as a rough guide immediately.
 
 ## When to use
 

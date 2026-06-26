@@ -8,7 +8,22 @@ Turn a production incident into a thorough, blameless retrospective document and
 
 ## Naive vs. Engineered
 
-**What most people do:** Paste a wall of incident data into a single prompt and ask "write me a retrospective." The result reads like a book report. The timeline is vague, the root causes are surface-level ("someone pushed a bad deploy"), the action items are generic ("improve monitoring"), and the prevention plan is nonexistent.
+**What most people do:** Paste a wall of incident data into a single prompt and ask "write me a retrospective." The result looks like this:
+
+> **Incident Retrospective**
+>
+> **Summary:** A production outage occurred on Friday afternoon, affecting the order processing API for approximately one hour.
+>
+> **Root Cause:** A bad deployment caused the database to become overloaded.
+>
+> **Action Items:**
+> - Improve monitoring
+> - Add more tests
+> - Review deployment process
+>
+> **Lessons Learned:** We should be more careful with deployments and improve our testing practices.
+
+The timeline is vague ("Friday afternoon"), the root cause stops at "a bad deployment" without asking why the system allowed that deployment to cause an outage, the action items are so generic they could apply to any incident at any company, and there is no prevention plan. "Be more careful" is not a systemic fix.
 
 **Why that falls flat:** A single prompt forces the model to do five different cognitive tasks at once: reconstruct events, analyze causes, generate actions, write a polished document, and think systemically. When you ask for everything at once, the model satisfices on each task rather than excelling at any of them. The timeline gets simplified to make room for the analysis. The root causes stay shallow because the model is already drafting prose. The action items are vague because the model never deeply examined what went wrong.
 

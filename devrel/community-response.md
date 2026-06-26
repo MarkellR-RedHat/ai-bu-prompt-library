@@ -8,9 +8,13 @@ Draft a technically precise, empathetic response to a community question that re
 
 **Naive prompt:** "Help me respond to this GitHub issue about a routing error in llm-d."
 
-**What you get:** A response that opens with "Great question! Thanks for reaching out!" followed by a generic troubleshooting suggestion to "check the docs" or "upgrade to the latest version." No version-specific guidance, no working code snippet, no acknowledgment of what information is missing from the report.
+**What you get:** Something like this:
 
-**This prompt** produces a response that gets to the technical substance immediately, includes copy-paste-ready commands for the specific version, states assumptions explicitly, asks targeted clarifying questions instead of open-ended ones, and links to specific documentation pages rather than top-level sites. The difference: the community member can solve their problem in one round of conversation instead of three.
+> *Great question! Thanks for reaching out! It looks like you might be experiencing a routing issue. I'd recommend checking our documentation for troubleshooting guidance. You can also try upgrading to the latest version, which includes several bug fixes and improvements. If you continue to have issues, feel free to open another ticket and we'll be happy to help!*
+
+No mention of which version they are on. No specific commands. "Check our documentation" without a link. "Upgrade to the latest version" without explaining what changed. The user replies with "I already did that" and you are back to square one.
+
+**This prompt** produces a response that gets to the technical substance immediately, includes copy-paste-ready commands for the specific version, states assumptions explicitly, asks targeted clarifying questions instead of open-ended ones, and links to specific documentation pages rather than top-level sites. For an llm-d routing error, that means starting with "The routing error happens when the gateway cannot resolve the model name to a running backend" and including `oc get inferenceservice -n llm-serving` so the user can verify their model registration in one step. The difference: the community member can solve their problem in one round of conversation instead of three.
 
 ## When to use
 

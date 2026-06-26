@@ -10,9 +10,13 @@ Most people prompt something like this:
 
 > **Naive prompt:** "Help me prepare for my meeting tomorrow about the routing proposal."
 
-**What you get:** A generic list of things to think about ("review the agenda," "prepare questions," "be ready to take notes") that could apply to any meeting in any industry. You walk in no more prepared than before.
+**What you get:** Something like this:
 
-**This prompt** produces a prep document tailored to your specific meeting: who has the most at stake, what tensions will surface, what questions will move the group toward a decision, and what landmines to watch for. The difference: instead of generic advice you could have written yourself, you get a stakeholder-aware briefing that makes you the most prepared person in the room.
+> *To prepare for your meeting, review the agenda and any relevant documents. Think about the key topics that will be discussed. Prepare some questions to ask. Be ready to take notes and follow up on action items. Consider the perspectives of other attendees and how your input can add value to the discussion.*
+
+Five bullet points of advice that apply equally to a KV-cache routing design review and a book club meeting. You walk in no more prepared than before.
+
+**This prompt** produces a prep document tailored to your specific meeting: who has the most at stake, what tensions will surface, what questions will move the group toward a decision, and what landmines to watch for. For a routing proposal review on the llm-d inference platform, that means questions like "What happens to routing quality during a scale-up event when new nodes have empty caches?" and a stakeholder map noting that the SRE lead is concerned about operational complexity of real-time cache state reporting. The difference: instead of generic advice you could have written yourself, you get a stakeholder-aware briefing that makes you the most prepared person in the room.
 
 ## When to use
 

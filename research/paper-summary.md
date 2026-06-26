@@ -10,9 +10,13 @@ Most people prompt something like this:
 
 > **Naive prompt:** "Summarize this paper for me."
 
-**What you get:** A paraphrase of the abstract with some vague praise ("the authors present a novel approach") and no critical assessment. You cannot tell whether the paper is worth reading, whether its results would hold at your scale, or how it connects to your team's work.
+**What you get:** Something like this:
 
-**This prompt** produces a structured analysis that separates genuine novelty from incremental work, lists quantitative results with baselines, identifies limitations the authors glossed over, and maps relevance to your specific project. The difference: instead of a reworded abstract, you get a senior engineer's read that tells you whether to invest time in the full paper or move on.
+> *This paper presents a novel approach to KV cache management for large language model inference. The authors propose an interesting technique that shows promising results. The approach builds on prior work in memory management and introduces several improvements. The experimental results demonstrate significant improvements over existing methods. This paper makes a valuable contribution to the field and would be of interest to researchers working on LLM serving systems.*
+
+No numbers. No baselines. No mention of what hardware or workload they tested on. No limitations. You still do not know whether the technique works at your scale, whether it conflicts with disaggregated prefill/decode, or whether the benchmarks were run on a single A100 with synthetic traces that look nothing like production traffic.
+
+**This prompt** produces a structured analysis that separates genuine novelty from incremental work, lists quantitative results with baselines, identifies limitations the authors glossed over, and maps relevance to your specific project. For the llm-d inference platform team, the relevance section would reference specific components: "The PagedAttention block table design could inform our KV-cache memory allocator for the disaggregated prefill/decode architecture, but the single-node scheduler assumption does not apply to our distributed routing layer." The difference: instead of a reworded abstract, you get a senior engineer's read that tells you whether to invest time in the full paper or move on.
 
 ## When to use
 

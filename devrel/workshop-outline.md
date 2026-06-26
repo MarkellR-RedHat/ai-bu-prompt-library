@@ -8,9 +8,13 @@ Design a hands-on workshop with precise learning objectives, timed sections, pra
 
 **Naive prompt:** "Create a workshop outline for teaching llm-d on OpenShift. It should be 2 hours for intermediate users."
 
-**What you get:** A list of section titles with rough time estimates, no exercise details, no verification checkpoints, no troubleshooting guidance, and no instructor notes. The outline looks reasonable on paper but falls apart in a live room because exercises take longer than expected, attendees hit environment issues with no documented fixes, and the instructor has no backup plan when something breaks.
+**What you get:** Something like this:
 
-**This prompt** produces a workshop with timed sections that add up correctly, step-by-step exercises with exact commands, verification checkpoints for every section, common-issue guides that TAs can reference in real time, timing buffers with explicit cut instructions, and a complete pre-workshop setup checklist. The difference: an instructor who has never seen the material before can pick up this outline and deliver the workshop without additional preparation.
+> *Workshop Outline (2 hours). 1. Introduction (15 min). 2. Overview of llm-d (20 min). 3. Hands-on: Deploy a model (30 min). 4. Break (10 min). 5. Advanced configuration (25 min). 6. Q&A and wrap-up (20 min).*
+
+Six lines that add up to 2 hours on paper but fall apart in a live room. "Hands-on: Deploy a model" has no commands, no checkpoint, and no troubleshooting guide for when an attendee's pod gets stuck in Pending because of GPU scheduling. "Advanced configuration" could mean anything. No instructor notes, no TA briefing, and no backup plan for when the cluster goes down 10 minutes into the session.
+
+**This prompt** produces a workshop with timed sections that add up correctly, step-by-step exercises with exact commands (e.g., `oc apply -f cache-routing.yaml`), verification checkpoints for every section ("router logs show repeated requests with the same prefix routed to the same replica"), common-issue guides that TAs can reference in real time, timing buffers with explicit cut instructions ("Section 3 can be shortened to a 5-minute instructor demo if running behind"), and a complete pre-workshop setup checklist including pre-pulling model images on GPU nodes. The difference: an instructor who has never seen the material before can pick up this outline and deliver the workshop without additional preparation.
 
 ## When to use
 

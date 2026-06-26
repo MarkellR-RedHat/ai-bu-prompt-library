@@ -8,7 +8,19 @@ Transform an existing blog post into a polished conference talk proposal. This c
 
 ## Naive vs. Engineered
 
-**What most people do:** Paste their blog post into a single prompt and ask "turn this into a conference talk proposal." The result is a CFP submission that reads like a compressed version of the blog post. The abstract is generic, the talk structure is "intro, body, conclusion" with no narrative arc, and the proposal does not demonstrate why this talk would be good on stage rather than on a screen.
+**What most people do:** Paste their blog post into a single prompt and ask "turn this into a conference talk proposal." The result looks like this:
+
+> **Title:** Migrating from Monolith to Microservices: Lessons Learned
+>
+> **Abstract:** In this talk, we will explore the challenges and benefits of migrating from a monolithic architecture to microservices. We will cover key considerations, best practices, and lessons learned from real-world experience. Attendees will walk away with practical insights they can apply to their own migration journeys.
+>
+> **Outline:**
+> 1. Introduction (5 min)
+> 2. Background and Motivation (10 min)
+> 3. Migration Approach (15 min)
+> 4. Conclusion and Q&A (10 min)
+
+The abstract is a topic description, not a talk description. "We will explore" and "practical insights" could be about any migration at any company. The outline is "intro, body, conclusion" with no narrative arc, and the proposal does not demonstrate why this talk would be good on stage rather than on a screen.
 
 **Why that falls flat:** Blog posts and conference talks are fundamentally different media. A blog post can include dense code blocks, detailed comparisons, and nuanced caveats that readers absorb at their own pace. A talk has to hold attention in real time, build understanding progressively, and leave the audience with memorable takeaways. A single prompt cannot perform the translation between these formats because it tries to preserve everything from the blog post instead of making hard editorial choices about what to keep, cut, and transform.
 

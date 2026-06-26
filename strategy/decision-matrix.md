@@ -8,9 +8,15 @@
 
 **Naive prompt:** "Help me decide between Kubernetes and OpenShift for our infrastructure."
 
-**What you get:** A generic comparison of features and trade-offs that reads like a product comparison blog post. No weighting of what matters to your team, no scoring against your specific constraints, no sensitivity analysis, and no clear recommendation. You finish reading and still do not know which one to pick.
+**What you get:** Output like this:
 
-**This prompt** produces a structured decision matrix with must-have filters that eliminate non-starters, 5-10 weighted criteria with definitions so everyone interprets them the same way, scored evaluations with justifications for every rating, calculated weighted totals, sensitivity analysis showing which assumptions could flip the outcome, and a recommendation that acknowledges trade-offs and open questions. The difference is between a feature comparison you could find online and a rigorous, customized decision artifact that documents your reasoning and survives scrutiny from stakeholders who disagree.
+> **Kubernetes vs. OpenShift**
+>
+> Kubernetes offers more flexibility and a larger community, while OpenShift provides a more integrated experience with enterprise support. Kubernetes is ideal for teams that want full control, while OpenShift is better for organizations that prefer an opinionated platform. Ultimately, the best choice depends on your specific needs and constraints.
+
+No weighting of what matters to your team, no scoring against your specific constraints, no sensitivity analysis, and no clear recommendation. You finish reading something you could have found on any comparison blog and still do not know which one to pick.
+
+**This prompt** produces a structured decision matrix with must-have filters that eliminate non-starters upfront, 5-10 weighted criteria with definitions so everyone interprets them the same way, scored evaluations with justifications for every rating, calculated weighted totals, sensitivity analysis showing which assumptions could flip the outcome, and a recommendation that explicitly states what you are trading away. For example, instead of "depends on your needs," you get "OpenShift scores 86 vs. Kubernetes at 79, but if long-term flexibility weight increases from 3 to 5, Kubernetes pulls ahead by 1 point." The difference is between a feature comparison you could find online and a rigorous, customized decision artifact that documents your reasoning and survives scrutiny from stakeholders who disagree.
 
 ## When to Use
 

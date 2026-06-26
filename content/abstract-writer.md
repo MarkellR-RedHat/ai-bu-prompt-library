@@ -9,9 +9,9 @@ Write a concise, well-structured abstract for a conference talk, paper, or techn
 **Naive prompt:**
 > "Write an abstract for my conference talk about LLM inference on Kubernetes."
 
-**What you get:** A paragraph stuffed with buzzwords ("cutting-edge," "revolutionary," "in this exciting talk") that could describe any talk at any conference. No specific problem statement, no concrete results, no reason for a reviewer to rank it above the other 200 submissions in the pile.
+**What you get:** "In this exciting talk, we will explore cutting-edge approaches to LLM inference on Kubernetes. As organizations increasingly adopt AI, the need for scalable, efficient inference infrastructure has never been greater. Join us as we dive into revolutionary techniques that are transforming how teams deploy and manage large language models in production environments." No problem statement, no named tool, no metric, no reason for a reviewer to rank it above the other 200 submissions in the pile.
 
-**This prompt produces:** A structured, venue-aware abstract that opens with a specific problem, names the tool or approach, includes at least one concrete metric or architectural detail, and closes with a clear takeaway the reviewer can repeat back. The output also includes revision notes explaining the trade-offs made and one suggestion for strengthening the abstract further.
+**This prompt produces:** A structured, venue-aware abstract that opens with a specific problem (the default Kubernetes scheduler ignoring model memory requirements, KV-cache state, and batch dynamics), names llm-d as a disaggregated inference platform built for OpenShift, includes concrete metrics (p99 latency reduced by 35%, GPU utilization from 45% to 78% on a 32-GPU cluster running Llama 3 70B), and closes with a clear takeaway the reviewer can repeat back. The output also includes revision notes explaining the trade-offs made and one suggestion for strengthening the abstract further.
 
 **The difference:** One produces a generic paragraph you will rewrite entirely. The other produces a submission-ready draft that needs only your domain expertise to finalize.
 

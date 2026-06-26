@@ -8,9 +8,19 @@
 
 **Naive prompt:** "Write OKRs for my platform team this quarter."
 
-**What you get:** Vague objectives like "Improve platform reliability" with key results that are really just tasks in disguise ("Launch new monitoring dashboard," "Complete migration"). No baselines, no target numbers, no deadlines, no distinction between activity and outcome. The OKRs look fine on a slide but cannot actually be measured or tracked.
+**What you get:** Output like this:
 
-**This prompt** produces objectives that describe outcomes (not activities), key results with specific metrics, baselines, targets, and deadlines in the format "Verb metric from baseline to target by date," validation of whether each key result is actually measurable, balance checks to catch perverse incentives, and alignment notes connecting team OKRs to company-level goals. The difference is between OKRs that sit in a document and get forgotten and OKRs that function as a real accountability tool because everyone can independently verify whether they were achieved.
+> **Objective:** Improve platform reliability.
+>
+> **Key Results:**
+> 1. Launch new monitoring dashboard.
+> 2. Complete migration to new infrastructure.
+> 3. Improve incident response times.
+> 4. Increase customer satisfaction.
+
+No baselines, no target numbers, no deadlines, no distinction between activity and outcome. "Launch new monitoring dashboard" is a task, not a key result. "Improve incident response times" has no number attached. You could put these on a slide and nobody would know whether they were achieved six months later.
+
+**This prompt** produces objectives that describe outcomes (not activities), key results with specific metrics, baselines, targets, and deadlines in the format "Verb metric from baseline to target by date," validation of whether each key result is actually measurable, balance checks to catch perverse incentives, and alignment notes connecting team OKRs to company-level goals. For example, instead of "Improve incident response times," you get "Reduce median incident response time from 14 minutes to under 5 minutes by end of Q3, measured by PagerDuty acknowledgment timestamps." The difference is between OKRs that sit in a document and get forgotten and OKRs that function as a real accountability tool because everyone can independently verify whether they were achieved.
 
 ## When to Use
 

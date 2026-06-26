@@ -8,9 +8,22 @@ A prompt for conducting a structured root cause analysis of an incident or recur
 
 **Naive prompt:** "Help me figure out why our API went down yesterday."
 
-**What you get:** A speculative list of possible causes ("maybe it was a deployment," "perhaps the database was overloaded") with no structured reasoning, no evidence requirements, and no remediation plan. The output looks like brainstorming, not analysis. You could have generated the same list by staring at a whiteboard for five minutes.
+**What you get:** Output like this:
 
-**This prompt** produces a full root cause analysis: a precise problem statement, a Fishbone diagram with factors categorized and marked as CONFIRMED, SUSPECTED, or RULED OUT, a 5 Whys chain with confidence levels and branching when multiple causes converge, classified root causes (technical, process, organizational), and tiered remediation with priorities and owner roles. The difference is between guessing at causes and building a traceable chain of reasoning from symptom to systemic fix that you can present to leadership and use to prevent recurrence.
+> **Possible Causes:**
+> - It may have been related to a recent deployment.
+> - The database could have been overloaded.
+> - There might have been a network issue.
+> - Perhaps the API rate limits were hit.
+>
+> **Recommendations:**
+> - Improve monitoring to catch issues earlier.
+> - Consider adding more capacity.
+> - Review recent changes for potential problems.
+
+A speculative list with no structured reasoning, no evidence linking any cause to the actual incident, and remediation so vague that nobody can act on it. "Improve monitoring" does not tell you what metric to watch, what threshold to set, or who owns it. You could have generated the same list by staring at a whiteboard for five minutes.
+
+**This prompt** produces a full root cause analysis: a precise problem statement, a Fishbone diagram with factors categorized and marked as CONFIRMED, SUSPECTED, or RULED OUT, a 5 Whys chain with confidence levels and branching when multiple causes converge, classified root causes (technical, process, organizational), and tiered remediation with priorities and owner roles. For example, instead of "Improve monitoring," you get "Add a connection pool saturation alert at 80% with PagerDuty integration (P1, owner: SRE, this week)." The difference is between guessing at causes and building a traceable chain of reasoning from symptom to systemic fix that you can present to leadership and use to prevent recurrence.
 
 ## When to use
 

@@ -8,9 +8,13 @@ A prompt for writing blameless, thorough incident post-mortems that capture what
 
 **Naive prompt:** "Write a post-mortem for our database outage last Tuesday."
 
-**What you get:** A surface-level incident summary that restates the trigger without identifying the root cause, lists vague action items like "improve monitoring," and skips the blameless framing. The timeline has gaps, the lessons learned section is generic, and the document does not hold up in an incident review meeting.
+**What you get:** Something like this:
 
-**This prompt** produces a structured, blameless post-mortem with a chronological timeline built from messy raw input, a root cause analysis that goes three "whys" deep, specific and prioritized action items with owners, and honest acknowledgment of what went well, what did not, and where the team got lucky. The difference: your post-mortem becomes a document the team actually learns from, not a checkbox artifact that sits in a wiki unread.
+> *On Tuesday, the database experienced an outage. The team quickly identified the issue and resolved it. Root cause: a configuration change caused problems. Action items: improve monitoring, add better testing, review deployment process. Lessons learned: we need to be more careful with configuration changes and improve our communication during incidents.*
+
+No timeline. No actual root cause (a "configuration change caused problems" is a description, not an analysis). Every action item is vague enough to be ignored. The post-mortem sits in a wiki and teaches nobody anything.
+
+**This prompt** produces a structured, blameless post-mortem with a chronological timeline built from messy raw input, a root cause analysis that goes three "whys" deep, specific and prioritized action items with owners, and honest acknowledgment of what went well, what did not, and where the team got lucky. For an llm-d incident, that means action items like "Add circuit breaker to the KV-cache state reporting path so stale cache metadata does not route requests to evicted prefill nodes. Owner: Routing Team. Priority: P0." The difference: your post-mortem becomes a document the team actually learns from, not a checkbox artifact that sits in a wiki unread.
 
 ## When to use
 

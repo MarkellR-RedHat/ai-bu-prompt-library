@@ -10,9 +10,13 @@ Most people prompt something like this:
 
 > **Naive prompt:** "Tell me about [competitor product] and how it compares to us."
 
-**What you get:** A surface-level feature list pulled from the competitor's marketing site, a vague "pros and cons" section with no evidence, and generic advice like "differentiate on quality." You cannot use it to make a real product decision or win a deal.
+**What you get:** Something like this:
 
-**This prompt** produces an evidence-grounded analysis that rates each capability as a strength, table stakes, or weak point with citations; identifies specific differentiation opportunities based on real gaps; and assesses whether those gaps are likely to close in the next 12 months. The difference: instead of a marketing-flavored comparison, you get an engineering-grade competitive brief that your product and sales teams can actually act on.
+> *[Competitor] is a leading inference serving platform that offers a comprehensive set of features for deploying large language models. Pros: good performance, active community, supports multiple model formats. Cons: limited enterprise features, documentation could be better. Recommendation: we should differentiate on quality and enterprise readiness.*
+
+No evidence for any claim. "Good performance" compared to what? "Limited enterprise features" means what, specifically? "Differentiate on quality" is advice so generic it could apply to any product in any industry. You cannot use this to win a deal, set a roadmap priority, or explain to your sales team why a customer should pick you.
+
+**This prompt** produces an evidence-grounded analysis that rates each capability as a strength, table stakes, or weak point with citations; identifies specific differentiation opportunities based on real gaps; and assesses whether those gaps are likely to close in the next 12 months. For llm-d competing against another inference serving platform, that means findings like "No native multi-model GPU sharing; requires dedicating entire GPUs to a single model, costing 3-5x more for diverse model portfolios. Our Kubernetes-native approach with GPU scheduling and disaggregated inference directly addresses this gap." The difference: instead of a marketing-flavored comparison, you get an engineering-grade competitive brief that your product and sales teams can actually act on.
 
 ## When to use
 

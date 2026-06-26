@@ -8,9 +8,19 @@ A prompt for producing a structured cost-benefit analysis of a proposed feature,
 
 **Naive prompt:** "Do a cost-benefit analysis of migrating our inference serving to a new framework."
 
-**What you get:** A loose narrative with ballpark numbers, no range estimates, no sensitivity analysis, and no distinction between hard costs and soft benefits. The output might say "the migration will save money and improve performance" without quantifying either claim. You cannot take it to a finance review or use it to make an actual decision.
+**What you get:** Output like this:
 
-**This prompt** produces a structured business case with numbered assumptions, three-point cost estimates (low, expected, high) broken down by category (personnel, infrastructure, opportunity cost, transition), quantified and classified benefits (separating hard numbers from qualitative value), net analysis with ROI and payback period calculations, sensitivity analysis on the variables that matter most, a risk assessment, and a clear recommendation with conditions. The difference is between a hand-wavy narrative that sounds analytical and a rigorous financial case that a CFO can actually evaluate.
+> **Cost-Benefit Analysis: Inference Serving Migration**
+>
+> **Costs:** The migration will require significant engineering effort and some infrastructure investment.
+>
+> **Benefits:** The new framework will save money on compute costs and improve inference latency, leading to a better user experience and reduced operational burden.
+>
+> **Recommendation:** The benefits outweigh the costs. We recommend proceeding with the migration.
+
+No numbers, no range estimates, no sensitivity analysis, no distinction between hard costs and soft benefits. "Significant engineering effort" could mean two weeks or two quarters. "Save money" could mean $5K or $500K. You cannot take this to a finance review or use it to make an actual go/no-go decision.
+
+**This prompt** produces a structured business case with numbered assumptions, three-point cost estimates (low, expected, high) broken down by category (personnel, infrastructure, opportunity cost, transition), quantified and classified benefits (separating hard numbers from qualitative value), net analysis with ROI and payback period calculations, sensitivity analysis on the variables that matter most, a risk assessment, and a clear recommendation with conditions. For example, instead of "save money on compute," you get "Reduced GPU compute (30-50% per request): low $11K/mo, expected $16K/mo, high $19K/mo, measured by monthly cloud bill delta, dependent on assumption A3." The difference is between a hand-wavy narrative that sounds analytical and a rigorous financial case that a CFO can actually evaluate.
 
 ## When to use
 

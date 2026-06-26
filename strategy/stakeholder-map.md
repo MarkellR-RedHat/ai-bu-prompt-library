@@ -8,9 +8,20 @@
 
 **Naive prompt:** "Help me identify the stakeholders for my project."
 
-**What you get:** A generic list of roles (executive sponsor, project manager, end users, IT team) with no assessment of who actually has power, who cares, or what to do about any of them. It reads like a textbook definition of stakeholder management. You end up with names in a list and no strategy for engaging them.
+**What you get:** Output like this:
 
-**This prompt** produces a complete stakeholder map with influence and interest ratings (1-5) justified by evidence, placement on a four-quadrant grid (Manage Closely, Keep Satisfied, Keep Informed, Monitor), analysis of alliances and tensions, identification of stakeholders whose position might shift, and a concrete engagement plan for each person or group with specific channels, frequencies, key messages, and actions needed. The difference is between a flat list of names and a strategic engagement plan that tells you who to talk to, how often, what to say, and what to ask for.
+> **Key Stakeholders:**
+> - Executive Sponsor: Provides strategic direction and funding.
+> - Project Manager: Oversees day-to-day execution.
+> - End Users: Will use the final product.
+> - IT Team: Provides technical support.
+> - HR: May be affected by process changes.
+>
+> **Recommendation:** Keep all stakeholders informed through regular updates and meetings.
+
+A generic list of roles with no assessment of who actually has power, who cares, or what to do about any of them. "Keep all stakeholders informed" treats a CTO with budget authority the same as a team that just needs a monthly email. You end up with names in a list and no strategy for engaging them.
+
+**This prompt** produces a complete stakeholder map with influence and interest ratings (1-5) justified by evidence, placement on a four-quadrant grid (Manage Closely, Keep Satisfied, Keep Informed, Monitor), analysis of alliances and tensions, identification of stakeholders whose position might shift, and a concrete engagement plan for each person or group. For example, instead of "Executive Sponsor: Provides strategic direction," you get "VP of Engineering: Influence 5, Interest 2 (Keep Satisfied). Controls the budget but has delegated the decision. Engage monthly via email summary on budget status. Risk if ignored: surprise when costs come in, potential project freeze." The difference is between a flat list of names and a strategic engagement plan that tells you who to talk to, how often, what to say, and what to ask for.
 
 ## When to Use
 

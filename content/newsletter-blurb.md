@@ -9,9 +9,9 @@ Generate a tight, high-signal newsletter blurb (2-4 sentences) that earns the cl
 **Naive prompt:**
 > "Write a short summary of this blog post for our newsletter."
 
-**What you get:** A bland restatement of the article's title stretched into two sentences, usually opening with "Check out this great post about..." or "We are excited to share..." No specific detail, no reason to click, and no awareness of who the newsletter audience actually is.
+**What you get:** "Check out this great post about GPU scheduling on Kubernetes! We are excited to share some new insights on how to optimize your inference workloads. Read more to learn about the latest developments in this space." Three sentences, no metric, no tool name, no reason to click. It could describe any blog post about any infrastructure topic.
 
-**This prompt produces:** A 2-4 sentence blurb that opens with a concrete insight or result (not the title), includes at least one specific detail (a metric, a tool name, a benchmark), and gives the reader a clear reason to click through. The output also includes the key detail the blurb anchored on and an audience fit note so you can quickly validate whether the angle landed.
+**This prompt produces:** A 2-4 sentence blurb that opens with a concrete insight (GPU scheduling on Kubernetes wastes 30-50% of cluster capacity because the default scheduler ignores KV-cache state), names llm-d and its cache-aware routing on OpenShift, includes a specific metric (p99 latency cut by 35%), and gives the reader a clear reason to click through. The output also includes the key detail the blurb anchored on and an audience fit note so you can quickly validate whether the angle landed.
 
 **The difference:** One fills space in the newsletter. The other earns the click.
 

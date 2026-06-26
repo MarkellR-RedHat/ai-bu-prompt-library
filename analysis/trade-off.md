@@ -8,9 +8,17 @@ A prompt for systematically evaluating competing technical options against weigh
 
 **Naive prompt:** "Compare gRPC vs REST for our internal services."
 
-**What you get:** A surface-level comparison that reads like a blog post: "gRPC is faster, REST is simpler, it depends on your use case." No weighted criteria, no evidence-backed ratings, no analysis of second-order effects, no risk assessment, and no clear recommendation. You end up exactly where you started, except now you have spent ten minutes reading what you already knew.
+**What you get:** Output like this:
 
-**This prompt** produces a structured analysis with a clear decision frame, 6-10 precisely defined and weighted evaluation criteria, an evidence-backed comparison matrix, second-order effects over a 2+ year horizon, a risk assessment with mitigations, and a recommendation that explicitly states what you are trading away and under what conditions the recommendation would change. The difference is between a "here are some pros and cons" list and a defensible engineering decision that you can present to a review board, put in an ADR, and revisit with confidence when circumstances shift.
+> **gRPC vs. REST:**
+>
+> gRPC offers better performance with binary serialization and native streaming support. REST is simpler, more widely understood, and easier to debug. gRPC has a steeper learning curve but scales better for high-throughput services. REST is the safer choice for most teams.
+>
+> **Conclusion:** It depends on your use case. Consider your team's experience and performance requirements.
+
+No weighted criteria, no evidence-backed ratings, no analysis of second-order effects, no risk assessment, and no clear recommendation. "It depends on your use case" is where you started. You have spent ten minutes reading what you already knew.
+
+**This prompt** produces a structured analysis with a clear decision frame, 6-10 precisely defined and weighted evaluation criteria, an evidence-backed comparison matrix, second-order effects over a 2+ year horizon, a risk assessment with mitigations, and a recommendation that explicitly states what you are trading away. For example, instead of "gRPC is faster," you get "Latency at 10K RPS (CRITICAL): gRPC STRONG, measured 8ms P99 in bench; REST ADEQUATE, measured 22ms P99 in bench. Both within the 50ms target, but gRPC has more headroom above 50K RPS." The difference is between a "here are some pros and cons" list and a defensible engineering decision that you can present to a review board, put in an ADR, and revisit with confidence when circumstances shift.
 
 ## When to use
 

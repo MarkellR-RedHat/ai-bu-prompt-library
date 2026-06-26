@@ -1,10 +1,10 @@
 # Prompt Engineering Guide
 
-The definitive reference for writing prompts that produce consistent, professional-grade output. This guide covers every technique used in the AI BU Prompt Library, with real examples from the library showing each technique in action and before/after comparisons that demonstrate why these techniques matter.
+Everything you need to know about writing prompts that actually work. This guide walks through every technique used in the AI BU Prompt Library, with real examples and before/after comparisons showing why each one matters.
 
-If you use AI tools every day and your results are "okay but not great," this guide will show you exactly what is missing. The gap between mediocre prompts and engineered prompts is not a mystery. It is a set of specific, learnable techniques that make the model work harder and produce output you can actually use.
+If you use AI tools every day and your results are "okay but not great," this will show you exactly what is missing. The gap between mediocre prompts and engineered prompts comes down to a set of specific, learnable techniques that make the model work harder and produce output you can actually use.
 
-Every prompt in this library applies these techniques systematically. This guide explains how they work, why they work, and how to apply them yourself.
+Every prompt in this library applies these techniques. Here is how they work, why they work, and how to apply them yourself.
 
 ## Technique Quick Reference
 
@@ -31,7 +31,7 @@ You are a [ROLE] with expertise in [DOMAIN].
 You are working with [AUDIENCE] who need [OUTCOME].
 ```
 
-**Why it works:** Role assignment narrows the model's output distribution. A prompt that says "You are a senior site reliability engineer" will produce different (and more technically precise) output than one that says nothing about role. The model has been trained on text written by many different types of professionals. Telling it which professional to emulate activates the right patterns.
+**Why it works:** Telling the model who it is changes what it produces. A prompt that says "You are a senior site reliability engineer" pulls from different training patterns than one that says nothing about role. The model learned from text written by many different types of professionals. When you specify which one to emulate, you get that domain's language, reasoning, and conventions.
 
 #### Before and After
 
@@ -62,7 +62,7 @@ This is not just a generic role. It specifies seniority (which calibrates qualit
 
 > `You are a senior site reliability engineer with 15+ years of experience conducting blameless post-mortems and root cause analyses in large-scale distributed systems.`
 
-The role here is even more specific: it includes years of experience, the specific skill (blameless post-mortems), and the operating environment (large-scale distributed systems). This level of specificity activates domain-appropriate language, frameworks (5 Whys, Ishikawa), and reasoning patterns.
+The role here is even more specific: it includes years of experience, the specific skill (blameless post-mortems), and the operating environment (large-scale distributed systems). That level of specificity is what gets you domain-appropriate language, frameworks (5 Whys, Ishikawa), and reasoning patterns in the output.
 
 **Guidelines:**
 - Be specific about the role. "Engineer" is too broad. "Senior platform engineer specializing in Kubernetes networking" is useful.
@@ -85,7 +85,7 @@ Before providing your answer:
 4. Then provide your final recommendation.
 ```
 
-**Why it works:** Forcing intermediate reasoning steps reduces errors on multi-step problems. The model is less likely to skip important considerations when it must show its work. Without chain-of-thought, the model jumps straight to an answer, which for complex problems is often the first plausible answer, not the best one.
+**Why it works:** When you force the model to show intermediate steps, it makes fewer errors on multi-step problems. It is less likely to skip important considerations when it has to show its work. Without chain-of-thought, the model jumps straight to an answer, and for complex problems that answer is often the first plausible one, not the best one.
 
 #### Before and After
 
@@ -153,7 +153,7 @@ Provide your response in the following format:
 2. [Second action item with owner]
 ```
 
-**Why it works:** Without format constraints, models will invent their own structure, which varies between runs. Explicit format instructions produce outputs that can be parsed, compared, and integrated into workflows. This is the single most impactful technique for consistency. Two runs of the same prompt should produce output that looks structurally identical, even if the content differs.
+**Why it works:** Without format constraints, the model invents its own structure, and that structure varies between runs. When you lock in the format, you get output you can parse, compare, and plug into workflows. This is the single most impactful technique for consistency. Two runs of the same prompt should produce output that looks structurally identical, even if the content differs.
 
 #### Before and After
 
@@ -214,7 +214,7 @@ After drafting your response, review it against these criteria:
 Revise your response if any criteria are not met.
 ```
 
-**Why it works:** Models can catch their own errors when explicitly asked to look for them. This is not foolproof, but it catches a meaningful percentage of mistakes, especially omissions, logical gaps, and calibration errors (calling something "High" severity when it is actually "Low"). The key is making the checklist specific to the task, not generic.
+**Why it works:** Models can catch their own errors when you explicitly ask them to look. It is not foolproof, but it catches a meaningful percentage of mistakes: omissions, logical gaps, and calibration errors (calling something "High" severity when it is actually "Low"). The key is making the checklist specific to the task, not generic.
 
 #### Before and After
 
@@ -267,7 +267,7 @@ Do not:
 - Hedge excessively with phrases like "it depends" without following up
 ```
 
-**Why it works:** Models are trained on a lot of content that includes filler, hedging, and excessive politeness. They also pick up domain-specific bad habits: code reviews that recommend unnecessary abstractions, feedback that uses the "sandwich" technique, status updates that bury risks. Explicitly blocking these patterns produces cleaner, more direct output. This is the technique that most directly improves the professional quality of model output.
+**Why it works:** Models are trained on a lot of content that includes filler, hedging, and excessive politeness. They also pick up domain-specific bad habits: code reviews that recommend unnecessary abstractions, feedback that uses the "sandwich" technique, status updates that bury risks. When you explicitly block these patterns, the output gets cleaner and more direct. This is the technique that most directly improves the professional quality of what you get back.
 
 #### Before and After
 
@@ -315,7 +315,7 @@ If the provided [INPUT] is:
 - Outside your expertise: Say so directly rather than guessing.
 ```
 
-**Why it works:** Without edge case instructions, models will either hallucinate an answer or produce something generic. Explicit handling instructions give the model a safe path for unusual situations. This is what prevents the model from confidently producing garbage when the input is bad.
+**Why it works:** Without edge case instructions, the model will either hallucinate an answer or produce something generic. Giving it explicit handling instructions creates a safe path for unusual situations. This is what prevents the model from confidently producing garbage when the input is bad.
 
 #### Before and After
 
@@ -361,7 +361,7 @@ Every prompt in this library uses bracket placeholders for variable content. Thi
 [CONSTRAINTS]       - Known limitations or requirements
 ```
 
-**Why it works:** Placeholders turn a one-off prompt into a reusable tool. They also serve as documentation: anyone looking at the prompt can immediately see what inputs are needed and what each input represents. A prompt with clear placeholders is self-service. A prompt without them requires the author to explain how to use it every time.
+**Why it works:** Placeholders turn a one-off prompt into a reusable tool. They also serve as documentation: anyone looking at the prompt can immediately see what inputs are needed and what each one means. A prompt with clear placeholders is self-service. A prompt without them requires you to explain how to use it every time someone asks.
 
 #### Before and After
 
@@ -413,9 +413,9 @@ A well-structured prompt follows this order:
 7. VERIFICATION - How to check the work (optional)
 ```
 
-This order matters. Role and context prime the model before it encounters the task. Constraints and format shape the output. Examples reduce ambiguity. Verification catches errors.
+This order matters. Role and context prime the model before it sees the task, so it is already thinking in the right domain. Constraints and format shape the output. Examples reduce ambiguity. Verification catches errors.
 
-Not every prompt needs all seven sections. Simple prompts may only need task and format. Complex prompts benefit from all of them.
+Not every prompt needs all seven sections. A simple prompt may only need task and format. For complex prompts, use all of them.
 
 ## Common Mistakes and How to Fix Them
 
@@ -425,7 +425,7 @@ Not every prompt needs all seven sections. Simple prompts may only need task and
 
 **After:** "Review this Python function for security vulnerabilities, focusing on input validation, SQL injection, and authentication bypass. For each issue found, provide the line number, the vulnerability type, the severity (critical/high/medium/low), and a specific fix."
 
-The fix is specificity. Name the language, name the concern, name the output format. Every detail you add reduces the space of possible outputs, which makes the useful output more likely.
+The fix is specificity. Name the language, name the concern, name the output format. Every detail you add narrows the space of possible outputs, and that makes the useful output more likely.
 
 ### Mistake 2: Cramming multiple tasks into one prompt
 
@@ -445,7 +445,7 @@ The fix is specificity. Name the language, name the concern, name the output for
 
 **After:** "Our API gateway (running Envoy 1.28 on RHEL 9) is showing p99 latency spikes of 3.2 seconds during peak traffic (2-4 PM ET). Normal p99 is 180ms. The spikes started after we deployed version 4.2.1 on Tuesday. What are the most likely causes and what diagnostic steps should we take first?"
 
-The model does not know your system. Every detail you provide, from the software version to the normal baseline to the timing of the change, helps it produce a relevant answer instead of a generic one.
+The model does not know your system. Every detail you provide (software version, normal baseline, timing of the change) helps it produce a relevant answer instead of a generic one.
 
 ### Mistake 5: No constraints on length or depth
 
@@ -504,7 +504,7 @@ Before finalizing, confirm that:
 
 ## Final Notes
 
-Good prompt engineering is not about tricks or clever phrasing. It is about clarity, structure, and specificity applied with discipline. The seven techniques in this guide are not complex individually, but they compound: a prompt that applies all of them produces output that is categorically different from a prompt that applies none.
+Prompt engineering is not magic. It is clarity, structure, and specificity, applied consistently. The seven techniques in this guide are not complex individually, but they compound: a prompt that applies all of them produces output that is categorically different from a prompt that applies none.
 
 When in doubt:
 - Be more specific, not less.
@@ -513,6 +513,6 @@ When in doubt:
 - Check the output format matches what you need.
 - Test the prompt multiple times before committing it to the library.
 
-The prompts in this library are proof that these techniques work. Pick any prompt, compare its output to what you would get from a naive version of the same request, and the difference speaks for itself.
+The prompts in this library are proof that these techniques work. Pick any one, compare its output to what you get from a naive version of the same request, and the difference is obvious.
 
 See [testing-prompts.md](testing-prompts.md) for guidance on evaluating prompt quality.

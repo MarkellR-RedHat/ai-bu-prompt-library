@@ -8,9 +8,18 @@
 
 **Naive prompt:** "Help me prepare for my 1:1 with my direct report tomorrow."
 
-**What you get:** A generic list of conversation starters like "How are things going?" and "Any blockers?" with no connection to your actual team context, no time structure, and no follow-up tracking. You could have written that list yourself in two minutes.
+**What you get:** Output like this:
 
-**This prompt** produces a complete, context-specific prep document with an anchor topic, categorized open-ended questions drawn from your real inputs, a time-blocked agenda with buffer, a difficult-conversation script when needed, and a self-critique pass to catch vague or unusable output. The difference is between walking into a 1:1 with generic small talk and walking in with a focused plan that makes the conversation actually productive.
+> **1:1 Agenda:**
+> 1. How are things going?
+> 2. Any blockers I should know about?
+> 3. How is the project coming along?
+> 4. Anything else you want to discuss?
+> 5. Let's check in on your career goals.
+
+No connection to what your report is actually working on, no follow-up from your last meeting, no time structure, and nothing you could not have written yourself in two minutes. These questions would work for any report on any team at any company.
+
+**This prompt** produces a complete, context-specific prep document with an anchor topic, categorized open-ended questions drawn from your real inputs, a time-blocked agenda with buffer, a difficult-conversation script when needed, and a self-critique pass to catch vague or unusable output. For example, instead of "Any blockers?" you get "You mentioned some blockers last week in the #platform channel about the CI migration. Are those resolved, or do you need me to clear something?" The difference is between walking into a 1:1 with generic small talk and walking in with a focused plan that makes the conversation actually productive.
 
 ## When to use
 

@@ -10,9 +10,19 @@ Most people describe their system and type something like:
 
 > **Naive prompt:** "Review our architecture and tell us what to improve."
 
-**What you get:** A generic checklist of best practices that could apply to any system. "Consider adding caching." "You should use microservices." "Make sure you have monitoring." No assessment of your actual constraints, no distinction between what matters now and what matters at 10x scale, and no acknowledgment that your 4-person team cannot implement 15 recommendations simultaneously.
+**What you get:** A generic checklist of best practices that could apply to literally any system. Something like:
 
-**This prompt** produces a rated assessment across six specific criteria, with recommendations grounded in your actual scale, team size, deployment environment, and known pain points. Each recommendation includes what to do, why it matters, and estimated effort. The difference is the gap between "consider using a message queue" and "move audit log writes to an async path to reduce per-transaction write count from 3 to 2, which unblocks your path to 2,000 orders/sec; estimated effort is 2 to 3 weeks."
+> **Recommendations:**
+> - Consider adding a caching layer to improve performance.
+> - You should implement monitoring and alerting for all services.
+> - Consider breaking the monolith into microservices for better scalability.
+> - Make sure you have proper error handling and retry logic.
+> - Consider using a message queue for asynchronous processing.
+> - Implement CI/CD pipelines for faster deployments.
+
+No assessment of your actual constraints. No distinction between what matters now and what matters at 10x scale. No acknowledgment that your 4-person team cannot implement 15 recommendations simultaneously. You could paste any architecture description and get the same list back.
+
+**This prompt** produces a rated assessment across six specific criteria, with recommendations grounded in your actual scale, team size, deployment environment, and known pain points. Each recommendation includes what to do, why it matters, and estimated effort. Instead of "consider using a message queue," you get: "Move audit log writes to an async path using the existing RabbitMQ cluster. This reduces per-transaction write count from 3 to 2, which unblocks your path to 2,000 orders/sec on the single PostgreSQL primary. Estimated effort: 2 to 3 weeks for a team already familiar with the queue infrastructure."
 
 ## When to use
 

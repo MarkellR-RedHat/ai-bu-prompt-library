@@ -4,7 +4,7 @@
 
 Most people who use AI daily have never been taught prompt engineering. They type a reasonable request, get a reasonable result, and assume that is just how AI works. It is not. The gap between a naive prompt and an engineered prompt is not incremental. It is the gap between output you throw away and output you ship.
 
-This library is a collection of prompts that have been engineered, tested, and refined for real work. Each prompt applies a specific set of techniques (role setting, chain-of-thought reasoning, self-critique loops, anti-pattern avoidance) that make the difference between "okay" and "how did it know to do that?"
+This library is a set of prompts that have been engineered, tested, and refined for real work. Each one applies specific techniques (role setting, chain-of-thought reasoning, self-critique loops, anti-pattern avoidance) that make the difference between "okay" and "how did it know to do that?"
 
 ## See the Difference
 
@@ -34,7 +34,9 @@ Uses the [Stakeholder Update](communication/stakeholder-update.md) prompt with r
 
 **What you get:**
 
-A rambling paragraph mixing accomplishments, risks, and vague plans with no consistent structure. Buries the critical risk in the middle. Uses filler like "The team has been working hard." Runs long. Different every time you run it. You spend 20 minutes rewriting it before sending.
+"The team has been working hard on several fronts this quarter. We made good progress on the API migration and are continuing to onboard partners. There have been some challenges with CI but we are working through them. Overall things are on track and we are optimistic about hitting our deadlines."
+
+That is what you get: accomplishments, risks, and plans mashed into one paragraph. The CI problem (which could slip your GA date) is buried in the middle behind "some challenges." No status indicator, no dates, no asks. You spend 20 minutes rewriting it before sending.
 
 </td>
 <td>
@@ -60,7 +62,7 @@ CI pipeline stability has degraded, putting the July 30 GA release at risk if no
 </tr>
 </table>
 
-That is not a cherry-picked example. Every prompt in this library produces this kind of difference because every prompt applies the same set of engineering techniques. The [Prompt Engineering Guide](meta/prompt-engineering-guide.md) explains exactly what those techniques are and how to apply them yourself.
+That is not a cherry-picked example. Every prompt in this library produces this kind of difference because every prompt uses the same engineering techniques. The [Prompt Engineering Guide](meta/prompt-engineering-guide.md) explains what those techniques are and how to apply them yourself.
 
 ## Start Here
 
@@ -203,7 +205,7 @@ Guides on prompt engineering techniques and how to evaluate prompt quality.
 
 ## What Makes These Prompts Different
 
-Every prompt in this library applies these techniques consistently. They are not optional additions; they are the reason the output quality is different.
+Every prompt in this library applies these techniques consistently. They are not optional additions. They are the reason the output is better.
 
 1. **Role and context setting** - Each prompt starts with a specific expert role ("You are a senior SRE with 15+ years of experience conducting blameless post-mortems...") and names the audience. This is not decoration. It determines the vocabulary, depth, and framing of the entire response.
 

@@ -9,9 +9,9 @@ Write a compelling, technically grounded introduction for a blog post that hooks
 **Naive prompt:**
 > "Write an intro for my blog post about Kubernetes GPU scheduling."
 
-**What you get:** A generic paragraph that opens with "In today's rapidly evolving cloud landscape..." and meanders through vague statements about the importance of GPU computing before arriving at something loosely related to your topic. No hook, no specificity, no reason for the reader to keep going.
+**What you get:** "In today's rapidly evolving cloud landscape, GPU computing has become increasingly important for organizations looking to harness the power of artificial intelligence. As Kubernetes continues to gain adoption, teams are finding new ways to optimize their infrastructure for GPU workloads. This blog post explores the exciting possibilities of GPU scheduling and how it can transform your deployment strategy." Three sentences, zero information, could describe any project at any company.
 
-**This prompt produces:** A tight, 4-7 sentence introduction that opens with a concrete pain point your audience has personally experienced, establishes real stakes, bridges to your specific solution, and ends with a reason to keep reading. The output includes visible chain-of-thought reasoning so you can see how the model arrived at its choices, plus a self-critique checklist that catches weak openings, hype language, and scope drift before you ever see the final draft.
+**This prompt produces:** A tight, 4-7 sentence introduction that opens with a concrete pain point (the default Kubernetes scheduler treating GPUs as interchangeable, ignoring model memory, KV-cache state, and batch dynamics), establishes real stakes (wasted GPU capacity, failed deployments, on-call pages at 2 AM), bridges to a specific solution (llm-d handling inference scheduling natively within the Kubernetes scheduling framework on OpenShift), and ends with a reason to keep reading. The output includes visible chain-of-thought reasoning so you can see how the model arrived at its choices, plus a self-critique checklist that catches weak openings, hype language, and scope drift before you ever see the final draft.
 
 **The difference:** One gives you filler you will rewrite from scratch. The other gives you a working first draft that needs light editing.
 

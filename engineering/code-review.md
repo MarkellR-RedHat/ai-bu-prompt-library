@@ -10,9 +10,17 @@ Most people paste code into an AI tool and type something like:
 
 > **Naive prompt:** "Review this code for bugs."
 
-**What you get:** A shallow list of surface-level observations. "Consider adding error handling." "This variable could have a better name." "You might want to add tests." No severity ratings, no concrete fixes, no distinction between a style nitpick and a data-loss bug. You end up doing the real review yourself anyway.
+**What you get:** A shallow list of surface-level observations with no severity ratings, no concrete fixes, and no distinction between a style nitpick and a data-loss bug. Something like:
 
-**This prompt** produces a categorized, severity-rated review with concrete fix snippets for every finding. It enforces a self-critique step that filters out speculative issues, so what remains are real problems with real solutions. The difference is the gap between "you might want to look at this" and "this off-by-one on line 89 will skip the first page of results; here is the corrected calculation."
+> - Consider adding error handling to the database call.
+> - This variable name could be more descriptive.
+> - You might want to add input validation.
+> - Consider adding tests for edge cases.
+> - The function is a bit long; consider breaking it up.
+
+You end up doing the real review yourself anyway, because none of those observations tell you what is actually broken or how to fix it.
+
+**This prompt** produces a categorized, severity-rated review with concrete fix snippets for every finding. It enforces a self-critique step that filters out speculative issues, so what remains are real problems with real solutions. Instead of "consider adding error handling," you get: "Unbounded retry loop in `process_order()` at line 42 will block the worker thread indefinitely if the upstream payment service stays down (severity: Critical). Here is the corrected version with exponential backoff and a 5-attempt cap."
 
 ## When to use
 

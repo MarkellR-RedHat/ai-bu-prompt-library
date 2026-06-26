@@ -10,9 +10,23 @@ Most people open a PR and type something like:
 
 > **Naive prompt:** "Write a PR description for this diff."
 
-**What you get:** A summary that restates the file names that changed. "Updated router.go. Modified config. Added tests." No explanation of why anything changed, no guidance for reviewers on where to focus, no risk assessment, and no testing details. The reviewer still has to read every line of the diff blind, which is exactly the problem a good description is supposed to solve.
+**What you get:** A summary that restates the file names that changed with no useful context. Something like:
 
-**This prompt** produces a structured description with a clear summary, motivation linked to the actual issue, changes grouped by component with explanations of why each change was made, a specific review order telling reviewers where to start and what to scrutinize, testing details, and an honest risk assessment with rollback instructions. The difference is the gap between "updated selectReplica function" and "replaced round-robin replica selection with cache-aware selection that reduces cold-start latency by up to 40%; start your review at gateway/router.go lines 45 to 92."
+> ## Changes
+> - Updated `gateway/router.go`
+> - Modified `config/defaults.yaml`
+> - Added tests in `gateway/router_test.go`
+> - Fixed typo in `gateway/metrics.go`
+>
+> ## Testing
+> Tested locally and it works.
+>
+> ## Risk
+> Low risk.
+
+No explanation of why anything changed. No guidance for reviewers on where to focus. "Low risk" with no supporting reasoning. The reviewer still has to read every line of the diff blind, which is exactly the problem a good description is supposed to solve.
+
+**This prompt** produces a structured description with a clear summary, motivation linked to the actual issue, changes grouped by component with explanations of why each change was made, a specific review order telling reviewers where to start and what to scrutinize, testing details, and an honest risk assessment with rollback instructions. Instead of "Updated `gateway/router.go`," you get: "Replaced round-robin replica selection in `selectReplica()` with cache-aware selection that queries each replica's KV-cache state, reducing cold-start latency by up to 40%. Start your review at `gateway/router.go` lines 45 to 92, then check the 12 new test cases covering cache-hit routing, cache-miss fallback, and stale state handling."
 
 ## When to use
 

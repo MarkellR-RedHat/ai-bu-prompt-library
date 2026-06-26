@@ -8,9 +8,21 @@
 
 **Naive prompt:** "Assess the health of my engineering team."
 
-**What you get:** A generic checklist of things to look at (morale, velocity, communication) with no connection to your team's actual situation. The output reads like a blog post about team health, not a diagnostic tool. You finish reading it and still do not know what to do on Monday.
+**What you get:** Output like this:
 
-**This prompt** produces a structured diagnostic with a signal-by-signal dashboard (GREEN/YELLOW/RED), assessments across four dimensions (Delivery, Collaboration, Sustainability, Purpose), a ranked list of the top 3 issues with both quick actions and structural fixes, strengths worth protecting, and a data-gathering plan for any gaps. The difference is between reading a generic article about team health and getting a specific, evidence-based assessment that tells you what is wrong, what is right, and what to do next.
+> **Team Health Assessment:**
+>
+> - **Morale:** Monitor team morale regularly through check-ins and surveys.
+> - **Velocity:** Track sprint velocity to identify trends over time.
+> - **Communication:** Ensure open communication channels exist for the team.
+> - **Technical Debt:** Allocate time to address technical debt regularly.
+> - **Work-Life Balance:** Watch for signs of burnout and adjust workloads accordingly.
+>
+> **Recommendation:** Consider implementing regular retrospectives to surface issues early.
+
+A generic checklist that reads like a blog post about team health. Nothing is connected to your team's actual situation. You finish reading it and still do not know what to do on Monday.
+
+**This prompt** produces a structured diagnostic with a signal-by-signal dashboard (GREEN/YELLOW/RED), assessments across four dimensions (Delivery, Collaboration, Sustainability, Purpose), a ranked list of the top 3 issues with both quick actions and structural fixes, strengths worth protecting, and a data-gathering plan for any gaps. For example, instead of "Track sprint velocity," you get "Velocity: YELLOW. Decreasing over last 3 sprints (42, 38, 31 points). Root cause is unplanned work consuming 40% of sprint capacity. Quick action: designate one engineer per sprint as the interrupt shield. Structural fix: audit the top two sources of interrupt work and automate them." The difference is between reading a generic article about team health and getting a specific, evidence-based assessment that tells you what is wrong, what is right, and what to do next.
 
 ## When to use
 

@@ -8,9 +8,13 @@ Create a structured, time-boxed demo script that walks through a real engineerin
 
 **Naive prompt:** "Write a demo script for llm-d showing multi-adapter serving on OpenShift."
 
-**What you get:** A loose sequence of commands with no talking points, no expected outputs, no timing estimates, and no failure scenario. The script works as a personal cheat sheet for someone who already knows the product, but it is not reproducible by a teammate and it is not structured enough to rehearse against a clock.
+**What you get:** Something like this:
 
-**This prompt** produces a complete demo script with a clear narrative arc (problem, solution, proof), a pre-demo checklist for environment setup, numbered steps with exact commands and expected outputs, talking points calibrated to the audience, a realistic failure scenario with recovery, timing estimates that fit within the stated limit, and a specific closing action for the audience. The difference: you can hand this script to a colleague who has never given this demo before, and they can deliver it cold.
+> *1. Deploy the base model. 2. Show it working. 3. Add a LoRA adapter. 4. Show it working with the adapter. 5. Add another adapter. 6. Show both working. 7. Talk about memory savings.*
+
+Seven steps with no commands, no expected outputs, no timing, and no talking points. Step 2 is "show it working," which tells you nothing about what to type or what appears on screen. No pre-demo checklist, so the demo fails because you forgot to pre-pull the model weights. No failure scenario, so when a live audience member asks "what happens if you delete an adapter mid-request?" you have nothing to show.
+
+**This prompt** produces a complete demo script with a clear narrative arc (problem, solution, proof), a pre-demo checklist for environment setup, numbered steps with exact commands and expected outputs, talking points calibrated to the audience, a realistic failure scenario with recovery, timing estimates that fit within the stated limit, and a specific closing action for the audience. For an llm-d multi-adapter demo on OpenShift, each step includes the exact `oc apply` command, the expected pod status, and a talking point like "Two specialized models running on one GPU. Without llm-d, this would require two separate inference servers and two full copies of the base model weights." The difference: you can hand this script to a colleague who has never given this demo before, and they can deliver it cold.
 
 ## When to use
 

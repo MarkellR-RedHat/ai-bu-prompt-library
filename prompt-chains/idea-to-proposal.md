@@ -8,7 +8,19 @@ Take a rough idea and develop it into a complete, structured proposal with an ex
 
 ## Naive vs. Engineered
 
-**What most people do:** Dump their idea into a single prompt and ask "write me a proposal." The result is a generic document that sounds plausible but lacks depth. The problem statement is vague, the solution section reads like a product brochure, the risks are hand-waved away, and the executive summary is just a shorter version of the same vague content.
+**What most people do:** Dump their idea into a single prompt and ask "write me a proposal." The result looks like this:
+
+> **Proposal: Internal Developer Platform**
+>
+> **Problem:** Engineering teams spend too much time on operational tasks, reducing their ability to focus on product development.
+>
+> **Solution:** Build an internal developer platform that standardizes infrastructure provisioning and deployment workflows, improving developer productivity and reducing operational overhead.
+>
+> **Risks:** There may be some challenges with adoption and integration with existing tools.
+>
+> **Recommendation:** We recommend proceeding with this initiative to improve engineering efficiency.
+
+The problem statement is vague enough to apply to any engineering org. The solution reads like a product brochure. "There may be some challenges" is not a risk assessment. Nobody in a review meeting can say yes to this because there is nothing concrete to say yes to.
 
 **Why that falls flat:** Writing a good proposal requires at least five distinct thinking modes: creative exploration, critical analysis, structural design, persuasive writing, and ruthless compression. Asking a model to do all five in one pass means it never fully explores the idea before evaluating it, never fully evaluates it before structuring it, and never fully structures it before writing it. You get a document that looks like a proposal but does not survive scrutiny.
 

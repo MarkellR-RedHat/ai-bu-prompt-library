@@ -11,7 +11,7 @@ Craft a LinkedIn post that shares technical content in a professional, engineeri
 
 **What you get:** "I'm excited to share that we just launched an amazing new open source project! It's a game-changing tool for AI inference that will revolutionize how teams deploy models. Check it out! #AI #Innovation #Excited" Plus three paragraphs of vague claims that could describe any project at any company.
 
-**This prompt produces:** A 150-250 word post that opens with a specific technical fact or result (not an emotion), adds your personal perspective or a detail not in the linked content, grounds every claim in a concrete metric or architectural choice, and closes with a genuine question that invites real discussion. The post sounds like an engineer talking to peers, not a brand account broadcasting announcements.
+**This prompt produces:** A 150-250 word post that opens with a specific technical fact (the default Kubernetes scheduler cannot see KV-cache pressure, batch queue depth, or prefill vs. decode phase), names the project and architecture (llm-d's disaggregated inference on OpenShift, separating prefill and decode for independent routing and scaling), includes a concrete metric (p99 latency dropped 35% once requests stopped being treated identically), and closes with a genuine question that invites real discussion from practitioners. The post sounds like an engineer talking to peers, not a brand account broadcasting announcements.
 
 **The difference:** One sounds like every other corporate LinkedIn post and gets scrolled past. The other sounds like a person with something specific to say and earns engagement from practitioners who actually work in the space.
 

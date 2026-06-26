@@ -10,9 +10,13 @@ Most people prompt something like this:
 
 > **Naive prompt:** "Summarize this RFC for me."
 
-**What you get:** A rehash of the RFC's own introduction, maybe a bullet list of features, and no opinion on whether the proposal is actually sound. You end up reading the full RFC anyway because the summary did not help you decide how to engage.
+**What you get:** Something like this:
 
-**This prompt** produces a structured breakdown that surfaces tradeoffs the author did not call out, flags gaps in the alternatives section, identifies which teams should review vs. skip, and gives you an honest assessment of whether the RFC is ready to move forward. The difference: instead of a passive summary, you get an opinionated reviewer's brief that saves 30-60 minutes of reading time per RFC.
+> *This RFC proposes changes to the routing layer to improve performance. The author suggests implementing a new routing strategy that takes into account cache state. The proposal includes several design decisions and discusses some tradeoffs. Overall, the RFC addresses an important problem and the proposed solution seems reasonable. Reviewers should read the full document for details.*
+
+A summary that could describe any routing RFC in any project. No mention of which tradeoffs the author made, what alternatives were rejected, which teams are affected, or whether the proposal is actually ready for implementation. You end up reading the full RFC anyway because the summary did not help you decide how to engage.
+
+**This prompt** produces a structured breakdown that surfaces tradeoffs the author did not call out, flags gaps in the alternatives section, identifies which teams should review vs. skip, and gives you an honest assessment of whether the RFC is ready to move forward. For an llm-d KV-cache-aware routing RFC, that means calling out "the RFC does not address node scaling events when cache state is unavailable for new replicas" and recommending "Must review: Inference platform team (routing subsystem owners), SRE team (operational impact of cache state reporting). Can skip: Frontend and API teams (no API changes)." The difference: instead of a passive summary, you get an opinionated reviewer's brief that saves 30-60 minutes of reading time per RFC.
 
 ## When to use
 
