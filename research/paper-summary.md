@@ -128,6 +128,17 @@ EDGE CASES:
   whether it appears actively maintained.
 - If the paper is from a workshop or non-peer-reviewed venue, note this context in your summary
   so readers can calibrate their trust accordingly.
+- If any bracketed placeholders (e.g., [PAPER_TITLE], [TEAM_OR_PROJECT]) are left unfilled,
+  stop and list the missing inputs rather than generating a summary with placeholder values.
+  A summary without a grounded relevance section is generic and unhelpful.
+- If the paper is written in a language other than English, note the original language and
+  flag that your summary is based on translation. Key technical terms may carry nuances that
+  do not translate directly; call out any terms where the translated meaning is ambiguous
+  or where the original term is standard in the field.
+- If the paper is too long to fit within the model's context window, prioritize pasting the
+  abstract, introduction, methodology, results, and discussion sections. Note in your summary
+  that appendices and supplementary material were not reviewed, and flag any claims that
+  depend on details you could not verify from the sections provided.
 
 Keep the total summary under 600 words. Use precise technical language.
 ```
@@ -159,6 +170,7 @@ These techniques together explain the difference shown in the comparison above: 
 - Pair with a follow-up prompt asking the model to compare two paper summaries side by side if you are evaluating competing approaches.
 - If the paper introduces a system with open-source code, run the summary prompt first, then separately evaluate the code quality and maintenance status.
 - After generating the summary, scan the "[UNCERTAINTY]" flags. These are your starting points for deeper reading if the paper turns out to be relevant.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/competitive-snapshot` slash command can provide industry context that complements a paper summary for strategic discussions.
 
 ## Example Output
 

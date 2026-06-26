@@ -185,6 +185,19 @@ EDGE CASES:
   "meeting norms" based on what can be inferred (format, cadence, typical outcomes).
 - If the meeting involves a decision with significant technical risk, include a brief
   "decision framework" suggesting what criteria should guide the decision.
+- If any bracketed placeholders (e.g., [MEETING_TITLE], [KEY_ATTENDEES_AND_THEIR_ROLES])
+  are left unfilled, stop and list the missing inputs rather than generating prep with
+  placeholder values baked in. Generic prep built on unfilled placeholders is no better
+  than the naive approach.
+- If no agenda is available and the background context is minimal, produce a shorter
+  prep document focused on questions to ask and risks to watch for. Do not fabricate
+  agenda items or stakeholder positions from thin air. Flag clearly that the prep is
+  based on limited information.
+- If the meeting involves participants from a different cultural context, language, or
+  organizational norms than your own (e.g., a partner meeting with a team in a different
+  country, or a cross-functional meeting with a non-engineering audience), add a brief
+  "communication notes" section covering relevant norms: formality expectations,
+  decision-making style, and any terminology that may not translate directly.
 
 Keep the total prep document under 500 words (excluding the stakeholder map).
 Be specific and actionable. Every sentence should help me walk into the meeting ready.
@@ -217,6 +230,7 @@ These techniques together explain the difference shown in the comparison above: 
 - For recurring meetings, save your prep documents and reference them in future prompts. This gives the model context about past discussions and decisions, which improves the prep over time.
 - Use the "Risks and Landmines" section to mentally rehearse difficult scenarios. Even if the risks do not materialize, thinking through them makes you more confident in the meeting.
 - For customer or partner meetings, supplement the prompt with the other party's recent press releases, product announcements, or LinkedIn profiles of key attendees. This context powers the stakeholder map.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/what-next` slash command can help prioritize action items that come out of the meeting you prepared for.
 
 ## Example Output
 

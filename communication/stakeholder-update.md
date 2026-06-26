@@ -152,6 +152,9 @@ fails, revise the draft before returning it.
 - If the audience is mixed (e.g., both technical leads and non-technical executives),
   default to the less technical register and add a "Technical Details" appendix
   section for those who want depth.
+- If a placeholder is left unfilled (e.g., [PROJECT_NAME] still reads "[PROJECT_NAME]"), stop and ask the user to fill it in. A status update with no project name or reporting period cannot be sent.
+- If the raw information is in a language other than English, produce the update in English but note that the source data was translated and may need verification of technical terms.
+- If the user is running this on a model with a small context window (under 16k tokens) and the raw notes are extensive, recommend splitting the notes into accomplishments, risks, and asks before pasting, and run the prompt once per section.
 ```
 
 ## Why This Works
@@ -176,6 +179,7 @@ fails, revise the draft before returning it.
 - Use the self-critique checklist as your own review tool, too. After the AI produces a draft, read through the eight checks yourself before sending. The checklist catches the most common failure modes.
 - When your project status is genuinely "At Risk" or "Blocked," do not soften the language. Direct, honest updates build more trust over time than optimistic ones that age poorly.
 - Pair this prompt with a "risks and mitigations" deep-dive prompt if your risk section consistently runs long. Keep the stakeholder update concise and link to the detailed risk analysis separately.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/draft-announcement` slash command can generate stakeholder-facing announcements, and the `/release-notes` slash command handles the release-specific version of status communication.
 
 ## Example Output
 

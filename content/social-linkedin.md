@@ -148,6 +148,8 @@ EDGE CASE HANDLING:
   in plain language, put the technical details in the middle, and close with the
   practical impact. Do not assume the reader knows the acronyms.
 - If no link is provided: do NOT fabricate one. End with a discussion question instead.
+- If any placeholder is left unfilled, stop and ask the user to provide it. A LinkedIn post without a clear topic will default to generic filler.
+- If the topic is about a competitor's product or technology, keep the tone neutral and fact-based. Frame it as engineering observation, not positioning.
 ```
 
 ## Why This Works
@@ -177,6 +179,7 @@ The comparison above captures the fundamental problem: LinkedIn's culture encour
 - **Read it aloud before posting.** If it sounds like something a VP of Marketing would say on stage, rewrite it. If it sounds like something you would say to a coworker over coffee, ship it.
 - **Vary your post structure over time.** Not every post needs to be "problem, solution, link." Try asking a genuine question, sharing a tradeoff you wrestled with, or highlighting someone else's work.
 - **Do not over-hashtag.** Three to five targeted hashtags (#Kubernetes, #OpenSource, #MLOps) outperform ten generic ones (#innovation, #technology, #leadership, #motivation).
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/draft-announcement` slash command can generate LinkedIn-ready posts alongside Slack and email versions from the same source material.
 
 ## Example Output
 

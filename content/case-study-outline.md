@@ -214,6 +214,8 @@ you find before returning the output.
 - If the raw notes are extremely sparse (fewer than 5 substantive data points): flag this
   at the top of your output with a warning that the outline will be mostly [NEEDS DATA]
   placeholders, and list the specific questions to ask in a follow-up conversation.
+- If the customer's industry is heavily regulated (healthcare, financial services, government), add a note about compliance language that may need legal review before publication.
+- If any placeholder is left unfilled, produce the outline with [UNFILLED: field_name] markers so the user can see exactly what is missing.
 
 == RAW NOTES ==
 
@@ -245,6 +247,7 @@ The comparison above highlights the fundamental issue: a naive prompt treats cas
 - If the customer is anonymous, replace identifiable details in your raw notes before pasting. The prompt will also scrub, but defense in depth matters.
 - After generating the outline, schedule a follow-up call with the customer to fill in every [NEEDS DATA] and [NEEDS VALIDATION] gap before drafting.
 - Pair this with an executive brief prompt if you need a one-page version for leadership or a short version for analyst briefings.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/explain-for-customer` slash command can help translate technical implementation details into customer-friendly language for the case study narrative.
 - Run the prompt twice with the same notes and compare the outputs. Differences between runs often highlight areas where the notes are ambiguous and need clarification.
 - Share the generated outline with the customer contact for accuracy review before investing time in a full draft. This catches errors early and builds trust.
 - Keep a running document of resolved [NEEDS DATA] items across case studies. Patterns in missing data reveal gaps in your customer interview process that you can fix upstream.

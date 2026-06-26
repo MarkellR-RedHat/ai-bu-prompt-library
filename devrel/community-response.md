@@ -144,6 +144,21 @@ EDGE CASE HANDLING:
   briefly confirm that the linked answer is still current.
 - If you genuinely do not know the answer: say so. Suggest who or where
   to ask (a specific maintainer, SIG, or channel) rather than guessing.
+- If any bracketed placeholders (e.g., [PRODUCT], [PLATFORM], or the pasted
+  question) are left unfilled, stop and list the missing inputs rather than
+  generating a response with placeholder values. A community response addressed
+  to "[PRODUCT]" undermines credibility if posted accidentally.
+- If the original question is in a language other than English and you cannot
+  respond accurately in that language, respond in English and note at the top:
+  "I am responding in English; apologies if this is not your preferred language.
+  Please let me know if a translation would be helpful." Do not attempt a
+  translation if you are uncertain about technical terminology in that language.
+- If the original question carries a hostile, frustrated, or aggressive tone,
+  do not match the tone, do not apologize excessively, and do not dismiss the
+  frustration. Acknowledge the specific problem directly ("I understand this
+  is blocking your deployment"), then pivot immediately to the technical fix
+  or next diagnostic step. Keep the response shorter than usual; long responses
+  to frustrated users feel like deflection.
 ```
 
 ## Why This Works
@@ -167,6 +182,7 @@ EDGE CASE HANDLING:
 - When multiple people have chimed in on a thread, read all the replies before drafting. The original question may have been clarified, partially answered, or changed scope in the discussion.
 - If you are responding on behalf of a team or project, make that clear. Say "the team is tracking this in issue #1234" rather than "I will fix this," unless you are personally committing to the fix.
 - Review the draft for any assumptions that are not stated. If you assumed a specific OS, Kubernetes version, or deployment method, call it out so the reader can correct you if the assumption is wrong.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/explain-for-customer` slash command provides a similar capability for customer-facing explanations in support contexts.
 
 ## Example Output
 

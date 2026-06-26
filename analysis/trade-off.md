@@ -159,6 +159,24 @@ EDGE CASE HANDLING:
 - If the decision is highly reversible (for example, choosing a library
   behind a clean interface), say so and recommend spending less time
   analyzing and more time prototyping.
+- If any placeholder fields are left unfilled (e.g., "[DECISION]" or
+  "[OPTIONS]"), do not generate an analysis with invented options or
+  context. Instead, list the unfilled fields and ask the user to provide
+  them. A tradeoff analysis built on assumed inputs will produce a
+  recommendation that does not apply to the real situation.
+- If the tradeoff analysis is for a non-technical decision (e.g., vendor
+  selection, hiring strategy, office location), adapt the evaluation
+  criteria to the relevant domain. Replace technical criteria like
+  "latency" and "schema evolution" with domain-appropriate ones such as
+  "contract flexibility," "candidate pipeline depth," or "commute time
+  distribution." The structured framework applies broadly, but the
+  criteria must match the decision space.
+- If the options under consideration are not truly comparable (e.g.,
+  comparing a managed service to a custom-built solution, or comparing
+  options that solve different subsets of the problem), flag the
+  asymmetry explicitly in Step 1. Recommend either reframing the
+  decision so the options are comparable, or splitting it into two
+  sequential decisions.
 
 Format your output with clear Markdown headers for each step.
 Use tables for the comparison matrix and risk assessment.
@@ -188,6 +206,7 @@ These techniques combine to produce the difference shown above: a defensible, ev
 - Run the analysis twice with different weightings on the criteria to see how sensitive the recommendation is to your assumptions about what matters most.
 - Use the "Conditions that would change your recommendation" section as a living checklist. Revisit it when circumstances shift.
 - Share the comparison matrix with stakeholders before the full write-up. It surfaces disagreements about criteria weights early, which is where most real debates happen.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/competitive-snapshot` slash command can provide competitive context that informs the alternatives considered in a tradeoff analysis.
 
 ## Example Output
 

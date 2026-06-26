@@ -162,6 +162,19 @@ EDGE CASES:
   team or system rather than as a flat list.
 - If the RFC references external standards or specifications (e.g., an IETF draft,
   a CNCF spec), note the standard and its maturity level.
+- If any bracketed placeholders (e.g., [RFC_TITLE], [PASTE_RFC_TEXT_OR_KEY_SECTIONS_HERE])
+  are left unfilled, stop and list the missing inputs rather than generating a summary
+  with placeholder values baked in. A summary built on unfilled placeholders is worse
+  than no summary.
+- If the RFC addresses a domain outside software (e.g., a hardware design RFC, an IETF
+  network protocol standard, or a policy RFC from a standards body), adjust the summary
+  structure accordingly. The "Alternatives Considered" and "Key Tradeoffs" sections still
+  apply, but "Impact Assessment" may need to cover physical components, manufacturing
+  constraints, or regulatory requirements instead of software systems and APIs.
+- If the RFC is long enough to exceed the model's context window, paste the abstract,
+  proposed solution, alternatives, and open questions sections first. Note in the summary
+  that you worked from a partial text and flag any sections you did not review. Recommend
+  the reader verify tradeoffs and risks against the full document.
 
 Keep the total summary under 500 words (excluding alternatives section).
 Use precise technical language. If the RFC is ambiguous on a point,
@@ -196,6 +209,7 @@ These techniques together explain the difference shown in the comparison above: 
 - Run this prompt on your own RFC before submitting it for review. If the summary reveals gaps or unclear tradeoffs, address them in the RFC before others find them.
 - Keep a library of RFC summaries indexed by topic. Over time, this becomes a searchable decision log that helps you avoid revisiting decisions that were already made.
 - When the "Alternatives Considered" section is empty or thin, treat that as a yellow flag. It usually means the author either did not explore the design space or is not sharing their reasoning.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/summarize-thread` slash command can extract discussion context from related GitHub threads to complement the RFC summary.
 
 ## Example Output
 

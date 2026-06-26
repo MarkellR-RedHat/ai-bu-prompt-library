@@ -172,6 +172,20 @@ Not full code listings.)
 - If there is no way to run a meaningful checkpoint for a section (for example, a
   config file change that only takes effect later), combine that section with the
   next one so every section ends with a verifiable result.
+- If any bracketed placeholders (e.g., [PRODUCT], [TUTORIAL_TITLE], [OUTCOME])
+  are left unfilled, stop and list the missing inputs rather than generating an
+  outline with placeholder values. A tutorial outline built on unfilled inputs
+  cannot be tested, reviewed, or handed off to a writer.
+- If the tutorial covers a domain outside traditional software (hardware setup,
+  data science workflow, lab equipment configuration), adapt checkpoints to match
+  the domain. Hardware tutorials may use physical observations ("LED turns green")
+  or instrument readings instead of CLI output. Data science tutorials may use
+  notebook cell outputs, plots, or metric thresholds as checkpoints.
+- If the tutorial must accommodate readers with accessibility requirements (screen
+  readers, keyboard-only navigation, color vision differences), note this in the
+  prerequisites and adjust checkpoints accordingly. Avoid checkpoints that rely
+  solely on color ("the bar turns green") and provide text-based alternatives.
+  Ensure all commands and outputs are compatible with screen readers.
 ```
 
 ## Why This Works
@@ -196,6 +210,7 @@ Not full code listings.)
 - Include the exact version numbers you tested against. "Install oc CLI" is not sufficient. "Install oc CLI v4.15.2" is.
 - When writing checkpoints, include the expected output verbatim when possible. "You should see `status: Ready`" is far more useful than "verify the status."
 - Keep troubleshooting entries focused on errors that actually happen in practice. If you have run through the tutorial yourself, you already know what breaks. Document those first.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/write-docs` slash command can generate the API documentation that a tutorial references.
 
 ## Example Output
 

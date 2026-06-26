@@ -164,6 +164,22 @@ EDGE CASE HANDLING:
   preferences.
 - If multiple difficult topics exist, recommend splitting them across two
   meetings rather than cramming them into one session.
+- If any placeholder fields are left unfilled (e.g., "[NAME]" or
+  "[ROLE / PROJECT]"), do not generate a prep document with invented
+  details. Instead, list the unfilled fields and ask the user to provide
+  them. A prep document built on assumed context will feel generic and
+  defeat the purpose of structured preparation.
+- If the 1:1 is with a new hire you have not yet met in person (or have
+  met only during interviews), shift the prep entirely toward
+  relationship building. Replace the follow-up section with onboarding
+  check-in questions, deprioritize work status topics, and focus on
+  learning their communication style, early impressions, and what
+  support they need in their first weeks.
+- If the 1:1 requires delivering difficult news (layoffs, role changes,
+  project cancellation), draft a direct opening statement and a brief
+  script for the core message. Do not bury the difficult news behind
+  routine agenda items. Lead with it, then leave space for the report
+  to react and ask questions before moving to any other topics.
 ```
 
 ## Why This Works
@@ -188,6 +204,7 @@ These techniques combine to produce the difference shown above: instead of a gen
 4. Do not read the prep document to your report like a script. Use it as a reference, then have a real conversation.
 5. After the meeting, revisit the "Signals to Listen For" section and jot down what you actually noticed. This builds your pattern-recognition over time.
 6. If you use this weekly, keep a running document and paste previous action items into the "Last 1:1 key takeaways" field. Continuity matters.
+7. **Slash command connection:** If you use `ai-bu-claude-commands`, the `/what-next` slash command can help identify the most important topics for the 1:1 based on current team priorities and open work items.
 
 ## Example Output
 

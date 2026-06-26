@@ -146,6 +146,10 @@ Edge case handling:
 - If critical information is missing (e.g., no mention of how deployments work), note the gap and explain why it matters rather than skipping the criterion.
 - If the system is a monolith, evaluate it as a monolith. Do not automatically recommend breaking it into services unless there is a clear scaling or organizational reason to do so.
 - If the team is very small (1 to 3 engineers), weight operational simplicity much more heavily than architectural purity.
+- If a placeholder is left unfilled (e.g., [CURRENT_SCALE] is still "[CURRENT_SCALE]"), stop and ask the user to provide it. Architecture reviews without scale data produce generic advice.
+- If the architecture description mixes multiple systems or services without clear boundaries, ask the user to scope the review to one system and explain how the others connect at the boundary.
+- If the deployment environment is not Kubernetes-based (bare metal, VM-based, serverless, mainframe), adjust your evaluation criteria accordingly rather than assuming container orchestration patterns apply.
+- If the user provides a very short description (under 100 words), list the specific questions you need answered before you can produce a useful review rather than filling in assumptions.
 ````
 
 ## Why This Works
@@ -171,6 +175,7 @@ The fundamental difference is that the naive approach gives you a textbook revie
 - Replace `[DEPLOYMENT_ENVIRONMENT]` with your cloud provider, orchestration platform (OpenShift, EKS, GKE), and region topology (single region, multi-region, hybrid).
 - This prompt works best when you give it real constraints. Include details like "we run on OpenShift 4.14 in us-east-1 only" or "the team is 4 engineers and we do not have a dedicated SRE" so the recommendations are grounded in your actual situation.
 - For multi-team systems, run the review separately for each team's domain and then once for the cross-team integration points.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/tldr-repo` slash command can quickly summarize an unfamiliar codebase before you run an architecture review on it.
 
 ## Example Output
 

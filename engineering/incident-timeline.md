@@ -115,6 +115,9 @@ Edge case handling:
 - If the raw data includes automated alert spam (dozens of identical alerts firing in sequence), consolidate them into a single entry noting the first and last alert, the count, and the alert name. Do not list each one individually.
 - If the incident had multiple phases (e.g., partial recovery followed by a second failure), clearly delineate the phases with a separator row in the timeline.
 - If the raw data includes irrelevant Slack chatter mixed in with incident messages (e.g., someone asking about lunch), exclude it but note that you filtered non-incident messages from the channel.
+- If the raw data is pasted without any timestamps at all (just a sequence of events from memory), note the confidence as LOW and ask the user to check system logs for precise times before this timeline is used in any official post-mortem.
+- If the raw data exceeds the model's context window, ask the user to split the data into phases (detection, mitigation, resolution) and run the prompt once per phase, noting where the phases connect.
+- If the incident involved infrastructure outside your organization (a cloud provider outage, a third-party API failure), clearly separate external events from internal events in the timeline so the post-mortem can distinguish what was in your control from what was not.
 
 Raw data (paste Slack messages, logs, alerts, and notes below):
 [PASTE_RAW_DATA_HERE]
@@ -143,6 +146,7 @@ The core principle is that an incident timeline is an evidence-based document, n
 - If the incident spanned more than 4 hours, consider breaking the raw data into phases (e.g., detection, diagnosis, mitigation) and running the prompt on each phase separately. Then combine the results.
 - For recurring incidents, run this prompt on each occurrence and then compare the timelines side by side. Patterns in detection delays or repeated diagnostic dead ends become obvious when you line up multiple timelines.
 - Include PagerDuty or OpsGenie alert data if available. The alert routing history (who was paged, when they acknowledged, whether it escalated) is some of the most reliable timestamp data you can get.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/retro` slash command can take this timeline and generate a full retrospective, and `/summarize-thread` can extract incident data from long GitHub or Slack threads.
 
 ## Example Output
 

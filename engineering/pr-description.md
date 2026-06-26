@@ -123,6 +123,10 @@ Edge case handling:
 - If the diff includes generated code (protobuf, OpenAPI stubs, migration files), call it out so reviewers know they can skim those sections.
 - If the diff includes dependency updates (go.sum, package-lock.json, requirements.txt), summarize what changed and why rather than listing every line.
 - If the PR fixes a bug, include the reproduction steps for the bug and explain how this change prevents it from recurring.
+- If a placeholder is left unfilled (e.g., [REPO_NAME] still reads "[REPO_NAME]"), still generate the description but note which fields need filling in before the PR is opened.
+- If the diff is empty or contains only whitespace changes, say so and suggest the user check their git diff command rather than generating a meaningless description.
+- If the diff spans multiple unrelated concerns (a feature addition, a bug fix, and a dependency bump in one PR), recommend splitting into separate PRs and explain the boundaries.
+- If the diff is against an open source project with contribution guidelines (CONTRIBUTING.md), remind the user to check those guidelines for required PR sections or sign-off requirements.
 
 Diff:
 [PASTE_DIFF_HERE]
@@ -149,6 +153,7 @@ The fundamental shift is that a naive prompt produces a description for the auth
 - Pair this with the code-review prompt to self-review your PR before requesting human reviewers. The description helps you catch scope creep (unrelated changes) and missing test coverage.
 - If your team has a PR template, include it in the prompt context so the model follows the same structure.
 - Add the related issue or ticket number so the model can frame the motivation around the actual problem being solved, not a generic explanation.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/changelog` and `/release-notes` slash commands can generate release-facing summaries from the same diff after your PR merges.
 
 ## Example Output
 

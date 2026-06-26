@@ -161,6 +161,8 @@ EDGE CASES
 - If the topic involves benchmarks or performance claims, always note the
   conditions (hardware, dataset, configuration) in at least one tweet, or flag
   that the reader should check the linked resource for methodology.
+- If a placeholder is left unfilled, stop and ask the user to provide it before generating. A thread without clear source material will be generic.
+- If the topic is outside the technology domain (career advice, hiring, organizational lessons), adjust the narrative arc to match the content type while keeping the one-idea-per-tweet structure.
 ```
 
 ## Why This Works
@@ -193,6 +195,7 @@ The comparison above illustrates the core problem with naive thread generation: 
 - **Test character counts manually.** LLMs frequently miscount characters. Paste each tweet into a character counter before publishing.
 - **Front-load the value.** Assume most readers will only see tweets 1-3. Put the most important information there.
 - **Use concrete numbers.** "Reduces latency" is forgettable. "Reduces p99 latency from 800ms to 200ms on A100s" is memorable and shareable.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/draft-announcement` slash command generates social-ready posts alongside other announcement formats from the same source material.
 
 ## Example Output
 

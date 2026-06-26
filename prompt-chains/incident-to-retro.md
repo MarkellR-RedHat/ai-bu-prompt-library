@@ -462,6 +462,9 @@ Prompt chaining produces better retrospectives than a single prompt for three sp
 - **Keep the action items list short.** Fewer, better action items are more effective than a long list. If Step 3 produces more than 10, ask the model to consolidate.
 - **The prevention plan (Step 5) is where the real value is.** Most retros stop at action items. The prevention plan is what turns a single incident into a lasting improvement.
 - **Involve the team.** Run the chain to produce a draft, then review it with the people who responded to the incident. They will catch errors and add context that the raw data does not capture.
+- **If the raw incident data exceeds the model's context window,** split it into phases (detection, mitigation, resolution) and run Step 1 once per phase, then combine the timelines before proceeding to Step 2.
+- **If you are running this on a smaller model (under 32k context),** consider running Steps 1-3 as standalone prompts and assembling the results manually rather than passing cumulative context that may overflow.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/retro` slash command automates this entire chain against a repository's recent activity, and the `/summarize-thread` slash command can extract raw incident data from long discussion threads.
 
 ## Example
 

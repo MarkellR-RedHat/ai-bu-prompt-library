@@ -143,6 +143,9 @@ Before presenting your final output, verify each of the following. If any check 
 - If no root cause can be determined from the provided information, say so explicitly. Write "Root cause is not yet determined" and list what investigation is still needed in Open Questions.
 - If the incident had zero customer impact (a near-miss), still complete all sections but adjust the Summary to clearly state it was a near-miss and explain the potential impact if conditions had been different.
 - If the raw input is extremely sparse (fewer than 5 distinct events), generate the best post-mortem you can and then list specific questions the author should answer to fill in the gaps.
+- If a placeholder is left unfilled (e.g., [SEVERITY] still reads "[SEVERITY]"), produce the report with the field marked as "[UNFILLED: SEVERITY - determine from impact assessment]" so the gap is visible.
+- If the incident involved a third-party or cloud provider outage, clearly separate their timeline and actions from your internal response so the post-mortem attributes causes correctly.
+- If the incident crossed organizational boundaries (multiple teams, multiple services owned by different groups), note which team owned each phase of the response and flag any handoff delays.
 
 === FORMATTING RULES ===
 
@@ -171,6 +174,7 @@ Before presenting your final output, verify each of the following. If any check 
 - After generating the report, always review action items with fresh eyes. The prompt produces reasonable defaults, but ownership assignments and priority levels need human judgment from the people closest to the systems involved.
 - For Sev1 incidents, use this as a starting draft and then adapt it to your organization's formal review template. The structure maps well to most standard post-mortem formats, but your compliance or governance team may require additional sections.
 - Run a follow-up prompt asking "What monitoring or alerting gaps does this incident reveal that are not already covered by the action items?" to catch anything the first pass missed.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/retro` slash command generates retrospectives from repo activity, and the `/summarize-thread` slash command can extract incident data from long discussion threads.
 - If your incident involved multiple teams, have each team review the timeline and contributing factors independently before the review meeting. Different perspectives often surface details that a single author would miss.
 - For recurring incidents, feed in the post-mortems from previous occurrences alongside the current raw notes. Add the instruction: "Identify patterns across these incidents and flag any action items from previous post-mortems that were not completed."
 - Pair this prompt with your runbook generator prompt to create or update runbooks based on the resolution steps documented in the post-mortem.

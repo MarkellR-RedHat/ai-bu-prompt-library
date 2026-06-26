@@ -159,6 +159,9 @@ revise the brief until it passes.
   note which one the authoring team recommends and why.
 - If the topic is sensitive (layoffs, security incidents, legal exposure), flag that the
   brief should be treated as confidential and note any distribution restrictions.
+- If a placeholder is left unfilled, produce the brief with "[UNFILLED: field_name]" markers so the user sees exactly what is missing before sending.
+- If the raw information comes from multiple conflicting sources, present the range of perspectives and flag the conflict rather than silently picking one version.
+- If the brief is for an audience outside the technology domain (board members, investors, legal counsel), reduce technical depth further and lead with business impact and financial implications.
 ```
 
 ## Why This Works
@@ -184,6 +187,7 @@ revise the brief until it passes.
 - Run the output through a "so what?" test. For every sentence, ask: does the executive need this to make a decision or understand the situation? If not, cut it.
 - When multiple stakeholders will read the brief, optimize for the most senior person in the distribution list. Everyone else can handle content that is slightly above their level, but an overly technical brief will lose the senior reader.
 - Test readability by reading the brief out loud. If any sentence requires a second read to parse, rewrite it.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/explain-for-customer` slash command helps translate complex technical topics into accessible language, which pairs well with executive briefs on technical subjects.
 
 ## Example Output
 

@@ -118,6 +118,10 @@ EDGE CASE HANDLING:
   explicitly an opinion piece.
 - If the topic is an announcement (new release, new feature), lead with the
   problem the feature solves, not the feature itself.
+- If any placeholder is left unfilled (e.g., TOPIC still reads "[Describe the specific technical topic...]"), stop and ask the user to fill it in. An intro written for a vague topic will be vague itself.
+- If the target blog platform has a strict word limit (e.g., dev.to excerpt limit of 150 characters), adjust the intro length and note the constraint.
+- If the topic is outside the technology domain (e.g., organizational change, hiring practices, career advice), adjust the pain-point framing from a technical problem to a professional challenge while keeping the same structure.
+- If the user is targeting a model with a small context window (under 8k tokens), skip the thinking block and produce only the final introduction with the self-critique results.
 
 OUTPUT FORMAT:
 
@@ -177,6 +181,7 @@ The visible difference from the comparison above comes down to this: the naive p
 - If the intro feels generic on the first run, add more detail to your TOPIC. Swap "monitoring microservices" for "using OpenTelemetry to trace latency spikes across 50+ microservices in a production cluster."
 - Review the self-critique checklist output carefully. If the model flags a failure and revises, compare both versions. Sometimes the original is actually stronger.
 - For multi-part blog series, mention in the TOPIC that this is part of a series and which part. The intro should orient returning readers without alienating new ones.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/blog-from-pr` slash command can generate a full blog post from a PR, and this prompt can refine the intro that command produces.
 
 ## Example Output
 

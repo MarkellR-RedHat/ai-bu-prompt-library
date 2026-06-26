@@ -138,6 +138,9 @@ Before finalizing, verify each of these. If any check fails, revise the blurb:
 - If no word limit is specified, default to 60 words.
 - If the content is behind a login or paywall, note that in the audience fit
   section so the newsletter editor can add appropriate access instructions.
+- If a placeholder is left unfilled (e.g., [TITLE] still reads "[TITLE]"), stop and ask the user to provide it. A blurb with no title or link is not publishable.
+- If the content is in a language other than English, write the blurb in English but note the source language so the editor can add a translation note.
+- If the topic is outside the technology domain (company news, hiring announcement, event recap), adjust the "so what" framing from technical value to professional relevance.
 ```
 
 ## Why This Works
@@ -164,6 +167,7 @@ The comparison above comes down to information density. A naive prompt produces 
 - If your newsletter has a strict character or word limit, set that in the `[WORD_LIMIT]` field. The self-critique checklist will enforce it.
 - Run the prompt twice with different tones (e.g., "technical-conversational" and "executive-brief") to get two versions you can choose between or combine.
 - When writing blurbs for a curated newsletter with multiple entries, run the prompt once per entry but keep the audience and tone fields consistent. This gives you a uniform voice across the whole issue.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/draft-announcement` slash command generates multi-channel announcements, and this prompt can produce the newsletter-specific version from the same source material.
 - Use the "Key detail used" and "Audience fit note" fields in the output to quickly validate whether the blurb hit the right angle. If the key detail is weak, your source content may need a stronger hook.
 - For community-facing newsletters, set the tone to "community-friendly" and mention the open source project name in the description. This helps the AI frame the blurb around contribution and adoption, not just internal impact.
 - If the blurb still feels generic after one pass, add a line to `[OPTIONAL_CONTEXT]` like "Emphasize the performance improvement" or "Focus on the developer experience angle." Constraints produce better output.

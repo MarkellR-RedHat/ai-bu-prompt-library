@@ -221,6 +221,27 @@ Every prompt in this library applies these techniques consistently. They are not
 
 For a deep dive into each technique with real examples and before/after comparisons, read the [Prompt Engineering Guide](meta/prompt-engineering-guide.md).
 
+## Connection to ai-bu-claude-commands
+
+If you use the [ai-bu-claude-commands](../ai-bu-claude-commands) slash command library with Claude Code, many prompts in this library connect directly to specific slash commands. Each prompt's Usage Tips section notes the relevant connection. Here is the quick reference:
+
+| Prompt | Related Slash Command | How They Connect |
+|--------|----------------------|------------------|
+| [Code Review](engineering/code-review.md) | `/review` | Automates code review on your current diff |
+| [PR Description](engineering/pr-description.md) | `/changelog`, `/release-notes` | Generates release-facing summaries after merge |
+| [Debug Helper](engineering/debug-helper.md) | `/retro` | Turns debugging sessions into retrospectives |
+| [Incident Timeline](engineering/incident-timeline.md) | `/retro`, `/summarize-thread` | Feeds into retros and extracts incident data from threads |
+| [Blog Intro](content/blog-intro.md) | `/blog-from-pr` | Refines the intro that the slash command generates |
+| [Blog Outline](content/blog-outline.md) | `/blog-from-pr` | Structures content before drafting |
+| [Stakeholder Update](communication/stakeholder-update.md) | `/draft-announcement`, `/release-notes` | Handles release-specific status communication |
+| [Incident Report](communication/incident-report.md) | `/retro`, `/summarize-thread` | Generates retros and extracts incident data |
+| [Team Announcement](communication/team-announcement.md) | `/draft-announcement` | Generates multi-channel announcements |
+| [Demo Script](devrel/demo-script.md) | `/demo-prep` | Automates demo preparation with environment checks |
+| [Community Response](devrel/community-response.md) | `/explain-for-customer` | Customer-facing explanations in support contexts |
+| [Architecture Review](engineering/architecture-review.md) | `/tldr-repo` | Summarizes an unfamiliar codebase before review |
+
+The prompts in this library work in any LLM chat interface. The slash commands work specifically in Claude Code. Use whichever fits your workflow, or combine them for deeper coverage.
+
 ## Contributing
 
 Want to add a prompt? Here is how:

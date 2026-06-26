@@ -98,6 +98,9 @@ Edge case handling:
 - If the word limit is very tight (under 100 words), cut the takeaway section to a single sentence and focus on problem and contribution.
 - If the format is a workshop or tutorial rather than a talk, shift the emphasis from "what we discovered" to "what participants will build or practice."
 - If multiple authors are involved, use "we" consistently rather than switching between "I" and "we."
+- If a placeholder is left unfilled (e.g., [TOPIC] still reads "[TOPIC]"), stop and ask the user to fill it in rather than generating a generic abstract.
+- If the venue is an internal tech talk or brown bag with no formal CFP process, relax the structure and focus on clearly stating what attendees will learn in plain language.
+- If the user wants to run this on a model with a small context window, drop the self-critique step and produce the abstract directly with a note to review manually.
 
 Output format:
 Provide the abstract as a single block of text with no headers, bullet points, or markdown formatting inside it. Follow it with a brief "Revision notes" section that lists any trade-offs you made (e.g., "cut the prerequisites sentence to stay under 200 words") and one suggestion for how the author could strengthen the abstract further.
@@ -131,6 +134,7 @@ The comparison above illustrates the core dynamic: a naive prompt lets the model
 - Run the output through a word counter before submitting. LLMs often overshoot or undershoot word limits by 10-15%.
 - Iterate. Use the first output as a draft, then ask the model to tighten specific sentences or swap in stronger verbs. One round of revision usually improves the result noticeably.
 - If you are submitting to multiple venues, regenerate with each venue's name and audience rather than reusing the same abstract. Review committees notice when an abstract feels generic.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, pair this with the `/draft-announcement` slash command to create both a CFP abstract and a matching announcement in one workflow.
 
 ## Example Output
 

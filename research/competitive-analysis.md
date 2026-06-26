@@ -154,6 +154,20 @@ EDGE CASES:
   context and focus on trajectory and team rather than current feature completeness.
 - If direct comparison with [OUR_PRODUCT_NAME] is difficult because the products target
   different segments, say so explicitly and reframe the analysis around where they overlap.
+- If any bracketed placeholders (e.g., [PRODUCT_NAME], [OUR_PRODUCT_NAME], [CATEGORY])
+  are left unfilled, stop and list the missing inputs rather than generating an analysis
+  with placeholder values. An analysis that says "Strengths of [PRODUCT_NAME]" is useless.
+- If the competitor operates in a domain you have no direct experience with (e.g., analyzing
+  a hardware company when your team builds software, or analyzing a biotech platform when
+  your background is cloud infrastructure), explicitly state the knowledge boundary. Focus
+  the analysis on publicly observable signals (documentation quality, community engagement,
+  release cadence, ecosystem integrations) rather than speculating on domain-specific
+  technical depth you cannot evaluate. Flag domain-specific claims with "[UNVERIFIED]".
+- If public information about the competitor is sparse (stealth-mode startup, limited
+  documentation, no public GitHub repo), note this constraint at the top of your analysis.
+  Base the assessment on whatever is available (job postings, conference talks, press
+  releases, patents) and flag the low-confidence sections explicitly. A short, honest
+  analysis is more useful than a long speculative one.
 
 Use only publicly available information. Ground every claim in evidence.
 ```
@@ -185,6 +199,7 @@ These techniques together explain the difference shown in the comparison above: 
 - Share the "Strengths" section with your engineering team honestly. Understanding what a competitor does well is as valuable as knowing their weaknesses.
 - Use the "[UNVERIFIED]" flags as action items. Assign someone to verify each flagged claim before the analysis informs any real decisions.
 - For open-source competitors, supplement this analysis by actually deploying and testing the product. No amount of documentation review replaces hands-on experience.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/competitive-snapshot` slash command provides a lighter-weight version for quick competitor questions in meetings.
 
 ## Example Output
 

@@ -362,5 +362,15 @@ When in doubt, test one more time. The cost of running a prompt is low. The cost
 of shipping a bad prompt is high, because people will use it, get bad results, and
 stop trusting the library.
 
+## Edge Cases for Testing
+
+When stress-testing prompts, include these additional scenarios:
+
+- **Unfilled placeholders:** Run the prompt with one or more placeholders left as their default `[BRACKET]` text. A well-engineered prompt should ask the user to fill them in rather than silently producing output with placeholder text embedded.
+- **Small context window models:** Run the prompt on a model with a 4k or 8k token context window. If the prompt itself is longer than 2k tokens, note which sections to cut for smaller models.
+- **Cross-domain input:** Run a prompt designed for software engineering with input from a different domain (healthcare, finance, hardware). Check whether the prompt degrades gracefully or produces confidently wrong output.
+- **Non-English input:** If the raw input is in a language other than English, check whether the prompt produces useful output or breaks silently.
+- **Adversarial formatting:** Paste input that includes markdown formatting, code blocks, or XML tags that could confuse the model's instruction following.
+
 See [prompt-engineering-guide.md](prompt-engineering-guide.md) for guidance on
 writing prompts that pass these tests.

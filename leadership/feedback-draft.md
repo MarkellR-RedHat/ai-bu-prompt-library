@@ -152,6 +152,22 @@ EDGE CASE HANDLING:
   rather than repeating the same informal feedback.
 - If the feedback is for a peer or cross-team colleague, adjust the tone to
   be collaborative rather than directive; you do not have positional authority.
+- If any placeholder fields are left unfilled (e.g., "[NAME and ROLE]" or
+  "[WHAT HAPPENED]"), do not generate feedback with invented details.
+  Instead, list the unfilled fields and ask the user to provide them.
+  Feedback built on assumed situations will feel inauthentic and can
+  cause real harm if delivered.
+- If the feedback is for someone in a different cultural context where
+  directness norms differ (e.g., high-context cultures where indirect
+  communication is the norm), add a note suggesting the manager research
+  or ask about the recipient's communication preferences before
+  delivering. Offer both a direct version and a softer alternative
+  framing, and let the manager choose which is appropriate.
+- If the feedback is about a pattern that spans multiple incidents rather
+  than a single event, structure the SBI section to reference 2-3
+  specific examples with dates rather than a single instance. Patterns
+  are more compelling than isolated events, and multiple examples prevent
+  the recipient from dismissing the feedback as a one-time situation.
 ```
 
 ## Why This Works
@@ -176,6 +192,7 @@ These techniques together produce the difference shown above: specific, grounded
 4. For constructive feedback, always deliver it privately first. Never use AI-drafted constructive feedback in a public setting without a private conversation.
 5. Read the draft out loud before delivering it. If it sounds robotic or overly formal, revise it in your own voice. The prompt gives you structure; your authenticity gives it credibility.
 6. If you are writing feedback for a review cycle, run this prompt once per key observation rather than trying to cram everything into one pass.
+7. **Slash command connection:** If you use `ai-bu-claude-commands`, the `/retro` slash command can surface specific examples from past sprint retrospectives that provide evidence for the feedback.
 
 ## Example Output
 

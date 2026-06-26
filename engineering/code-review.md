@@ -97,6 +97,10 @@ Edge case handling:
 - If the code uses deprecated APIs, note the deprecation and suggest the replacement, but rate it as Low severity unless the deprecated API has known bugs or security issues.
 - If the code interacts with external services, check for timeout configuration, retry logic, and error handling for network failures.
 - If the code handles user input, verify that all input paths are validated before use, not just the primary happy path.
+- If a placeholder is left unfilled (e.g., [LANGUAGE_AND_FRAMEWORK] still reads "[LANGUAGE_AND_FRAMEWORK]"), stop and ask the user to fill it in. Do not guess the language from the code alone; guessing leads to wrong idiom recommendations.
+- If the code is from a domain you rarely see (embedded C, COBOL, PL/SQL, shader code), state what you can review confidently and flag areas where domain-specific expertise is needed.
+- If the code snippet is longer than 500 lines, recommend splitting the review into logical chunks and identify the natural boundaries.
+- If you are running on a model with a small context window (under 32k tokens), prioritize Correctness and Security categories and note that Performance and Maintainability analysis may be incomplete due to context constraints.
 
 Code to review:
 
@@ -125,6 +129,7 @@ The visible difference between the naive and engineered approach comes down to t
 - If you want the review focused on a single concern (for example, only security), remove the other categories from the prompt to keep the model focused.
 - Run this prompt on your own code before requesting human review. It catches the mechanical issues, freeing your human reviewers to focus on design and architectural concerns.
 - Pair this with the test-generator prompt to verify that the fixes you apply are covered by tests.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/review` slash command automates code review on your current diff with similar structured output.
 
 ## Example Output
 

@@ -139,6 +139,10 @@ Edge case handling:
 - If the code reads from the file system, use temporary files or in-memory fixtures, not paths that only exist on your machine.
 - If the code has optional parameters with defaults, test both with and without the optional parameters.
 - If the code truncates or rounds values, test the boundary where truncation occurs.
+- If the code is in a language or framework you are unfamiliar with, state that clearly and produce tests using the conventions you know, flagging areas where project-specific patterns may differ.
+- If a placeholder is left unfilled (e.g., [TEST_FRAMEWORK] still reads "[TEST_FRAMEWORK]"), stop and ask the user to provide it. Tests generated for the wrong framework are worse than no tests at all.
+- If the code under test has no clear inputs or outputs (e.g., it only produces side effects like logging or metrics), focus on verifying the side effects with appropriate spies or mock assertions rather than skipping the test entirely.
+- If the code is tightly coupled to a specific runtime (GPU-bound code, browser APIs, OS-specific syscalls), note which tests can run in CI without that runtime and which require the real environment.
 ````
 
 ## Why This Works
@@ -164,6 +168,7 @@ The core improvement is that the naive prompt generates tests that prove the cod
 - For large modules, focus on one function or class at a time. Ask for the most complex or highest-risk function first, then expand.
 - After generating, review the tests for correctness before adding them to your test suite. Pay special attention to the expected values in assertions, especially for math-heavy or stateful code. AI-generated tests sometimes assert what the code currently does, not what it should do.
 - If the generated tests reveal that the code does not handle a case you expected it to handle, that is a real finding. Add the test and fix the code.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, pair this with the `/blog-from-pr` slash command to document the tests and the code they cover in a blog post.
 
 ## Example Output
 

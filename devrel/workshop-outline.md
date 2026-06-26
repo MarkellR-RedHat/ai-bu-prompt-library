@@ -233,6 +233,19 @@ EDGE CASE HANDLING:
   listing everything attendees must install before arriving.
 - If the number of TAs is zero, flag this as a risk in the instructor
   notes and recommend simplifying exercises or reducing max attendees.
+- If any bracketed placeholders (e.g., [WORKSHOP_TITLE], [DURATION],
+  [LEARNING_OBJECTIVES]) are left unfilled, stop and list the missing inputs
+  rather than generating an outline with placeholder values. A workshop outline
+  built on unfilled inputs cannot be delivered or reviewed meaningfully.
+- If the target audience is non-technical (product managers, designers, business
+  analysts), reduce command-line exercises in favor of UI walkthroughs, visual
+  outputs, and guided exploration. Adjust talking points to focus on outcomes
+  and business value rather than implementation details. Checkpoints should
+  verify understanding through observation, not terminal output.
+- If the duration is very short (under 30 minutes), collapse the structure to
+  a single focused exercise with one learning objective. Skip the break, shorten
+  the opening to 3 minutes, and reduce the wrap-up to 2 minutes. Flag that this
+  format is closer to a guided demo than a full workshop.
 ```
 
 ## Why This Works
@@ -257,6 +270,7 @@ EDGE CASE HANDLING:
 - Include a pre-workshop email template in your instructor notes. Attendees who show up without prerequisites installed will derail the first 30 minutes.
 - If you are running the workshop with TAs, share the outline with them at least 48 hours in advance so they can run through the exercises and anticipate questions.
 - Print the "common issues" sections as a separate quick-reference sheet for TAs. During the session, they need fast answers, not a 10-page document.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/demo-prep` slash command can generate the live demo portion that fits within a workshop section.
 
 ## Example Output
 

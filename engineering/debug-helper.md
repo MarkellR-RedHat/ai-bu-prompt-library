@@ -112,6 +112,10 @@ Edge case handling:
 - If the stack trace points to library or framework code (not your application code), trace backwards to find the application code that called the library with incorrect arguments or in an incorrect state.
 - If the environment details are missing or incomplete, ask for them. Many bugs are caused by version mismatches, missing environment variables, or incorrect configuration.
 - If multiple errors are happening at the same time, determine whether they share a common cause or are independent. Look for a shared dependency or resource.
+- If any placeholder is left unfilled (e.g., [ERROR_MESSAGE] still reads "[ERROR_MESSAGE]"), stop and ask the user to provide it. Debugging without the actual error message or reproduction steps produces speculation, not analysis.
+- If the bug involves a domain you have limited training data for (GPU driver issues, kernel panics, FPGA bitstream errors, real-time control systems), state what you can reason about from first principles and recommend domain-specific resources for the rest.
+- If the user provides a stack trace that exceeds the model's context window, ask them to provide only the top 20 and bottom 10 frames, plus any frames that reference application code rather than framework internals.
+- If the error originates in a proprietary or closed-source dependency with no public documentation, note that hypothesis ranking will be lower confidence and recommend the user check internal wikis or vendor support channels.
 ````
 
 ## Why This Works
@@ -137,6 +141,7 @@ The core insight is that debugging is an information-gathering process, not a gu
 - If you do not have all the input fields, fill in what you have and write "Not yet available" for the rest. The model will ask follow-up questions for missing information.
 - This prompt works best in a multi-turn conversation. After the model suggests a diagnostic step, run it and paste the results back. The model will update its hypothesis ranking based on the new evidence and suggest the next step.
 - Keep a running log of what you tried and what you saw. This is useful both for the debugging session and for documenting the fix later.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/retro` slash command can turn your debugging session into a structured retrospective once the issue is resolved.
 
 ## Example Output
 

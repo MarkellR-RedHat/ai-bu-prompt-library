@@ -174,6 +174,21 @@ EDGE CASES:
 - If you are uncertain whether a project is still actively maintained, check for
   recent commits, issue responses, and release cadence. Flag abandoned or stalled
   projects explicitly.
+- If any bracketed placeholders (e.g., [TECHNOLOGY_AREA], [ORGANIZATION_OR_PROJECT])
+  are left unfilled, stop and list the missing inputs rather than generating a landscape
+  with placeholder values. A landscape map addressed to "[ORGANIZATION_OR_PROJECT]" has
+  no strategic value.
+- If the landscape is in a rapidly changing domain where data goes stale within weeks
+  (e.g., the LLM inference space during a period of rapid releases), note the analysis
+  date prominently and flag any claims that may have already changed. Recommend a
+  refresh cadence (e.g., monthly instead of quarterly) and identify the signals that
+  would trigger an out-of-cycle update (major funding round, key acquisition, new
+  open-source release from a major player).
+- If the market has no clear competitors because the technology is emerging (fewer than
+  3-4 established projects), shift the analysis from competitive positioning to
+  opportunity mapping. Focus on adjacent markets that practitioners currently use as
+  workarounds, the profiles of teams building early solutions, and the signals that
+  indicate when the market will mature enough for a full landscape analysis.
 
 Be specific. Name projects, cite version numbers where relevant, and ground claims in
 observable evidence. If you are uncertain about a data point, say so.
@@ -206,6 +221,7 @@ These techniques together explain the difference shown in the comparison above: 
 - Run this prompt quarterly with the same scope parameters to track how the landscape evolves. Compare the outputs to identify new entrants, exits, and shifts in competitive dynamics.
 - Cross-reference the "Gaps and Unmet Needs" section with your product roadmap. Gaps that align with your existing capabilities or planned features are the highest-value opportunities.
 - Share the landscape map with your sales and solutions engineering teams. They encounter competitive dynamics daily and can validate or challenge the analysis with field experience.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/competitive-snapshot` slash command can supplement the landscape with detailed analysis of specific players.
 
 ## Example Output
 

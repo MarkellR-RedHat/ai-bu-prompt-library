@@ -196,6 +196,24 @@ EDGE CASE HANDLING:
 - If the manager's gut feeling contradicts the signals, flag the
   discrepancy explicitly and recommend investigating which one is more
   accurate.
+- If any placeholder fields are left unfilled (e.g., "[NAME, NUMBER OF
+  PEOPLE]" or "[DESCRIPTION]"), do not generate an assessment with
+  invented team details. Instead, list the unfilled fields and ask the
+  user to provide them. An assessment built on assumed context will
+  produce generic recommendations that do not apply to the actual team.
+- If the team is fully remote with no in-person signals to observe,
+  adjust the collaboration and wellbeing assessments to rely on async
+  indicators: message response patterns, camera-on rates in meetings,
+  participation in optional social channels, and whether people
+  volunteer for cross-team work. Note that remote teams require
+  different signal sources, and some traditional indicators (body
+  language, hallway conversations) are simply unavailable.
+- If the team operates in a different timezone or cultural context from
+  the manager, add a note about potential blind spots. Meeting
+  participation patterns, communication directness, and willingness to
+  raise concerns may look different across cultures without indicating
+  a health problem. Recommend the manager validate the assessment with
+  someone who has local context before acting on it.
 ```
 
 ## Why This Works
@@ -223,6 +241,7 @@ These techniques combine to produce the difference shown above: a real diagnosti
 5. Track your top 3 issues over time. If the same issue appears in consecutive quarters, the structural fix is not working and you need to escalate or try a different approach.
 6. Use the "Strengths to Protect" section when making tradeoffs. If a proposed change threatens a known strength, that is a real cost to weigh.
 7. If you manage multiple teams, run this for each one and compare the patterns. Cross-team issues (like heavy on-call load or unclear priorities) often point to organizational problems, not team-level ones.
+8. **Slash command connection:** If you use `ai-bu-claude-commands`, the `/retro` slash command can surface recurring themes from past retrospectives that feed into the team health assessment.
 
 ## Example Output
 

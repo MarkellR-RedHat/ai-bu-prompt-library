@@ -135,6 +135,21 @@ Edge case handling:
     note the version you tested against.
   - If the demo involves GPUs or specialized hardware, include a fallback path using CPU
     or simulation mode so the demo can be rehearsed without the hardware.
+  - If any bracketed placeholders (e.g., [PRODUCT], [TOPIC], [DURATION]) are left
+    unfilled, stop and list the missing inputs rather than generating a script with
+    placeholder values. A demo script with unfilled placeholders cannot be rehearsed
+    or delivered.
+  - If the demo environment requires paid cloud resources (GPU instances, managed
+    services, licensed software) that the presenter or audience may not have access
+    to, note the cost and access requirements in the pre-demo checklist. Suggest a
+    free-tier or local alternative where possible, and flag any steps that differ
+    between the paid and free environments.
+  - If the demo is intended for a recorded video rather than a live audience, adjust
+    the script accordingly: remove pauses for audience reaction, add narration cues
+    where visual transitions happen, include specific screen region callouts (e.g.,
+    "highlight the terminal output"), and note where post-production edits (cuts,
+    zooms, annotations) would improve clarity. The failure scenario can be
+    pre-recorded separately and spliced in.
 
 Output format:
   Use markdown. Structure the output with these exact headings:
@@ -169,6 +184,7 @@ Output format:
 - Review the talking points out loud before presenting. Written talking points often sound stiff when spoken. Adjust them to match your natural speaking style.
 - Time yourself during the dry run. If you are consistently running over the limit, cut a step rather than talking faster. Rushed demos lose audiences.
 - If you are demoing for a customer, add their specific use case or data to the demo inputs. Generic demos are less convincing than ones that reference the audience's actual problem.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/demo-prep` slash command automates demo preparation with environment checks and rehearsal planning.
 
 ## Example Output
 

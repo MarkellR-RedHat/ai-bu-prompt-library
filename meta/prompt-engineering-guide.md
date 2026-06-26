@@ -515,4 +515,13 @@ When in doubt:
 
 The prompts in this library are proof that these techniques work. Pick any one, compare its output to what you get from a naive version of the same request, and the difference is obvious.
 
+## Cross-Model Considerations
+
+These prompts are designed to work across different LLMs, but model-specific behavior can affect results:
+
+- **Context window limits:** If you are running prompts on a model with a small context window (under 16k tokens), consider removing the self-critique checklist and the chain-of-thought reasoning sections. These improve quality but consume tokens. Prioritize the role setting, output format, and anti-pattern sections, which have the highest impact per token.
+- **Different providers:** These prompts use no provider-specific features (function calling, system prompts, structured output modes). They work in any chat interface. If your model supports system prompts, move the role and context setting into the system prompt for better adherence.
+- **Open-weight models:** Smaller open-weight models (7B-13B parameters) may struggle with long, multi-section prompts. For these models, break complex prompts into smaller sequential prompts or use the prompt chains workflow instead.
+- **Temperature and sampling:** These prompts are designed for low-temperature settings (0.0 to 0.3). Higher temperatures produce more creative output but reduce format compliance and consistency.
+
 See [testing-prompts.md](testing-prompts.md) for guidance on evaluating prompt quality.

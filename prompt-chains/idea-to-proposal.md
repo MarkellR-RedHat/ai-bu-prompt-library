@@ -487,6 +487,9 @@ Prompt chaining produces better proposals than a single prompt for three specifi
 - **Adjust the outline to your organization.** Step 3 produces a standard proposal structure. If your organization has a specific template or required sections, modify the outline before running Step 4.
 - **Run Step 5 last, always.** Writing the executive summary before the full proposal almost always produces a vague summary that oversells. Write the full argument first; condense second.
 - **Review with a colleague before submitting.** The chain produces a strong draft, but proposals benefit from a human reviewer who knows the organizational context, the politics, and the decision-maker's priorities.
+- **If the cumulative context exceeds the model's window** by Step 4, summarize Steps 1 and 2 into their key findings before passing them forward. The outline from Step 3 carries the structural decisions, so the earlier steps can be compressed.
+- **If the idea is in a non-technical domain** (process change, organizational restructure, budget reallocation), adjust the "Technical Approach" section to "Approach" and replace feasibility criteria with operational readiness criteria.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/draft-announcement` slash command can generate the announcement for a proposal that gets approved, and the `/competitive-snapshot` slash command can feed competitive context into Step 2's alternatives analysis.
 
 ## Example
 

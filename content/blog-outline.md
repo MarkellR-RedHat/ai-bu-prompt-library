@@ -186,6 +186,9 @@ EDGE CASE HANDLING:
   What changed, Why it matters, How to try it, What is next.
 - If no constraints are provided, default to: direct engineering voice, no
   marketing language, no em dashes, and flag this default in your output.
+- If any placeholder is left unfilled, stop and list the unfilled fields before generating. An outline built on assumed inputs produces assumed structure.
+- If the topic is outside the technology domain (organizational change, hiring, process improvement), adjust the narrative arc options to match the content type rather than forcing a technical tutorial structure.
+- If the user is running this on a model with a small context window (under 16k tokens), recommend the SHORT post format and skip the transition mapping step to stay within limits.
 ```
 
 ## Why This Works
@@ -217,6 +220,7 @@ The core insight behind the comparison above: a naive prompt asks the model to p
 - **Feed sections to a drafting prompt one at a time.** Once you have the outline, use each section's heading, purpose, and key points as the input for a separate drafting prompt. This keeps each section focused and prevents drift.
 - **Use the transition sentences as a revision tool.** If a transition feels forced or awkward, the two sections it connects may be in the wrong order or may not belong next to each other.
 - **Run the self-critique checklist yourself too.** The model checks its own work, but a human pass catches things the model misses, especially around audience tone and organizational priorities.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/blog-from-pr` slash command generates a full blog post from a PR, and this outline prompt can structure the content before drafting.
 
 ## Example Output
 

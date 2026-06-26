@@ -144,6 +144,24 @@ EDGE CASE HANDLING:
 - If the incident was caused by a known risk that was previously
   accepted, document the original risk acceptance decision and
   recommend revisiting it.
+- If any placeholder fields are left unfilled (e.g., "[DESCRIBE THE
+  INCIDENT]" or "[KEY TIMESTAMPS]"), do not generate an analysis with
+  invented incident details. Instead, list the unfilled fields and ask
+  the user to provide them. A root cause analysis built on assumed
+  facts will produce misleading conclusions and wrong remediations.
+- If the incident is in a domain outside software engineering (e.g.,
+  manufacturing process failure, supply chain disruption, clinical
+  workflow breakdown), adapt the Fishbone categories accordingly.
+  Replace "Technology" with the relevant domain equivalent (e.g.,
+  "Equipment" or "Materials") and adjust the People and Process
+  categories to reflect domain-specific roles and procedures. The
+  5 Whys technique works across domains, but the categories must
+  match the environment.
+- If the incident has no clear timeline data (e.g., the failure was
+  discovered long after it started, or timestamps are unreliable),
+  note the gap explicitly in the Problem Statement. Use relative
+  sequencing ("A happened before B") rather than absolute timestamps,
+  and flag timeline reconstruction as a remediation item.
 
 Format your output with clear Markdown headers for each step.
 Use tables where they improve readability.
@@ -173,6 +191,7 @@ These techniques combine to produce the difference shown above: a rigorous, evid
 - Use the SUSPECTED vs. CONFIRMED distinction to build a follow-up investigation checklist for factors you have not yet verified.
 - Pair this with a remediation tracking tool (Jira, GitHub Issues, etc.) and create one ticket per recommendation with the priority and owner role from the output.
 - For recurring incidents, run this analysis on the current occurrence, then compare it with past post-mortems to identify patterns in root causes that were not fully addressed.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/retro` slash command can generate a full retrospective from the root cause analysis output.
 
 ## Example Output
 

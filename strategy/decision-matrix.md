@@ -129,6 +129,20 @@ Edge case handling:
   performance"), surface the tension and ask them to prioritize.
 - If a criterion cannot be scored due to missing information, do not drop it.
   Mark it as TBD and note what data is needed to fill the gap.
+- If any placeholder fields are left unfilled (e.g., "[DECISION]" or
+  "[OPTIONS]"), do not generate a matrix with invented options or criteria.
+  Instead, list the unfilled fields and ask the user to provide them.
+  A decision matrix built on assumed inputs produces false confidence.
+- If the user provides only one real option and the alternatives are
+  clearly token entries, flag that the decision may already be made.
+  Recommend either adding a genuine alternative (including "do nothing")
+  or skipping the matrix and documenting the rationale for the single
+  option directly.
+- If one or more criteria are highly subjective (e.g., "developer
+  happiness," "cultural fit"), define a rubric with specific observable
+  indicators for each score level. Without a rubric, subjective criteria
+  produce scores that reflect the scorer's mood rather than meaningful
+  differences between options.
 
 Output format:
 
@@ -180,6 +194,7 @@ These techniques combine to produce the difference shown above: a rigorous, audi
 - Revisit the matrix if new information surfaces. Decision matrices are living documents during the evaluation period.
 - Use the sensitivity analysis section to focus follow-up research. If the decision hinges on one uncertain score, invest time there.
 - For high-stakes decisions, have two people score independently and then compare. Divergent scores reveal assumptions worth discussing.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/retro` slash command can surface past decision outcomes that inform criteria weighting for future decisions.
 
 ## Example Output
 

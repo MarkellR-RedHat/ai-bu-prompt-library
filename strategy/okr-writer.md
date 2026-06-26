@@ -109,6 +109,19 @@ Edge case handling:
 - If the user's context suggests competing priorities, surface the tension and
   ask them to choose or rank.
 - If no timeline is given, default to a quarterly cadence and note the assumption.
+- If any placeholder fields are left unfilled (e.g., "[TEAM]" or
+  "[INITIATIVE DESCRIPTION]"), do not invent context. Instead, list the
+  unfilled fields and ask the user to provide them. OKRs generated from
+  assumed context will not reflect real priorities and will be discarded.
+- If the user is writing OKRs for a non-technical function (marketing,
+  HR, finance, legal), adjust the metric suggestions accordingly. Do not
+  default to engineering metrics like uptime or latency. Instead, suggest
+  function-appropriate metrics such as pipeline conversion rates, time to
+  fill, budget variance, or contract cycle time.
+- If the user's goals span multiple quarters or a full year, break the
+  objective into quarterly milestones with intermediate key results for
+  each quarter. A single key result measured only at the end of the year
+  provides no early signal on whether the team is on track.
 
 Output format:
 Present each OKR set in this structure:
@@ -150,6 +163,7 @@ These techniques combine to produce the difference shown above: OKRs with real n
 - Use the output as a starting point for team discussion, not as the final word. OKRs work best when the team has ownership over them.
 - Pair this with a weekly or biweekly check-in cadence. OKRs written and forgotten are worse than no OKRs at all.
 - When cascading from company-level OKRs, paste the parent Objective into your prompt so the model can align the team-level key results.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/what-next` slash command can help break quarterly OKRs into weekly priorities and track progress against key results.
 
 ## Example Output
 

@@ -197,6 +197,24 @@ EDGE CASE HANDLING:
   with no internal benchmarks), recommend a time-boxed proof of
   concept to reduce uncertainty before committing to the full
   investment.
+- If any placeholder fields are left unfilled (e.g., "[PROPOSAL]" or
+  "[BASELINE]"), do not generate an analysis with invented project
+  details. Instead, list the unfilled fields and ask the user to
+  provide them. A cost-benefit analysis built on assumed inputs
+  produces false precision that is worse than no analysis at all.
+- If the project's primary benefits are intangible (e.g., improved
+  developer experience, better team morale, reduced cognitive load),
+  classify them clearly as QUALITATIVE and present them in a separate
+  section. Do not attempt to force dollar values onto intangible
+  benefits. Instead, identify proxy metrics that can be tracked over
+  time (e.g., developer survey scores, time-to-first-commit for new
+  hires, voluntary attrition rate).
+- If costs span multiple budget owners (e.g., infrastructure costs
+  charged to platform team, personnel costs charged to product team),
+  break the cost table into sections by budget owner. This makes the
+  analysis actionable for funding conversations, since each stakeholder
+  needs to see their specific financial exposure rather than a single
+  blended total.
 
 Format your output with clear Markdown headers for each step.
 Use tables for cost and benefit itemization.
@@ -228,6 +246,7 @@ These techniques combine to produce the difference shown above: a rigorous, hone
 - For large investments, pair this prompt with the trade-off prompt to first select the best implementation approach, then run cost-benefit on the winning approach.
 - Share the sensitivity analysis section with finance stakeholders. It speaks their language and builds credibility for the technical team's planning rigor.
 - Revisit the analysis at project milestones (25%, 50%, 75% complete) to check whether the original assumptions still hold. Early detection of cost overruns or benefit shortfalls saves money.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/what-next` slash command can help prioritize which cost-benefit analyses to run first when evaluating multiple competing project proposals.
 
 ## Example Output
 

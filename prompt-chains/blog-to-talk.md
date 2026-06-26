@@ -340,6 +340,9 @@ Prompt chaining produces better CFP submissions than a single prompt for three s
 - **Review Step 2 carefully.** This is where the most important editorial decisions happen. If the "CUT" list feels wrong, override it before moving to Step 3.
 - **Run Step 4 twice** if the first output feels generic. The second pass is usually tighter because the model has more context about what you want.
 - **Keep the blog post link handy.** Many CFP forms ask for supporting material, and a published post is strong evidence that you know the topic.
+- **If the blog post is very long (3000+ words),** summarize it to under 2000 words before running Step 1, or run Step 1 on the first half and second half separately and merge the summaries. Long posts can cause the model to lose detail in later steps.
+- **If the blog post is about a non-technical topic** (team culture, career growth, process change), adjust "live demo" references in Steps 2 and 3 to "case study" or "audience exercise" to match the content type.
+- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/blog-from-pr` slash command can generate the blog post that feeds into this chain, and the `/demo-prep` slash command can build the live demo portion of the resulting talk.
 
 ## Example
 
