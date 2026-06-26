@@ -4,6 +4,19 @@ Craft a LinkedIn post that shares technical content in a professional, engineeri
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:**
+> "Write a LinkedIn post about our new open source inference project."
+
+**What you get:** "I'm excited to share that we just launched an amazing new open source project! It's a game-changing tool for AI inference that will revolutionize how teams deploy models. Check it out! #AI #Innovation #Excited" Plus three paragraphs of vague claims that could describe any project at any company.
+
+**This prompt produces:** A 150-250 word post that opens with a specific technical fact or result (not an emotion), adds your personal perspective or a detail not in the linked content, grounds every claim in a concrete metric or architectural choice, and closes with a genuine question that invites real discussion. The post sounds like an engineer talking to peers, not a brand account broadcasting announcements.
+
+**The difference:** One sounds like every other corporate LinkedIn post and gets scrolled past. The other sounds like a person with something specific to say and earns engagement from practitioners who actually work in the space.
+
+---
+
 ## When to use
 
 - You are sharing a blog post, project release, or technical writeup and want a thoughtful post framed around the substance.
@@ -136,6 +149,24 @@ EDGE CASE HANDLING:
   practical impact. Do not assume the reader knows the acronyms.
 - If no link is provided: do NOT fabricate one. End with a discussion question instead.
 ```
+
+## Why This Works
+
+LinkedIn posts are uniquely vulnerable to sounding corporate and hollow, so this prompt applies targeted techniques to keep the output grounded and human:
+
+- **Ghostwriter persona with voice constraint.** The model writes as a ghostwriter for "a senior engineer," and the voice test is explicit: "Does it sound like an engineer talking to a peer at a conference hallway?" This framing produces output that reads as personal and technical rather than institutional and promotional.
+
+- **Seven-step chain-of-thought.** The steps are ordered to match how a good post comes together: hook first, then narrative arc, then grounding every claim, then stripping marketing language, then voice check, then call to action, then hashtags. This sequence matters because each step builds on and constrains the previous one.
+
+- **Marketing language kill list.** Step 4 provides an explicit list of banned phrases: "excited to announce," "thrilled to share," "game-changing," "cutting-edge," "revolutionary," "delighted," "proud to," "incredible," "next-generation," "best-in-class." This is not a style preference; these phrases are the primary signal that causes technical readers to disengage. Banning them forces the model to replace each one with a factual statement.
+
+- **"Read it aloud" voice test.** Step 5 tells the model to check whether the post sounds like a press release or a product page and rewrite if it does. This meta-instruction acts as a second filter beyond the kill list, catching marketing-adjacent language that is not on the explicit list but still feels corporate.
+
+- **Specificity enforcement.** Step 3 asks, for each sentence: "Is this specific enough that the reader learns something, or is it vague filler?" and instructs the model to replace any sentence that "could appear in any company's post about any product." This constraint is what produces the concrete metrics, architecture details, and named technologies that make the post worth reading.
+
+- **Anti-pattern catalog for LinkedIn-specific failure modes.** Opening with emotions, summarizing instead of adding perspective, corporate buzzwords, wall-of-text formatting, vague engagement questions, and excessive tagging are all patterns that are common on LinkedIn specifically. Naming them prevents the model from reproducing them.
+
+The comparison above captures the fundamental problem: LinkedIn's culture encourages a posting style that technical audiences find hollow. This prompt systematically overrides that default by encoding the norms of engineer-to-engineer communication instead.
 
 ## Usage Tips
 

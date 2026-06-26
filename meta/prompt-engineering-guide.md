@@ -1,27 +1,28 @@
 # Prompt Engineering Guide
 
-A practical reference for writing prompts that produce consistent, useful results.
-This guide covers the techniques used throughout this library and provides a template
-for contributors.
+The definitive reference for writing prompts that produce consistent, professional-grade output. This guide covers every technique used in the AI BU Prompt Library, with real examples from the library showing each technique in action and before/after comparisons that demonstrate why these techniques matter.
 
-## Why Prompt Engineering Matters
+If you use AI tools every day and your results are "okay but not great," this guide will show you exactly what is missing. The gap between mediocre prompts and engineered prompts is not a mystery. It is a set of specific, learnable techniques that make the model work harder and produce output you can actually use.
 
-A well-written prompt is the difference between output you can use and output you throw away.
+Every prompt in this library applies these techniques systematically. This guide explains how they work, why they work, and how to apply them yourself.
 
-Large language models respond to structure, specificity, and context. Vague instructions
-produce vague results. Precise instructions produce results you can ship. The goal is not
-to write clever prompts; it is to write prompts that work reliably across runs, models,
-and use cases.
+## Technique Quick Reference
 
-Every prompt in this library is designed to be reusable, testable, and predictable.
-This guide explains how we get there.
+| # | Technique | What It Does | See It In Action |
+|---|-----------|-------------|------------------|
+| 1 | Role and Context Setting | Grounds the model in a specific expertise and situation | [Blog Intro](../content/blog-intro.md), [Architecture Review](../engineering/architecture-review.md) |
+| 2 | Chain-of-thought Reasoning | Forces the model to reason through problems step by step | [Root Cause Analysis](../analysis/root-cause.md), [Debug Helper](../engineering/debug-helper.md) |
+| 3 | Output Format Specification | Locks the output into a consistent, scannable structure | [Stakeholder Update](../communication/stakeholder-update.md), [OKR Writer](../strategy/okr-writer.md) |
+| 4 | Self-critique and Verification | Makes the model check its own work before delivering | [Code Review](../engineering/code-review.md), [Blog Intro](../content/blog-intro.md) |
+| 5 | Anti-pattern Avoidance | Blocks common failure modes by telling the model what NOT to do | [Feedback Draft](../leadership/feedback-draft.md), [Stakeholder Update](../communication/stakeholder-update.md) |
+| 6 | Edge Case Handling | Tells the model how to behave when inputs are unusual | [Debug Helper](../engineering/debug-helper.md), [OKR Writer](../strategy/okr-writer.md) |
+| 7 | Placeholder Design | Makes prompts reusable and self-documenting | [Executive Brief](../communication/exec-brief.md), [Architecture Review](../engineering/architecture-review.md) |
 
 ## Core Techniques
 
 ### 1. Role and Context Setting
 
-Tell the model who it is and what situation it is operating in. This grounds the response
-and constrains it to a useful domain.
+Tell the model who it is, what situation it is operating in, and who the audience is. This grounds the response and constrains it to a useful domain.
 
 **Pattern:**
 
@@ -30,21 +31,49 @@ You are a [ROLE] with expertise in [DOMAIN].
 You are working with [AUDIENCE] who need [OUTCOME].
 ```
 
-**Why it works:** Role assignment narrows the model's output distribution. A prompt that
-says "You are a senior site reliability engineer" will produce different (and more
-technically precise) output than one that says nothing about role.
+**Why it works:** Role assignment narrows the model's output distribution. A prompt that says "You are a senior site reliability engineer" will produce different (and more technically precise) output than one that says nothing about role. The model has been trained on text written by many different types of professionals. Telling it which professional to emulate activates the right patterns.
+
+#### Before and After
+
+**Before (no role):**
+```
+Write an introduction for a blog post about Kubernetes GPU scheduling.
+```
+What you get: A generic paragraph that opens with "In today's rapidly evolving cloud landscape..." and meanders through vague statements about GPU computing. No specificity, no hook, no reason for the reader to continue.
+
+**After (with role and context):**
+```
+You are a senior technical writer at Red Hat with deep experience writing
+for engineering audiences. Your job is to write a strong introduction
+(4-7 sentences) for a blog post.
+
+TOPIC: How llm-d schedules GPU inference workloads on Kubernetes
+AUDIENCE: Platform engineers running Kubernetes clusters with GPU nodes
+```
+What you get: A tight introduction that opens with the specific pain of GPU scheduling on Kubernetes, names concrete problems the audience has experienced (custom operators, resource hacks, manual node pinning), and sets up the article with a clear scope.
+
+#### Real Example from the Library
+
+The [Blog Intro](../content/blog-intro.md) prompt opens with:
+
+> `You are a senior technical writer at Red Hat with deep experience writing for engineering audiences.`
+
+This is not just a generic role. It specifies seniority (which calibrates quality expectations), the company (which sets organizational context), and the audience (engineering, not marketing). Compare this to the [Root Cause Analysis](../analysis/root-cause.md) prompt:
+
+> `You are a senior site reliability engineer with 15+ years of experience conducting blameless post-mortems and root cause analyses in large-scale distributed systems.`
+
+The role here is even more specific: it includes years of experience, the specific skill (blameless post-mortems), and the operating environment (large-scale distributed systems). This level of specificity activates domain-appropriate language, frameworks (5 Whys, Ishikawa), and reasoning patterns.
 
 **Guidelines:**
-- Be specific about the role. "Engineer" is too broad. "Senior platform engineer
-  specializing in Kubernetes networking" is useful.
-- Include the audience. A response for a VP is different from a response for a
-  junior developer.
+- Be specific about the role. "Engineer" is too broad. "Senior platform engineer specializing in Kubernetes networking" is useful.
+- Include the audience. A response for a VP is different from a response for a junior developer. The [Stakeholder Update](../communication/stakeholder-update.md) prompt explicitly names the audience ("VP-level leadership", "cross-functional partners") because the register and detail level change dramatically.
 - State the goal. The model should know what success looks like.
+
+---
 
 ### 2. Chain-of-thought Reasoning
 
-For complex tasks, ask the model to reason through the problem step by step before
-producing a final answer.
+For complex tasks, instruct the model to reason through the problem step by step before producing a final answer. Do not just ask for output; ask the model to show its work.
 
 **Pattern:**
 
@@ -56,17 +85,51 @@ Before providing your answer:
 4. Then provide your final recommendation.
 ```
 
-**Why it works:** Forcing intermediate reasoning steps reduces errors on multi-step
-problems. The model is less likely to skip important considerations when it must
-show its work.
+**Why it works:** Forcing intermediate reasoning steps reduces errors on multi-step problems. The model is less likely to skip important considerations when it must show its work. Without chain-of-thought, the model jumps straight to an answer, which for complex problems is often the first plausible answer, not the best one.
+
+#### Before and After
+
+**Before (no chain-of-thought):**
+```
+I'm getting a 500 error on my API endpoint. How do I fix it?
+```
+What you get: The model guesses at the most common cause from its training data. It suggests "try adding error handling" or "check your database connection." You try the fix, it does not work, you paste the new error, and you are three rounds into trial-and-error.
+
+**After (with chain-of-thought):**
+```
+Follow this structured debugging process:
+
+Step 1: Reproduce and Clarify
+  Restate your understanding of the bug. What is expected vs. actual behavior?
+
+Step 2: Isolate the Failure Domain
+  Where in the call stack does the error originate? Rule out entire subsystems.
+
+Step 3: Generate Ranked Hypotheses
+  List the top 3-5 most probable root causes, ranked by likelihood.
+  For each: state supporting evidence, confirming evidence, and disconfirming evidence.
+
+Step 4: Design Diagnostic Steps
+  For the most likely hypothesis, suggest 1-3 specific commands or log lines
+  to confirm or eliminate it.
+```
+What you get: A structured investigation with ranked hypotheses, evidence requirements, and specific diagnostic commands you can run immediately. The model traces execution paths instead of guessing.
+
+#### Real Example from the Library
+
+The [Debug Helper](../engineering/debug-helper.md) prompt uses a five-step chain-of-thought process: Reproduce and Clarify, Isolate the Failure Domain, Generate Ranked Hypotheses, Design Diagnostic Steps, and Fix and Verify. Each step builds on the previous one, preventing the model from jumping to a fix before the root cause is confirmed.
+
+The [Root Cause Analysis](../analysis/root-cause.md) prompt uses a six-step chain that moves from Problem Statement to Fishbone Diagram to 5 Whys Chain to Root Cause Identification to Remediation. The output of each step feeds the next. This is not just formatting; it is a reasoning scaffold that produces deeper analysis.
 
 **When to use it:**
 - Debugging and root cause analysis
 - Architecture decisions with trade-offs
 - Any task where the first intuition is often wrong
+- Multi-part analysis where conclusions build on earlier findings
 
-**When to skip it:** Simple extraction or formatting tasks. Do not add chain-of-thought
-to a prompt that just needs to reformat JSON.
+**When to skip it:** Simple extraction or formatting tasks. Do not add chain-of-thought to a prompt that just needs to reformat JSON.
+
+---
 
 ### 3. Output Format Specification
 
@@ -90,14 +153,51 @@ Provide your response in the following format:
 2. [Second action item with owner]
 ```
 
-**Why it works:** Without format constraints, models will invent their own structure,
-which varies between runs. Explicit format instructions produce outputs that can be
-parsed, compared, and integrated into workflows.
+**Why it works:** Without format constraints, models will invent their own structure, which varies between runs. Explicit format instructions produce outputs that can be parsed, compared, and integrated into workflows. This is the single most impactful technique for consistency. Two runs of the same prompt should produce output that looks structurally identical, even if the content differs.
+
+#### Before and After
+
+**Before (no format specification):**
+```
+Give me a status update on my project.
+```
+What you get: A rambling narrative paragraph that buries the key information in the middle. Sometimes it starts with accomplishments, sometimes with risks, sometimes with a general reflection on progress. Each run looks different. You cannot scan it in 30 seconds.
+
+**After (with format specification):**
+```
+Use this exact structure for the final update:
+
+**Status: [On Track | At Risk | Blocked]**
+[One-sentence justification]
+
+**Key Accomplishments**
+- [Accomplishment 1, with quantified impact if available]
+- [Accomplishment 2]
+
+**Upcoming Milestones**
+- [Milestone 1]: [Target date]
+
+**Risks and Blockers**
+- [Risk/Blocker]: [Impact]. Mitigation: [Action underway or planned].
+
+**Asks**
+- [Decision, resource, or support needed, with a deadline if applicable]
+```
+What you get: A scannable, consistent update every time. Status at the top, accomplishments quantified, milestones dated, risks paired with mitigations, asks specific and actionable. Your VP can read it in 90 seconds.
+
+#### Real Example from the Library
+
+The [Stakeholder Update](../communication/stakeholder-update.md) prompt specifies every section: Status indicator (with only three valid options), Key Accomplishments (3-5 bullets, each one sentence), Upcoming Milestones (always with dates), Risks and Blockers (each with impact and mitigation), and Asks (with deadlines). This level of specificity means the output is consistent whether you run the prompt on Monday or Friday, with sparse notes or dense ones.
+
+The [OKR Writer](../strategy/okr-writer.md) prompt goes further, specifying a table format for key results with columns for baseline, target, deadline, and owner. This structure forces the model to produce measurable, accountable output rather than vague aspirational statements.
 
 **Guidelines:**
 - Use markdown headers and lists for structured content.
 - Specify lengths when they matter ("2-3 sentences", "no more than 5 bullet points").
 - Include examples of the expected format when the structure is non-obvious.
+- Specify what to do when a section has no content (e.g., "If none, write 'No active risks or blockers at this time.'").
+
+---
 
 ### 4. Self-critique and Verification Loops
 
@@ -114,21 +214,49 @@ After drafting your response, review it against these criteria:
 Revise your response if any criteria are not met.
 ```
 
-**Why it works:** Models can catch their own errors when explicitly asked to look for
-them. This is not foolproof, but it catches a meaningful percentage of mistakes,
-especially omissions and logical gaps.
+**Why it works:** Models can catch their own errors when explicitly asked to look for them. This is not foolproof, but it catches a meaningful percentage of mistakes, especially omissions, logical gaps, and calibration errors (calling something "High" severity when it is actually "Low"). The key is making the checklist specific to the task, not generic.
+
+#### Before and After
+
+**Before (no self-critique):**
+```
+Review this code for bugs.
+```
+What you get: A list that mixes real bugs with speculative concerns. A cosmetic naming issue gets the same treatment as a data-loss bug. There is no severity calibration, and some findings are hunches rather than confirmed issues.
+
+**After (with self-critique checklist):**
+```
+After completing all categories, run this self-critique checklist
+before presenting your final output:
+- [ ] Did I confirm each finding by tracing the execution path, or did I
+      flag something based on a hunch?
+- [ ] Are my severity ratings calibrated? A cosmetic naming issue is not
+      "High" severity. A potential data loss bug is not "Low."
+- [ ] Did I provide a concrete fix for every finding, not just a description
+      of the problem?
+- [ ] Did I avoid inventing problems that are not actually present in the code?
+```
+What you get: A review where every finding is backed by execution path tracing, severity ratings are properly calibrated, and speculative issues are filtered out. The signal-to-noise ratio goes up dramatically.
+
+#### Real Example from the Library
+
+The [Code Review](../engineering/code-review.md) prompt includes a seven-item self-critique checklist that specifically asks the model to verify it traced execution paths (not just guessed), calibrated severity ratings, provided concrete fixes, and avoided inventing problems. This is why the code review prompt produces findings like "off-by-one on line 89 will skip the first page of results" instead of "consider adding error handling."
+
+The [Blog Intro](../content/blog-intro.md) prompt includes a ten-item checklist covering everything from "Does the first sentence describe a real, specific problem?" to "Are there zero em dashes?" The model runs through every check and marks pass/fail, revising if anything fails. This built-in quality gate is visible in the output, so you can see exactly which criteria your introduction met.
 
 **When to use it:**
-- High-stakes outputs (production runbooks, security reviews)
+- High-stakes outputs (production runbooks, security reviews, executive briefs)
 - Complex analysis where errors compound
 - Content that will be shared with stakeholders
+- Any prompt where quality calibration matters
+
+---
 
 ### 5. Anti-pattern Avoidance
 
-Explicitly tell the model what NOT to do. Models have default behaviors that are
-often unhelpful for professional work.
+Explicitly tell the model what NOT to do. Models have default behaviors that are often unhelpful for professional work. If you do not block them, they will show up in every output.
 
-**Common anti-patterns to block:**
+**Pattern:**
 
 ```
 Do not:
@@ -136,12 +264,43 @@ Do not:
 - Repeat the question back before answering
 - Add disclaimers about being an AI
 - Use buzzwords or marketing language
-- Hedge excessively with phrases like "it depends" without following up with specifics
+- Hedge excessively with phrases like "it depends" without following up
 ```
 
-**Why it works:** Models are trained on a lot of content that includes filler,
-hedging, and excessive politeness. Explicitly blocking these patterns produces
-cleaner, more direct output.
+**Why it works:** Models are trained on a lot of content that includes filler, hedging, and excessive politeness. They also pick up domain-specific bad habits: code reviews that recommend unnecessary abstractions, feedback that uses the "sandwich" technique, status updates that bury risks. Explicitly blocking these patterns produces cleaner, more direct output. This is the technique that most directly improves the professional quality of model output.
+
+#### Before and After
+
+**Before (no anti-patterns specified):**
+```
+Write feedback for a team member who interrupted a colleague in a meeting.
+```
+What you get: "I wanted to start by saying what a great team player you are, and I really value your contributions to the architecture review. That said, I noticed that in the meeting, there was a moment where perhaps the flow of the conversation could have been smoother. It might be worth considering being a bit more mindful of..." The actual feedback is buried in qualifiers, hollow praise, and softening. The recipient walks away unsure what the message was.
+
+**After (with anti-patterns blocked):**
+```
+ANTI-PATTERNS TO AVOID:
+1. The "feedback sandwich." Do not wrap constructive feedback in unrelated
+   compliments. People see through it and it dilutes both the praise and
+   the critique.
+2. Vague praise like "great job" or "keep it up." If you cannot name what
+   they did and why it mattered, the recognition is meaningless.
+3. Softening to the point of confusion: "Maybe you could possibly consider
+   perhaps looking into..." Say what you mean.
+4. Attributing intent: "You clearly did not care about the deadline."
+   Stick to what you observed, not what you assume they were thinking.
+```
+What you get: "When Aisha presented the event-driven approach, you interrupted her twice and moved straight to listing drawbacks before she had finished. After that, she went quiet for the rest of the meeting. In future review meetings, let the presenter finish their full explanation before responding." Direct, specific, actionable.
+
+#### Real Example from the Library
+
+The [Feedback Draft](../leadership/feedback-draft.md) prompt blocks seven specific anti-patterns: the feedback sandwich, vague praise, attributing intent, softening to confusion, making it about you, comparing to other team members, and stacking multiple critiques. Each anti-pattern is not just named but explained with an example of what it looks like, so the model can recognize and avoid it.
+
+The [Stakeholder Update](../communication/stakeholder-update.md) prompt blocks activity reporting ("worked on X" instead of "delivered X"), burying the lead, optimism bias (downgrading "At Risk" to avoid uncomfortable conversations), vague risks, missing asks, jargon overload, and walls of text. These are the specific failure modes that make status updates useless in practice.
+
+**Key principle:** Anti-patterns should be specific to the domain. Generic instructions like "be professional" do not help. Specific instructions like "Do not recommend adding comments that would just restate what the code already says" catch real problems.
+
+---
 
 ### 6. Edge Case Handling
 
@@ -156,14 +315,41 @@ If the provided [INPUT] is:
 - Outside your expertise: Say so directly rather than guessing.
 ```
 
-**Why it works:** Without edge case instructions, models will either hallucinate
-an answer or produce something generic. Explicit handling instructions give the
-model a safe path for unusual situations.
+**Why it works:** Without edge case instructions, models will either hallucinate an answer or produce something generic. Explicit handling instructions give the model a safe path for unusual situations. This is what prevents the model from confidently producing garbage when the input is bad.
+
+#### Before and After
+
+**Before (no edge case handling):**
+```
+Write OKRs for this initiative: "be the best platform."
+```
+What you get: The model gamely produces OKRs for a vague, unmeasurable goal. "Objective: Become the industry-leading platform. KR1: Increase market share by 20%." The output looks polished but is completely fictional because the input was too vague to produce anything real.
+
+**After (with edge case handling):**
+```
+Edge case handling:
+- If the user provides a goal that is too broad (e.g., "be the best platform"),
+  ask clarifying questions before drafting. Do not guess.
+- If the user provides a goal that is actually a task ("migrate to Kubernetes"),
+  reframe it as an outcome-oriented Objective and explain why.
+- If the user's context suggests competing priorities, surface the tension and
+  ask them to choose or rank.
+```
+What you get: "Your goal 'be the best platform' is too broad to produce measurable OKRs. To narrow this down, I need you to answer: Best for whom? (internal developers, external customers, a specific market?) Best at what? (reliability, developer experience, cost efficiency?) What does 'best' look like in 6 months?" The model asks for clarification instead of producing impressive-looking nonsense.
+
+#### Real Example from the Library
+
+The [OKR Writer](../strategy/okr-writer.md) prompt handles four specific edge cases: goals that are too broad, goals that are actually tasks, competing priorities, and missing timelines. Each edge case has a specific instruction for how the model should respond. The model does not guess; it pushes back.
+
+The [Debug Helper](../engineering/debug-helper.md) prompt handles empty error messages (check logs at each tier), intermittent bugs (ask about load patterns, concurrency, time-of-day), stack traces pointing to library code (trace backwards to the application code that called it), and missing environment details (ask for them). These are the exact situations where debugging goes sideways, and the prompt has a plan for each one.
+
+The [Stakeholder Update](../communication/stakeholder-update.md) prompt handles contradictory notes (flag the contradiction), sparse input (produce what you can, then list questions to strengthen the update), missing risks (include the section anyway with an explicit "none" statement), and mixed audiences (default to the less technical register and add a technical appendix).
+
+---
 
 ### 7. Placeholder Design with [BRACKETS]
 
-Every prompt in this library uses bracket placeholders for variable content.
-This makes prompts reusable and self-documenting.
+Every prompt in this library uses bracket placeholders for variable content. This makes prompts reusable and self-documenting.
 
 **Convention:**
 
@@ -175,11 +361,43 @@ This makes prompts reusable and self-documenting.
 [CONSTRAINTS]       - Known limitations or requirements
 ```
 
+**Why it works:** Placeholders turn a one-off prompt into a reusable tool. They also serve as documentation: anyone looking at the prompt can immediately see what inputs are needed and what each input represents. A prompt with clear placeholders is self-service. A prompt without them requires the author to explain how to use it every time.
+
+#### Before and After
+
+**Before (no placeholders):**
+```
+Review the order processing system architecture. It runs on AWS with
+PostgreSQL and handles about 200 orders per second. We want to scale to
+2000 orders per second next year.
+```
+This prompt works once, for one system. When someone else wants to review a different system, they have to figure out which parts to replace and which to keep. They will inevitably leave in context that does not apply or forget to add context that does.
+
+**After (with well-designed placeholders):**
+```
+System context:
+- System name: [SYSTEM_NAME]
+- Architecture description: [ARCHITECTURE_DESCRIPTION]
+- Current scale: [CURRENT_SCALE]
+- Target scale or upcoming requirements: [TARGET_SCALE_OR_UPCOMING_REQUIREMENTS]
+- Known pain points: [KNOWN_ISSUES]
+- Deployment environment: [DEPLOYMENT_ENVIRONMENT]
+```
+Anyone can use this prompt by filling in the brackets. The placeholder names make it clear what each field expects. There is no ambiguity about what to include or what to leave out.
+
+#### Real Example from the Library
+
+The [Executive Brief](../communication/exec-brief.md) prompt uses five clearly named placeholders: `[TOPIC]`, `[AUDIENCE]`, `[DECISION]`, `[PRIOR_CONTEXT]`, and a paste area for raw notes. Each placeholder includes inline guidance. For example, `[DECISION]` is annotated with examples: "approve funding for Q3," "align on technical direction," "no decision needed, awareness only." The user does not have to guess what goes in each field.
+
+The [Architecture Review](../engineering/architecture-review.md) prompt uses six placeholders with descriptive names: `[SYSTEM_NAME]`, `[ARCHITECTURE_DESCRIPTION]`, `[CURRENT_SCALE]`, `[TARGET_SCALE_OR_UPCOMING_REQUIREMENTS]`, `[KNOWN_ISSUES]`, and `[DEPLOYMENT_ENVIRONMENT]`. Each name tells you exactly what to provide, and the usage tips explain what level of detail produces the best results.
+
 **Guidelines:**
 - Use ALL CAPS inside brackets for readability.
 - Choose descriptive names. `[INPUT]` is acceptable; `[X]` is not.
-- Add a comment or description when the expected content is not obvious.
+- Add inline examples or descriptions when the expected content is not obvious.
 - Group related placeholders together and document them at the top of the prompt.
+
+---
 
 ## Structuring a Prompt for Consistent Results
 
@@ -195,51 +413,45 @@ A well-structured prompt follows this order:
 7. VERIFICATION - How to check the work (optional)
 ```
 
-This order matters. Role and context prime the model before it encounters the task.
-Constraints and format shape the output. Examples reduce ambiguity. Verification
-catches errors.
+This order matters. Role and context prime the model before it encounters the task. Constraints and format shape the output. Examples reduce ambiguity. Verification catches errors.
 
-Not every prompt needs all seven sections. Simple prompts may only need task and
-format. Complex prompts benefit from all of them.
+Not every prompt needs all seven sections. Simple prompts may only need task and format. Complex prompts benefit from all of them.
 
 ## Common Mistakes and How to Fix Them
 
 ### Mistake 1: Being too vague
 
-**Bad:** "Review this code."
-**Fix:** "Review this Python function for security vulnerabilities, focusing on input
-validation, SQL injection, and authentication bypass. For each issue found, provide
-the line number, the vulnerability type, the severity (critical/high/medium/low),
-and a specific fix."
+**Before:** "Review this code."
+
+**After:** "Review this Python function for security vulnerabilities, focusing on input validation, SQL injection, and authentication bypass. For each issue found, provide the line number, the vulnerability type, the severity (critical/high/medium/low), and a specific fix."
+
+The fix is specificity. Name the language, name the concern, name the output format. Every detail you add reduces the space of possible outputs, which makes the useful output more likely.
 
 ### Mistake 2: Cramming multiple tasks into one prompt
 
-**Bad:** "Analyze this system, write a migration plan, create the test cases, and
-draft the stakeholder email."
-**Fix:** Break this into four separate prompts, each focused on one task. Chain them
-if needed, using the output of one as input to the next.
+**Before:** "Analyze this system, write a migration plan, create the test cases, and draft the stakeholder email."
+
+**After:** Break this into four separate prompts, each focused on one task. Chain them if needed, using the output of one as input to the next. See the [Prompt Chains](../prompt-chains/) section for examples of multi-step workflows.
 
 ### Mistake 3: Not specifying the output format
 
-**Bad:** "Give me a summary of the incident."
-**Fix:** "Provide a summary of the incident in the following format: Timeline (bullet
-points with timestamps), Root Cause (one paragraph), Impact (bullet points), and
-Action Items (numbered list with owners and deadlines)."
+**Before:** "Give me a summary of the incident."
+
+**After:** "Provide a summary of the incident in the following format: Timeline (bullet points with timestamps), Root Cause (one paragraph), Impact (bullet points), and Action Items (numbered list with owners and deadlines)."
 
 ### Mistake 4: Assuming the model knows your context
 
-**Bad:** "What should we do about the latency issue?"
-**Fix:** "Our API gateway (running Envoy 1.28 on RHEL 9) is showing p99 latency spikes
-of 3.2 seconds during peak traffic (2-4 PM ET). Normal p99 is 180ms. The spikes
-started after we deployed version 4.2.1 on Tuesday. What are the most likely causes
-and what diagnostic steps should we take first?"
+**Before:** "What should we do about the latency issue?"
+
+**After:** "Our API gateway (running Envoy 1.28 on RHEL 9) is showing p99 latency spikes of 3.2 seconds during peak traffic (2-4 PM ET). Normal p99 is 180ms. The spikes started after we deployed version 4.2.1 on Tuesday. What are the most likely causes and what diagnostic steps should we take first?"
+
+The model does not know your system. Every detail you provide, from the software version to the normal baseline to the timing of the change, helps it produce a relevant answer instead of a generic one.
 
 ### Mistake 5: No constraints on length or depth
 
-**Bad:** "Explain Kubernetes networking."
-**Fix:** "Explain Kubernetes pod-to-pod networking in 200 words or less, assuming the
-reader understands Linux networking basics but has not worked with container
-orchestration before."
+**Before:** "Explain Kubernetes networking."
+
+**After:** "Explain Kubernetes pod-to-pod networking in 200 words or less, assuming the reader understands Linux networking basics but has not worked with container orchestration before."
 
 ## Contributor Template
 
@@ -290,105 +502,9 @@ Before finalizing, confirm that:
 [A representative example of what good output looks like]
 ```
 
-## Before and After: From Naive to Well-engineered
-
-### Example 1: Code Review
-
-**Before (naive):**
-```
-Review this code and tell me if it's good.
-```
-
-**After (well-engineered):**
-```
-You are a senior software engineer conducting a code review.
-
-Review the following [LANGUAGE] code for:
-1. Correctness: Logic errors, off-by-one errors, null/nil handling
-2. Security: Input validation, injection vulnerabilities, credential exposure
-3. Performance: Unnecessary allocations, O(n^2) or worse patterns, missing caching
-4. Maintainability: Naming clarity, function length, test coverage gaps
-
-For each issue found, provide:
-- File and line number
-- Severity: critical / high / medium / low
-- Description of the problem
-- Suggested fix with a code snippet
-
-If the code is solid, say so and highlight what makes it good.
-Do not summarize the code back to me. Focus only on actionable findings.
-```
-
-### Example 2: Incident Summary
-
-**Before (naive):**
-```
-Summarize this incident.
-```
-
-**After (well-engineered):**
-```
-You are an SRE writing a post-incident summary for engineering leadership.
-
-Given the following incident details, produce a summary in this format:
-
-## Incident Summary
-- **Duration:** [start time to resolution time]
-- **Severity:** [S1/S2/S3/S4]
-- **Services affected:** [list]
-- **Customer impact:** [one sentence]
-
-## Timeline
-[Bullet points with timestamps, covering detection, escalation, mitigation,
-and resolution]
-
-## Root Cause
-[One paragraph, technically precise but readable by non-specialists]
-
-## Action Items
-| # | Action | Owner | Priority | Due Date |
-|---|--------|-------|----------|----------|
-| 1 | [action] | [owner] | [P1/P2/P3] | [date] |
-
-Keep the tone factual. No blame language. Focus on systems and processes,
-not individuals.
-```
-
-### Example 3: Architecture Decision
-
-**Before (naive):**
-```
-Should we use Kafka or RabbitMQ?
-```
-
-**After (well-engineered):**
-```
-You are a senior platform architect evaluating messaging systems.
-
-**Context:** [SYSTEM_DESCRIPTION]
-- Current message volume: [VOLUME] messages/second
-- Expected growth: [GROWTH_RATE] over [TIMEFRAME]
-- Message size: [SIZE] average
-- Ordering requirements: [ORDERING_NEEDS]
-- Team experience: [TEAM_EXPERTISE]
-
-Compare Apache Kafka and RabbitMQ for this use case. For each option, assess:
-1. Throughput fit for current and projected volume
-2. Operational complexity given the team's experience
-3. Ecosystem integration with [EXISTING_STACK]
-4. Cost at projected scale
-5. Failure modes and recovery characteristics
-
-Provide a clear recommendation with reasoning. If the answer genuinely
-depends on factors not provided, list the specific questions that would
-change the recommendation.
-```
-
 ## Final Notes
 
-Good prompt engineering is not about tricks. It is about clarity, structure, and
-specificity. The techniques in this guide are not complex, but they require
-discipline to apply consistently.
+Good prompt engineering is not about tricks or clever phrasing. It is about clarity, structure, and specificity applied with discipline. The seven techniques in this guide are not complex individually, but they compound: a prompt that applies all of them produces output that is categorically different from a prompt that applies none.
 
 When in doubt:
 - Be more specific, not less.
@@ -396,5 +512,7 @@ When in doubt:
 - Tell the model what to avoid.
 - Check the output format matches what you need.
 - Test the prompt multiple times before committing it to the library.
+
+The prompts in this library are proof that these techniques work. Pick any prompt, compare its output to what you would get from a naive version of the same request, and the difference speaks for itself.
 
 See [testing-prompts.md](testing-prompts.md) for guidance on evaluating prompt quality.

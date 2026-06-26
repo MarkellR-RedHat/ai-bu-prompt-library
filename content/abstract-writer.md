@@ -4,6 +4,19 @@ Write a concise, well-structured abstract for a conference talk, paper, or techn
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:**
+> "Write an abstract for my conference talk about LLM inference on Kubernetes."
+
+**What you get:** A paragraph stuffed with buzzwords ("cutting-edge," "revolutionary," "in this exciting talk") that could describe any talk at any conference. No specific problem statement, no concrete results, no reason for a reviewer to rank it above the other 200 submissions in the pile.
+
+**This prompt produces:** A structured, venue-aware abstract that opens with a specific problem, names the tool or approach, includes at least one concrete metric or architectural detail, and closes with a clear takeaway the reviewer can repeat back. The output also includes revision notes explaining the trade-offs made and one suggestion for strengthening the abstract further.
+
+**The difference:** One produces a generic paragraph you will rewrite entirely. The other produces a submission-ready draft that needs only your domain expertise to finalize.
+
+---
+
 ## When to use
 
 - You are submitting a proposal to a CFP and need a polished abstract that stands out from hundreds of competing entries.
@@ -89,6 +102,24 @@ Edge case handling:
 Output format:
 Provide the abstract as a single block of text with no headers, bullet points, or markdown formatting inside it. Follow it with a brief "Revision notes" section that lists any trade-offs you made (e.g., "cut the prerequisites sentence to stay under 200 words") and one suggestion for how the author could strengthen the abstract further.
 ```
+
+## Why This Works
+
+This prompt uses a specific set of techniques chosen to match how CFP review committees actually evaluate abstracts:
+
+- **Expert persona with domain calibration.** The model is cast as someone who has "reviewed thousands of CFP submissions across venues like KubeCon, FOSDEM, DevConf." This is not decoration. It primes the model to generate output that matches the norms and expectations of real review committees rather than producing generic academic prose.
+
+- **Chain-of-thought with problem-first structure.** The four reasoning steps (core tension, contribution, takeaway, draft) mirror the structure that strong abstracts follow naturally. By making the model think through the problem before writing, the prompt prevents the common failure where the abstract leads with the solution and never explains why anyone should care.
+
+- **Self-critique checklist tuned to reviewer behavior.** The checklist items map directly to reasons reviewers reject abstracts: vague problem statements, missing concrete details, filler phrases, and abstracts that only make sense with the accompanying slides. Running this check before output catches the most common rejection triggers.
+
+- **Anti-pattern catalog.** Listing specific bad patterns ("In this talk, we will explore...," "join us as we dive into," burying the lede, vague buzzwords) is especially effective for abstracts because the model has seen enormous volumes of mediocre CFP submissions in its training data. Without explicit avoidance instructions, it gravitates toward those common patterns.
+
+- **Venue-aware output.** Requiring the venue name as an input and checking tone against venue norms means the same prompt produces appropriately different outputs for KubeCon (practitioner-focused, demo-friendly) versus an academic conference (methodology-focused, citation-aware). A naive prompt ignores this distinction entirely.
+
+- **Edge case coverage for real-world constraints.** Handling tight word limits, missing metrics, workshop formats, and multi-author submissions addresses the situations where generic prompts fall apart. These are not hypothetical; they are the exact complications that come up every CFP season.
+
+The comparison above illustrates the core dynamic: a naive prompt lets the model reproduce the average abstract in its training data, which is mediocre by definition. This prompt encodes the specific quality signals that reviewers look for, producing output that clears the bar rather than blending into the pile.
 
 ## Usage Tips
 

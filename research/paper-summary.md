@@ -4,6 +4,16 @@ A prompt for distilling technical papers into structured, actionable summaries t
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+Most people prompt something like this:
+
+> **Naive prompt:** "Summarize this paper for me."
+
+**What you get:** A paraphrase of the abstract with some vague praise ("the authors present a novel approach") and no critical assessment. You cannot tell whether the paper is worth reading, whether its results would hold at your scale, or how it connects to your team's work.
+
+**This prompt** produces a structured analysis that separates genuine novelty from incremental work, lists quantitative results with baselines, identifies limitations the authors glossed over, and maps relevance to your specific project. The difference: instead of a reworded abstract, you get a senior engineer's read that tells you whether to invest time in the full paper or move on.
+
 ## When to use
 
 - Reviewing a paper before a team discussion so everyone starts from a shared understanding of the core ideas.
@@ -117,6 +127,24 @@ EDGE CASES:
 
 Keep the total summary under 600 words. Use precise technical language.
 ```
+
+## Why This Works
+
+This prompt uses several techniques that compound to produce a critical technical assessment rather than a reworded abstract:
+
+- **Persona framing.** "You are a senior research engineer with experience reading and evaluating technical papers" sets the model to read like a practitioner, not a student. This shifts the output from "what the paper says" to "what the paper means for engineers building real systems."
+
+- **Chain-of-thought decomposition.** Step 1 forces the model to identify the single most important contribution before summarizing. This prevents the common failure mode where a summary lists everything the paper discusses without distinguishing what actually matters.
+
+- **Structured output formatting.** Sections like Key Results (with baselines and hardware context), Limitations and Assumptions, and Relevance to Your Team force the model to go beyond the abstract. The format demands specificity: numbers, comparison points, and grounded assessments rather than vague praise.
+
+- **Confidence calibration.** The "[UNCERTAINTY]" flagging mechanism forces the model to distinguish between claims it can verify from the paper and claims it is less sure about. This is critical because models will otherwise present uncertain information with the same confidence as well-supported claims.
+
+- **Anti-pattern avoidance.** Explicitly blocking behaviors like summarizing only the abstract, using vague praise ("novel approach"), and conflating synthetic benchmarks with production applicability addresses the most common ways paper summaries mislead readers.
+
+- **Self-critique checklist.** The verification step catches missing baselines in results, generic relevance assessments, and summaries that slip into hype language. These are the exact failure modes that make paper summaries useless.
+
+These techniques together explain the difference shown in the comparison above: the naive prompt produces something that reads like the abstract you already skipped, while this prompt produces an evaluation that tells you whether to invest your time.
 
 ## Usage Tips
 

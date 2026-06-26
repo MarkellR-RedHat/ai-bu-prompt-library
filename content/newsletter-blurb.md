@@ -4,6 +4,19 @@ Generate a tight, high-signal newsletter blurb (2-4 sentences) that earns the cl
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:**
+> "Write a short summary of this blog post for our newsletter."
+
+**What you get:** A bland restatement of the article's title stretched into two sentences, usually opening with "Check out this great post about..." or "We are excited to share..." No specific detail, no reason to click, and no awareness of who the newsletter audience actually is.
+
+**This prompt produces:** A 2-4 sentence blurb that opens with a concrete insight or result (not the title), includes at least one specific detail (a metric, a tool name, a benchmark), and gives the reader a clear reason to click through. The output also includes the key detail the blurb anchored on and an audience fit note so you can quickly validate whether the angle landed.
+
+**The difference:** One fills space in the newsletter. The other earns the click.
+
+---
+
 ## When to use
 
 - Writing a blurb for an internal engineering newsletter, external community digest, or cross-org roundup
@@ -126,6 +139,24 @@ Before finalizing, verify each of these. If any check fails, revise the blurb:
 - If the content is behind a login or paywall, note that in the audience fit
   section so the newsletter editor can add appropriate access instructions.
 ```
+
+## Why This Works
+
+Newsletter blurbs are deceptively hard to write well because the format is so short that every word choice matters. This prompt uses several techniques calibrated for that constraint:
+
+- **Persona with editorial values.** The model is cast as a senior technical editor who "values the reader's time above everything else." This single constraint shapes every sentence the model writes, biasing it toward density and signal over padding and pleasantries.
+
+- **Chain-of-thought compressed to four steps.** For a 60-word output, a 10-step reasoning process would be overkill. The four steps (identify takeaway, find a concrete detail, determine reader motivation, match tone) focus the model's reasoning on the four decisions that actually determine blurb quality. Each step is small enough to execute well but specific enough to prevent shortcuts.
+
+- **"So what" as the opening principle.** Step 5 instructs the model to lead with the "so what," not the "what." This single instruction corrects the most common blurb failure, which is restating the article title as a sentence and calling it a summary.
+
+- **Self-critique checklist tuned for brevity.** The eight checklist items are chosen for short-form writing specifically. "Does every sentence add new information?" catches redundancy that is tolerable in a blog post but fatal in a 60-word blurb. "Would a busy engineer want to click through?" is the ultimate test for newsletter content.
+
+- **Anti-pattern catalog for newsletter-specific sins.** "Do NOT open with 'Excited to share'" and "Do NOT just restate the title" target the two patterns responsible for most weak newsletter blurbs. These are so common that without explicit avoidance instructions, the model defaults to them.
+
+- **Structured output with diagnostic fields.** The "Key detail used" and "Audience fit note" fields serve a practical purpose: they let you assess blurb quality in seconds without re-reading the source content. If the key detail is vague or the audience fit note feels off, you know to regenerate before publishing.
+
+The comparison above comes down to information density. A naive prompt produces output at the density the model defaults to, which is low for short-form content. This prompt raises the density floor by requiring specific details, banning filler, and making the model justify its framing choices before writing.
 
 ## Usage Tips
 

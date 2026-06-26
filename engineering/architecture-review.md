@@ -4,6 +4,16 @@ A structured prompt for evaluating system architecture across scalability, relia
 
 **Difficulty:** Advanced
 
+## Naive vs. Engineered
+
+Most people describe their system and type something like:
+
+> **Naive prompt:** "Review our architecture and tell us what to improve."
+
+**What you get:** A generic checklist of best practices that could apply to any system. "Consider adding caching." "You should use microservices." "Make sure you have monitoring." No assessment of your actual constraints, no distinction between what matters now and what matters at 10x scale, and no acknowledgment that your 4-person team cannot implement 15 recommendations simultaneously.
+
+**This prompt** produces a rated assessment across six specific criteria, with recommendations grounded in your actual scale, team size, deployment environment, and known pain points. Each recommendation includes what to do, why it matters, and estimated effort. The difference is the gap between "consider using a message queue" and "move audit log writes to an async path to reduce per-transaction write count from 3 to 2, which unblocks your path to 2,000 orders/sec; estimated effort is 2 to 3 weeks."
+
 ## When to use
 
 - Evaluating a new system design before committing to implementation, so you can identify structural problems while they are still cheap to fix
@@ -127,6 +137,19 @@ Edge case handling:
 - If the system is a monolith, evaluate it as a monolith. Do not automatically recommend breaking it into services unless there is a clear scaling or organizational reason to do so.
 - If the team is very small (1 to 3 engineers), weight operational simplicity much more heavily than architectural purity.
 ````
+
+## Why This Works
+
+This prompt uses several techniques to produce architecture reviews that are actually useful, not just technically correct:
+
+- **Rich context injection** (system name, scale numbers, team size, deployment environment, known issues): Architecture advice without context is useless. By requiring specific inputs like "200 orders/sec on a single PostgreSQL instance with a 4-person team," the model cannot fall back on generic recommendations. Every suggestion must be grounded in your reality.
+- **Structured evaluation criteria with rating levels** (Strong, Adequate, Needs Work): Forces the model to make a judgment call for each criterion instead of producing an undifferentiated list of suggestions. This is what makes the output actionable; you know immediately where to focus.
+- **Projection to target scale**: Requiring the model to evaluate both current state and behavior at target scale prevents the common failure of either ignoring future needs or over-engineering for a scale you will never reach.
+- **Anti-pattern avoidance** (seven rules including "do not recommend microservices to a team struggling with operational overhead" and "do not ignore team size"): These rules encode the hard-won wisdom that the best architecture is the one your team can actually operate. Without them, the model defaults to recommending the technically ideal solution regardless of organizational constraints.
+- **Self-critique checklist**: Makes the model verify that its recommendations are specific to your system, actionable this sprint, and free of contradictions. This catches the generic advice that would otherwise slip through.
+- **Priority summary with effort estimates**: Requiring a ranked top-3 with worst-case impact and effort level (days, weeks, months) transforms the output from a wish list into a prioritized action plan. This is what engineering leads actually need to make decisions.
+
+The fundamental difference is that the naive approach gives you a textbook review. This prompt gives you a review written by someone who understands your system, your team, and your constraints.
 
 ## Usage Tips
 

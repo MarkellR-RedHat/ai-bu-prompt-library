@@ -4,6 +4,19 @@ Generate a structured, publication-ready outline for a technical blog post with 
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:**
+> "Create an outline for a blog post about deploying LLMs on Kubernetes."
+
+**What you get:** A list of five generic headings ("Introduction," "Background," "Implementation," "Results," "Conclusion") with no detail on what each section should cover, no audience targeting, and no sense of how the sections connect. You end up doing all the structural thinking yourself anyway.
+
+**This prompt produces:** A complete, publication-ready outline with specific section headings that tell the reader what they will learn, a stated audience with explicit assumptions you can verify, key points and supporting material callouts for every section, transition sentences linking each section to the next, and word count estimates that keep the post on target. The output follows a deliberate narrative arc chosen to match your post's goal.
+
+**The difference:** One gives you a skeleton you still need to design. The other gives you a blueprint an author can start writing from immediately.
+
+---
+
 ## When to use
 
 - You are starting a new blog post from scratch and need a solid skeleton before you write a single paragraph.
@@ -174,6 +187,24 @@ EDGE CASE HANDLING:
 - If no constraints are provided, default to: direct engineering voice, no
   marketing language, no em dashes, and flag this default in your output.
 ```
+
+## Why This Works
+
+This prompt layers multiple prompt engineering techniques to produce outlines that are structurally sound, not just topically relevant:
+
+- **Persona framing.** Casting the model as "a senior technical editor" shifts its output from generic content generation to editorial thinking. Editors think about structure, flow, and audience fit, which is exactly what an outline requires.
+
+- **Chain-of-thought with staged reasoning.** The five-step process (audience analysis, narrative arc selection, section breakdown, transition mapping, call-to-action) forces the model to make structural decisions in the right order. Audience assumptions inform the arc. The arc determines the sections. Sections determine transitions. Without this sequencing, the model tends to generate sections in isolation, producing outlines that read like topic lists rather than connected narratives.
+
+- **Constrained output format.** Requiring a specific format for each section (heading, purpose, key points, supporting material, word count, transition) prevents the model from producing shallow, heading-only outlines. Each constraint forces a concrete decision that makes the outline more useful to the eventual author.
+
+- **Self-critique checklist.** The eight-item review catches the most common outline failures: generic headings, missing code examples in tutorials, unrealistic word counts, and vague calls to action. Running this check before output means you get a cleaner first draft.
+
+- **Anti-pattern catalog.** Naming specific failure modes ("the wall of text outline," "the buried lede outline," "the vague heading trap") gives the model concrete examples of what to avoid. This is more effective than general instructions like "make it good" because it targets the exact patterns that make outlines unusable.
+
+- **Edge case handling.** Covering overly broad topics, vague audiences, and product announcements prevents the model from guessing silently. Instead, it either adapts its approach or flags the issue, which saves you from discovering the problem after the outline is written.
+
+The core insight behind the comparison above: a naive prompt asks the model to produce an outline, but it provides no criteria for what makes an outline good. This prompt encodes those criteria directly, from section granularity to transition logic, so the model's output reflects editorial judgment rather than surface-level topic listing.
 
 ## Usage Tips
 

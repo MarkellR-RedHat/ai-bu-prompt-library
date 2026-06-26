@@ -4,6 +4,19 @@ Write a compelling, technically grounded introduction for a blog post that hooks
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:**
+> "Write an intro for my blog post about Kubernetes GPU scheduling."
+
+**What you get:** A generic paragraph that opens with "In today's rapidly evolving cloud landscape..." and meanders through vague statements about the importance of GPU computing before arriving at something loosely related to your topic. No hook, no specificity, no reason for the reader to keep going.
+
+**This prompt produces:** A tight, 4-7 sentence introduction that opens with a concrete pain point your audience has personally experienced, establishes real stakes, bridges to your specific solution, and ends with a reason to keep reading. The output includes visible chain-of-thought reasoning so you can see how the model arrived at its choices, plus a self-critique checklist that catches weak openings, hype language, and scope drift before you ever see the final draft.
+
+**The difference:** One gives you filler you will rewrite from scratch. The other gives you a working first draft that needs light editing.
+
+---
+
 ## When to use
 
 - You are writing a technical blog post and need a strong opening that earns the reader's attention in the first three sentences.
@@ -135,6 +148,24 @@ first draft, this can be identical to the draft.]
 [Any assumptions you made about topic, audience, or scope. Flag anything
 the user should verify before using the intro.]
 ```
+
+## Why This Works
+
+This prompt combines several deliberate prompt engineering techniques, each pulling its weight:
+
+- **Persona framing.** Assigning the model the role of "senior technical writer at Red Hat" anchors its output in a specific voice and standard. Without a persona, the model defaults to a generic, middle-of-the-road style that reads like no one in particular wrote it.
+
+- **Chain-of-thought reasoning.** The step-by-step instructions (identify the pain point, establish stakes, bridge to solution, give a reason to keep reading) force the model to think through the intro's structure before writing. This prevents the common failure mode where the model produces a grammatically correct paragraph that has no narrative arc.
+
+- **Self-critique loop.** The built-in checklist makes the model review its own draft against specific quality criteria before returning the output. This catches problems like cliche openings, missing scope statements, and hype language that would otherwise require you to prompt again or fix manually.
+
+- **Anti-pattern avoidance.** Explicitly listing what NOT to do (hype openings, dictionary definitions, question leads, burying the point) is often more effective than describing what you want. The model has seen millions of bad intros in its training data; telling it which patterns to avoid steers it away from the most common failure modes.
+
+- **Structured output format.** Requiring the response in a specific format (thinking block, draft, self-critique, final version, assumptions) means you get both the finished product and the reasoning behind it. If the intro misses the mark, you can see exactly where the reasoning went wrong and correct the inputs rather than starting over.
+
+- **Edge case handling.** Covering what to do when the topic is too broad, the audience is vague, or the takeaway is missing prevents the model from silently producing weak output. Instead, it flags the issue and asks for clarification or states its assumptions, which saves you a round of iteration.
+
+The visible difference from the comparison above comes down to this: the naive prompt gives the model no constraints, so it falls back on the most common blog intro patterns in its training data, which are mostly mediocre. This prompt replaces that default behavior with a specific, multi-step process that mirrors how experienced writers actually think through an introduction.
 
 ## Usage Tips
 

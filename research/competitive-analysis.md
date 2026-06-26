@@ -4,6 +4,16 @@ A prompt for producing a structured, evidence-based analysis of a competitor's p
 
 **Difficulty:** Advanced
 
+## Naive vs. Engineered
+
+Most people prompt something like this:
+
+> **Naive prompt:** "Tell me about [competitor product] and how it compares to us."
+
+**What you get:** A surface-level feature list pulled from the competitor's marketing site, a vague "pros and cons" section with no evidence, and generic advice like "differentiate on quality." You cannot use it to make a real product decision or win a deal.
+
+**This prompt** produces an evidence-grounded analysis that rates each capability as a strength, table stakes, or weak point with citations; identifies specific differentiation opportunities based on real gaps; and assesses whether those gaps are likely to close in the next 12 months. The difference: instead of a marketing-flavored comparison, you get an engineering-grade competitive brief that your product and sales teams can actually act on.
+
 ## When to use
 
 - Preparing for a product strategy discussion and you need a structured breakdown of a specific competitor's capabilities and positioning.
@@ -143,6 +153,24 @@ EDGE CASES:
 
 Use only publicly available information. Ground every claim in evidence.
 ```
+
+## Why This Works
+
+This prompt uses several techniques that compound to produce actionable competitive intelligence rather than a marketing-grade comparison:
+
+- **Persona framing.** "You are a senior product strategist with deep technical expertise" sets the model to think like someone who bridges engineering depth and product strategy. This prevents the output from being either too shallow (marketing-style comparison) or too narrow (pure feature matrix with no strategic context).
+
+- **Evidence grounding.** The "[UNVERIFIED]" flagging mechanism forces the model to distinguish between claims it can support with public evidence and claims it is guessing about. Without this, competitive analyses mix facts with assumptions, which erodes trust and leads to bad decisions.
+
+- **Structured output formatting.** The capability assessment framework (Strength / Table stakes / Weak point) with required evidence forces the model to make and defend judgments rather than listing features neutrally. The Differentiation Opportunities section then builds on the weaknesses with specific, defensibility-assessed recommendations.
+
+- **Anti-pattern avoidance.** Blocking dismissive language, outdated information, and differentiation suggestions that require capabilities you do not have prevents the most common failure modes in competitive analysis. The instruction to respect genuine competitor strengths produces analysis your team will actually trust.
+
+- **Trajectory awareness.** The Risk Assessment section and the instruction to consider roadmap signals (funding, key hires, conference talks) push the model beyond a point-in-time snapshot. Competitive analysis that ignores trajectory is stale by the time you present it.
+
+- **Self-critique checklist.** The verification step catches unsupported claims, unfair framing, and analysis that avoids making clear recommendations. These are the exact problems that make competitive analyses get filed and never referenced again.
+
+These techniques together explain the difference shown in the comparison above: the naive prompt produces a surface-level comparison you could get from the competitor's own website, while this prompt produces an engineering-grade brief that drives real product and sales decisions.
 
 ## Usage Tips
 

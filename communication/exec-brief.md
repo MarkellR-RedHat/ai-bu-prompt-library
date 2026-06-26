@@ -4,6 +4,14 @@ Distill a complex technical topic into a one-page executive brief that gives a n
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Summarize this project for my VP."
+
+**What you get:** A miniature essay that leads with background instead of the bottom line, mixes technical implementation details with business context, buries the ask (if there is one) in the last paragraph, and runs long enough that the VP stops reading halfway through.
+
+**This prompt** produces a structured one-pager with a "bottom line up front" that stands alone, jargon-free language, explicit tradeoffs the executive can weigh, specific asks with dollar amounts and deadlines, and honestly stated risks. The difference: your VP reads the first two sentences and knows what to do. The rest of the brief supports that decision rather than building toward it slowly.
+
 ## When to use
 
 - Briefing an executive on a technical initiative before a review meeting or QBR
@@ -148,6 +156,20 @@ revise the brief until it passes.
 - If the topic is sensitive (layoffs, security incidents, legal exposure), flag that the
   brief should be treated as confidential and note any distribution restrictions.
 ```
+
+## Why This Works
+
+**"Bottom line up front" structure.** This is the single most impactful technique in the prompt. Executives decide whether to keep reading based on the first two sentences. Forcing the model to state the recommendation or key finding before any background ensures the brief works even if the reader stops early.
+
+**Audience mental model calibration.** Step 2 of the reasoning process asks the model to determine what background the audience already has and, equally important, what to cut. This prevents the common failure where AI-generated briefs dump technical context that only engineers care about.
+
+**Tradeoff framing.** Instead of presenting a single recommendation, the prompt asks the model to surface key tradeoffs with options, recommendations, and rationale. This respects the executive's role as a decision-maker and gives them something to react to, not just absorb.
+
+**Strict length constraint.** The 500-word limit enforced by the self-critique checklist forces the model to prioritize ruthlessly. Without this constraint, AI-generated briefs consistently run 2 to 3 times longer than an executive will read. Every sentence must earn its place.
+
+**Anti-pattern enforcement.** The prompt explicitly bans leading with background, using jargon without definitions, being vague about asks, sugarcoating risks, and including implementation details the audience cannot act on. These are the exact mistakes that make technical briefs fail in leadership settings.
+
+**Risk honesty as a design choice.** Requiring a structured risk section with likelihood, impact, and mitigation forces transparency. Executives who discover hidden risks after the fact lose trust in the team. This prompt makes risk disclosure a structural requirement, not an optional addition.
 
 ## Usage Tips
 

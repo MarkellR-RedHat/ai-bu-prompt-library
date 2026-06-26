@@ -4,6 +4,16 @@ A structured prompt for conducting thorough, multi-dimensional code reviews that
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+Most people paste code into an AI tool and type something like:
+
+> **Naive prompt:** "Review this code for bugs."
+
+**What you get:** A shallow list of surface-level observations. "Consider adding error handling." "This variable could have a better name." "You might want to add tests." No severity ratings, no concrete fixes, no distinction between a style nitpick and a data-loss bug. You end up doing the real review yourself anyway.
+
+**This prompt** produces a categorized, severity-rated review with concrete fix snippets for every finding. It enforces a self-critique step that filters out speculative issues, so what remains are real problems with real solutions. The difference is the gap between "you might want to look at this" and "this off-by-one on line 89 will skip the first page of results; here is the corrected calculation."
+
 ## When to use
 
 - Reviewing a pull request before merging, especially when the changeset touches unfamiliar code or crosses module boundaries
@@ -84,6 +94,19 @@ Code to review:
 
 [CODE]
 ````
+
+## Why This Works
+
+This prompt combines several techniques that make AI-generated code reviews dramatically more useful:
+
+- **Persona framing** ("You are a senior software engineer performing a detailed, structured code review"): Establishes a specific expert identity that anchors the model's responses in professional-grade review standards rather than generic commentary.
+- **Structured output formatting** (six named categories with a required format per finding): Forces the model to evaluate the code through multiple distinct lenses instead of producing a wandering narrative. Each lens catches a different class of bug.
+- **Chain-of-thought reasoning** (the five-step reasoning process): Makes the model trace execution paths before flagging issues, which eliminates the "this might be a problem" guesses that plague naive reviews.
+- **Self-critique checklist**: Acts as a built-in quality gate. The model re-evaluates its own findings against calibration criteria (are severity ratings accurate? are fixes concrete?) before presenting them, filtering out low-confidence noise.
+- **Anti-pattern avoidance** (seven explicit "do not" rules): Prevents the most common failure modes of AI reviews, like recommending unnecessary abstractions, flagging style preferences as bugs, or hallucinating library APIs. These guard rails are what keep the output focused on real problems.
+- **Severity calibration**: Requiring severity ratings with impact descriptions forces the model to distinguish between "this will corrupt data in production" and "this variable name could be clearer," which is exactly the distinction that naive reviews collapse.
+
+The visible difference between the naive and engineered approach comes down to this: without structure, the model distributes its attention evenly across everything, so important bugs get the same weight as cosmetic suggestions. With structure, critical issues surface first with actionable fixes attached.
 
 ## Usage Tips
 

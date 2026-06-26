@@ -4,6 +4,18 @@ Turn a production incident into a thorough, blameless retrospective document and
 
 **Difficulty:** Advanced
 
+---
+
+## Naive vs. Engineered
+
+**What most people do:** Paste a wall of incident data into a single prompt and ask "write me a retrospective." The result reads like a book report. The timeline is vague, the root causes are surface-level ("someone pushed a bad deploy"), the action items are generic ("improve monitoring"), and the prevention plan is nonexistent.
+
+**Why that falls flat:** A single prompt forces the model to do five different cognitive tasks at once: reconstruct events, analyze causes, generate actions, write a polished document, and think systemically. When you ask for everything at once, the model satisfices on each task rather than excelling at any of them. The timeline gets simplified to make room for the analysis. The root causes stay shallow because the model is already drafting prose. The action items are vague because the model never deeply examined what went wrong.
+
+**What this workflow produces instead:** Five focused steps, each building on verified output from the previous one. The timeline is thorough because that is the only job in Step 1. The root cause analysis is deep because it works from a complete, reviewed timeline. The action items are specific because they trace directly to validated root causes. The retro document is polished because it assembles reviewed components rather than generating everything from scratch. The prevention plan is systemic because it starts from a finished retrospective, not raw data.
+
+The difference is not subtle. Run it once and compare the output to what you get from a single prompt. You will not go back.
+
 ## When to Use
 
 - A production incident has been resolved and you need to write the retrospective.
@@ -16,15 +28,33 @@ Turn a production incident into a thorough, blameless retrospective document and
 - You are writing a customer-facing incident report. This chain produces an internal engineering retrospective, not a status page update.
 - The incident was trivial (a typo in a config that was caught in staging). Not every incident needs a five-step retrospective.
 
-## Chain Overview
+## Workflow Recipe
 
-This chain has five steps. The ordering is deliberate and each step depends on the previous one.
+### What You Start With
 
-1. **Build the timeline.** Reconstruct what happened, when, and who did what. A clean timeline is the foundation for everything else. Without it, root cause analysis drifts into speculation.
-2. **Identify root causes.** Use the timeline to distinguish contributing factors from root causes. This step applies structured analysis (the "5 Whys" technique or similar) to avoid stopping at surface-level explanations.
-3. **Generate action items.** Convert root causes into concrete, assignable, measurable action items. This step also categorizes items by type (detection, prevention, response) and priority.
-4. **Assemble the retro document.** Combine all previous outputs into a single, polished retrospective document that follows a standard format. This is the artifact that gets shared with the team and stakeholders.
-5. **Create the prevention plan.** Zoom out from this specific incident to identify systemic improvements. Good prevention plans address patterns, not just the one thing that broke.
+- Raw, messy incident data: Slack logs, PagerDuty alerts, Grafana screenshots (described in text), status page updates, notes from responders, ticket numbers
+- The incident is resolved and the dust has settled
+- You have 30 to 60 minutes to produce a first draft
+
+### What You End With
+
+- A complete, blameless retrospective document ready for team review
+- A structured prevention plan that addresses the pattern, not just this one incident
+- Concrete, assignable action items with priorities and verification criteria
+
+### The Steps
+
+This workflow has five steps. The ordering is deliberate and each step depends on the previous one.
+
+1. **Build the timeline.** Reconstruct what happened, when, and who did what. A clean timeline is the foundation for everything else. Without it, root cause analysis drifts into speculation. *Output: a chronological timeline table with key timestamps, information gaps, and initial observations.*
+
+2. **Identify root causes.** Use the timeline to distinguish contributing factors from root causes. This step applies structured analysis (the "5 Whys" technique or similar) to avoid stopping at surface-level explanations. *Output: contributing factors classified by type, 5 Whys chains, root causes, and what went well and poorly.*
+
+3. **Generate action items.** Convert root causes into concrete, assignable, measurable action items. This step also categorizes items by type (detection, prevention, response) and priority. *Output: a prioritized action items table with effort estimates, dependencies, and verification criteria.*
+
+4. **Assemble the retro document.** Combine all previous outputs into a single, polished retrospective document that follows a standard format. This is the artifact that gets shared with the team and stakeholders. *Output: a complete markdown retrospective document ready for review.*
+
+5. **Create the prevention plan.** Zoom out from this specific incident to identify systemic improvements. Good prevention plans address patterns, not just the one thing that broke. *Output: a systemic prevention plan with detection improvements, process changes, metrics, and a review schedule.*
 
 Running these steps in order prevents a common failure mode: jumping straight to action items without understanding the root cause, which produces fixes that address symptoms instead of causes.
 
@@ -98,6 +128,8 @@ ANTI-PATTERNS TO AVOID:
 
 ---
 
+> **CHECKPOINT: Review the timeline before proceeding.** Read through the timeline table and key timestamps. Are the timestamps accurate? Are there events you remember that are missing? Is anything listed as fact that is actually uncertain? Correct errors and fill gaps now. Every subsequent step builds on this timeline, so mistakes here will compound. Once you are satisfied, paste the Step 1 output into the placeholder in Step 2.
+
 ## Step 2: Root Cause Analysis
 
 ```
@@ -163,6 +195,8 @@ ANTI-PATTERNS TO AVOID:
 ```
 
 ---
+
+> **CHECKPOINT: Validate the root causes before proceeding.** Do the root causes ring true? Did the "5 Whys" analysis stop too early or go too deep into speculation? Is "human error" listed as a root cause (it should not be)? If a root cause feels too neat or too vague, run Step 2 again with a note asking the model to dig deeper on that specific factor. Once you are satisfied, paste outputs from Steps 1 and 2 into Step 3.
 
 ## Step 3: Generate Action Items
 
@@ -230,6 +264,8 @@ ANTI-PATTERNS TO AVOID:
 ```
 
 ---
+
+> **CHECKPOINT: Audit the action items before proceeding.** Are there more than 10 items? Consolidate. Do any start with "consider" or "evaluate"? Rewrite them as concrete actions. Is everything marked P1? Reprioritize. Are the verification criteria specific enough that you would know the item is done? Fix any that are vague. Once the list is clean, paste outputs from Steps 1, 2, and 3 into Step 4.
 
 ## Step 4: Assemble the Retro Document
 
@@ -313,6 +349,8 @@ ANTI-PATTERNS TO AVOID:
 
 ---
 
+> **CHECKPOINT: Review the assembled document before proceeding.** Read the retrospective as a stakeholder would. Does the executive summary make sense without reading the rest? Is the impact statement specific? Does the narrative flow logically from timeline to root causes to action items? Mark anything that needs editing, but do not worry about wordsmithing yet. Once the structure is sound, paste the full document into Step 5.
+
 ## Step 5: Create the Prevention Plan
 
 ```
@@ -391,7 +429,17 @@ ANTI-PATTERNS TO AVOID:
 
 ---
 
-## Tips for Running This Chain
+## Why This Works
+
+Prompt chaining produces better retrospectives than a single prompt for three specific reasons.
+
+**Separation of concerns.** Each step asks the model to do exactly one cognitive task. Step 1 reconstructs events. Step 2 analyzes causes. Step 3 generates actions. When a model does one thing at a time, it does that thing well. When it does five things at once, it takes shortcuts on all of them.
+
+**Verified intermediate outputs.** The checkpoints between steps let you catch and correct errors before they propagate. A wrong timestamp in the timeline becomes a wrong root cause, which becomes a wrong action item. Reviewing the timeline before analyzing it is dramatically cheaper than discovering the error in the final document.
+
+**Progressive context building.** Each step receives the output of all previous steps, so the model's context gets richer and more accurate as the chain progresses. By Step 5, the model is working from a complete, reviewed retrospective rather than raw incident data. This is why the prevention plan can identify systemic patterns instead of just restating the action items.
+
+## Tips for Running This Workflow
 
 - **Gather your raw data before starting.** The more you put into Step 1, the better the entire chain works. Chat logs and alert timestamps are especially valuable.
 - **Review the timeline carefully.** The timeline is the foundation. If it is wrong, every subsequent step will be wrong. Take the time to verify timestamps and correct any errors before moving on.

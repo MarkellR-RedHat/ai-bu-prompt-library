@@ -4,6 +4,16 @@ A structured prompt for systematic debugging that enforces root cause analysis b
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+Most people hit a bug and type something like:
+
+> **Naive prompt:** "I'm getting this error, how do I fix it?"
+
+**What you get:** The model guesses at a fix based on the error message alone. It suggests the most common cause it has seen in training data, which may have nothing to do with your situation. You try the fix, it does not work, you paste the new error, and you are now three rounds into a trial-and-error loop that is no better than Stack Overflow.
+
+**This prompt** produces a structured investigation: restating the bug to confirm understanding, isolating the failure domain, generating ranked hypotheses with supporting evidence, and designing specific diagnostic steps you can run right now to confirm or eliminate each hypothesis. The difference is the gap between "try reinstalling the package" and "add this specific log line at line 34, run this curl command, and if you see X in the output, hypothesis 1 is confirmed."
+
 ## When to use
 
 - You have been stuck on a bug for more than 30 minutes and need a structured approach to break out of trial-and-error guessing
@@ -94,6 +104,19 @@ Edge case handling:
 - If the environment details are missing or incomplete, ask for them. Many bugs are caused by version mismatches, missing environment variables, or incorrect configuration.
 - If multiple errors are happening at the same time, determine whether they share a common cause or are independent. Look for a shared dependency or resource.
 ````
+
+## Why This Works
+
+This prompt applies a hypothesis-driven debugging methodology that prevents the model from jumping to conclusions:
+
+- **Structured multi-step process** (five explicit steps from reproduction through verification): Forces the model to complete root cause analysis before suggesting fixes. This mirrors how experienced debuggers actually work, and it is the single biggest improvement over the naive approach, where the model skips straight to a guess.
+- **Hypothesis ranking with evidence requirements**: Requiring the model to list what would confirm and what would rule out each hypothesis transforms vague hunches into testable predictions. This is the scientific method applied to debugging.
+- **Persona framing** ("experienced software debugger" whose job is to "guide through root cause analysis, not guess at fixes"): The explicit instruction not to guess changes the model's behavior fundamentally. Without it, the model defaults to "here is the most common fix for this error."
+- **Anti-pattern avoidance** (six specific rules like "do not suggest restarting the service" and "do not blame race condition without explaining the interleaving"): These block the lazy diagnostic shortcuts that waste your time and mask root causes.
+- **Concrete diagnostic design**: Requiring each diagnostic step to include a specific command, what to look for, and what the result means gives you an actionable investigation plan instead of vague advice like "check the logs."
+- **Multi-turn conversation design**: The prompt is built for iterative refinement. You run a diagnostic step, paste the results, and the model updates its hypothesis ranking. This feedback loop converges on the root cause much faster than the naive pattern of guessing, failing, and guessing again.
+
+The core insight is that debugging is an information-gathering process, not a guessing game. The naive prompt treats it as guessing. This prompt treats it as investigation.
 
 ## Usage Tips
 

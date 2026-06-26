@@ -4,6 +4,14 @@ A prompt for producing a structured cost-benefit analysis of a proposed feature,
 
 **Difficulty:** Advanced
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Do a cost-benefit analysis of migrating our inference serving to a new framework."
+
+**What you get:** A loose narrative with ballpark numbers, no range estimates, no sensitivity analysis, and no distinction between hard costs and soft benefits. The output might say "the migration will save money and improve performance" without quantifying either claim. You cannot take it to a finance review or use it to make an actual decision.
+
+**This prompt** produces a structured business case with numbered assumptions, three-point cost estimates (low, expected, high) broken down by category (personnel, infrastructure, opportunity cost, transition), quantified and classified benefits (separating hard numbers from qualitative value), net analysis with ROI and payback period calculations, sensitivity analysis on the variables that matter most, a risk assessment, and a clear recommendation with conditions. The difference is between a hand-wavy narrative that sounds analytical and a rigorous financial case that a CFO can actually evaluate.
+
 ## When to use
 
 - You are writing a business case for a new feature or project and need to quantify the expected costs and benefits.
@@ -184,6 +192,22 @@ Format your output with clear Markdown headers for each step.
 Use tables for cost and benefit itemization.
 Use a consistent currency and time unit throughout.
 ```
+
+## Why This Works
+
+**Persona with financial acumen.** The prompt assigns the role of "a senior engineering leader with strong financial acumen" who is "rigorous about separating hard costs from soft benefits." This framing is specific and directional: it tells the model to be honest rather than optimistic, to separate quantifiable value from qualitative claims, and to present assessments rather than advocacy documents. Without this, cost-benefit outputs tend to read like sales pitches.
+
+**Three-point estimation.** Requiring low, expected, and high estimates for every cost and benefit line item forces the model to acknowledge uncertainty rather than presenting a single number as fact. This is standard practice in financial analysis but almost never requested in casual prompts, which is why naive cost-benefit outputs look precise but are actually unreliable.
+
+**Numbered assumptions.** Each assumption is labeled (A1, A2, ...) and referenced throughout the analysis. This creates traceability: when an assumption turns out to be wrong, you can immediately see which cost and benefit estimates are affected. It also makes the analysis a living document that you can update as you learn more.
+
+**Opportunity cost inclusion.** The prompt explicitly requires naming what the team will NOT be working on during the project. This is the most commonly omitted cost in business cases, and its absence makes every project look cheaper than it really is. Forcing it into the analysis produces a more honest picture.
+
+**Sensitivity analysis.** Step 5 identifies the 3-5 variables that most affect the outcome and shows how the conclusion changes when those variables shift. This is where decision-makers actually learn something useful: not "is this a good project" but "what would have to be true for this project to fail?" Without this step, stakeholders have no way to assess the robustness of the recommendation.
+
+**Anti-pattern avoidance.** The explicit prohibition against inflating benefits with vague multipliers, mixing qualitative and quantified totals, anchoring on sunk costs, and using "strategic value" as a catch-all directly suppresses the most common ways cost-benefit analyses become misleading. These patterns are pervasive in training data, so naming them is necessary to override the default.
+
+These techniques combine to produce the difference shown above: a rigorous, honest financial case with traceable assumptions and clear sensitivity, rather than a narrative that sounds analytical but cannot survive a finance review.
 
 ## Usage Tips
 

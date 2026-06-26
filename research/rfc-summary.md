@@ -4,6 +4,16 @@ A prompt for summarizing an RFC, design proposal, or architecture decision recor
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+Most people prompt something like this:
+
+> **Naive prompt:** "Summarize this RFC for me."
+
+**What you get:** A rehash of the RFC's own introduction, maybe a bullet list of features, and no opinion on whether the proposal is actually sound. You end up reading the full RFC anyway because the summary did not help you decide how to engage.
+
+**This prompt** produces a structured breakdown that surfaces tradeoffs the author did not call out, flags gaps in the alternatives section, identifies which teams should review vs. skip, and gives you an honest assessment of whether the RFC is ready to move forward. The difference: instead of a passive summary, you get an opinionated reviewer's brief that saves 30-60 minutes of reading time per RFC.
+
 ## When to use
 
 - Reviewing an RFC or design doc before a review meeting and you need to get up to speed quickly.
@@ -156,6 +166,22 @@ flag it rather than guessing.
 RFC content:
 [PASTE_RFC_TEXT_OR_KEY_SECTIONS_HERE]
 ```
+
+## Why This Works
+
+This prompt uses several techniques that compound to produce a dramatically better summary than a naive "summarize this" request:
+
+- **Persona framing.** Opening with "You are a senior engineer who has reviewed hundreds of RFCs" anchors the model in the mindset of an experienced reviewer, not a generic summarizer. This shifts the output from passive description to active evaluation.
+
+- **Chain-of-thought decomposition.** The three-step structure (read and understand, produce the summary, self-critique) forces the model to process the RFC in stages rather than rushing to output. Each step builds on the previous one, which reduces the chance of shallow or incomplete analysis.
+
+- **Structured output formatting.** The rigid section format (One-Line Summary, Problem Statement, Alternatives, Key Tradeoffs, etc.) prevents the model from defaulting to a generic paragraph summary. It also makes the output scannable and consistent across different RFCs.
+
+- **Anti-pattern avoidance.** Explicitly listing what NOT to do (do not rephrase the RFC's own summary, do not assume the RFC is correct, do not ignore alternatives) blocks the most common failure modes. Without these guardrails, models tend to produce polite, uncritical paraphrases.
+
+- **Self-critique checklist.** The verification step at the end forces the model to audit its own output against concrete quality criteria. This catches gaps like missing quantification, vague reviewer recommendations, or summaries that exceed the word limit.
+
+These techniques together explain the difference shown in the comparison above: the naive prompt lets the model take shortcuts, while this prompt channels its effort into the specific analysis that makes a summary actually useful.
 
 ## Usage Tips
 

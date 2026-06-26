@@ -5,6 +5,8 @@ is half the job. Testing it is the other half.
 
 ## Why Testing Prompts Matters
 
+Most people write a prompt, get a decent result, and move on. They never discover that the same prompt produces garbage on a different input, or that it works 3 out of 5 times and fails silently the other 2. They ship untested prompts the same way a developer might ship untested code, and they get the same kind of surprise in production.
+
 A prompt that works once proves nothing. Prompts need to work reliably across
 multiple runs, varied inputs, and (ideally) different models. Without testing, you
 are shipping untested code.
@@ -330,6 +332,21 @@ If other people use the prompt, collect their feedback systematically:
 - What did they wish the output excluded?
 
 This feedback is the most valuable input for prompt improvement.
+
+## The Difference Testing Makes
+
+Here is what happens when you skip testing:
+
+**Untested prompt:** "Summarize this meeting and give me action items."
+- Works great on a well-structured meeting with clear decisions
+- Produces a vague, generic summary when the meeting was unstructured
+- Misses action items that were implied but not stated explicitly
+- Output length varies wildly between 2 sentences and 2 pages
+- You discover all of this when your VP gets a bad summary
+
+**Tested prompt:** Same task, but you have run it 5 times on the same input and 3 times on messy inputs. You found the failure modes, added edge case handling, constrained the format, and verified consistency. The prompt now works reliably on clean meetings, messy meetings, and meetings with no clear decisions. When it cannot extract action items, it says so instead of guessing.
+
+The difference is not the prompt itself. It is knowing that the prompt works before someone depends on it.
 
 ## Final Notes
 

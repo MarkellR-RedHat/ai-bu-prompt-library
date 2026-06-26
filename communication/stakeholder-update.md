@@ -4,6 +4,14 @@ A prompt for turning raw project notes into crisp, executive-ready status update
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Write a status update for my project for leadership."
+
+**What you get:** A rambling summary that lists activities ("worked on API migration," "had meetings about testing") without outcomes, defaults to "On Track" regardless of evidence, buries the one thing leadership actually needs to decide, and uses jargon that loses non-technical readers by the second paragraph.
+
+**This prompt** produces a concise, outcome-focused update with a justified status indicator, quantified accomplishments, specific risks with mitigations, and clear asks with deadlines. The difference: leadership reads it in under two minutes, knows exactly whether to worry, and can act on your asks without a follow-up meeting.
+
 ## When to use
 
 - Writing a weekly or biweekly project status update for VP-level leadership or executive staff.
@@ -141,6 +149,18 @@ fails, revise the draft before returning it.
   default to the less technical register and add a "Technical Details" appendix
   section for those who want depth.
 ```
+
+## Why This Works
+
+**Outcome-over-activity framing.** The prompt explicitly distinguishes between activity reporting ("worked on X") and outcome reporting ("completed X, reducing latency by 40%"). This distinction is baked into both the step-by-step reasoning and the self-critique checklist, so the model consistently produces accomplishments that demonstrate impact rather than effort.
+
+**Forced status justification.** Requiring the model to choose exactly one status (On Track, At Risk, or Blocked) and justify it in one sentence prevents the optimism bias that plagues most status updates. The anti-patterns section reinforces this by calling out the tendency to downgrade "At Risk" to "On Track" to avoid uncomfortable conversations.
+
+**Chain-of-thought with audience awareness.** The four-step reasoning process starts with analyzing raw information, then determining status, then drafting, then self-critiquing. Each step considers the audience explicitly, so the model strips jargon, quantifies claims, and front-loads the most important information for executive readers.
+
+**Anti-pattern catalog.** Listing seven specific failure modes (activity reporting, burying the lead, optimism bias, vague risks, missing asks, jargon overload, wall of text) gives the model concrete examples of what bad looks like. This is more effective than positive instructions alone because it names the exact patterns the model would otherwise default to.
+
+**Self-critique as quality gate.** The eight-item checklist catches the most damaging mistakes: activities without outcomes, milestones without dates, risks without mitigations, and filler phrases that waste the reader's time. This revision pass consistently elevates the output from "acceptable" to "ready to send."
 
 ## Usage Tips
 

@@ -4,6 +4,14 @@ A prompt for drafting clear, actionable internal announcements that respect your
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Write an announcement about migrating from Jenkins to Tekton for my engineering team."
+
+**What you get:** A generic, vague message that opens with "I'm excited to announce..." followed by a wall of text. No clear actions, no deadlines, no acknowledgment of tradeoffs. Readers skim it and ask five follow-up questions in the thread.
+
+**This prompt** produces an announcement with a front-loaded headline, explicit action items with owners and deadlines, channel-appropriate formatting, and honest tradeoff disclosures. The difference: your team reads it once, knows exactly what to do, and trusts you enough not to flood the thread with "but what about...?" questions.
+
 ## When to use
 
 - Announcing a process change, tool migration, or new policy to your engineering organization.
@@ -136,6 +144,18 @@ is email, include a suggested subject line on the first line prefixed with "Subj
 Do not include markdown formatting unless the channel supports it (Slack and blog posts do;
 email typically does not).
 ```
+
+## Why This Works
+
+**Persona framing.** The prompt assigns the role of "senior engineering leader," which calibrates the model's tone, vocabulary, and assumptions about the audience. Without this, the output defaults to a generic, one-size-fits-all voice that reads like a support article, not an internal announcement.
+
+**Chain-of-thought reasoning.** The six-step reasoning sequence (audience analysis, core message extraction, action identification, channel calibration, drafting, self-critique) forces the model to think before writing. Each step builds on the previous one, so the final output reflects deliberate structural choices rather than stream-of-consciousness generation.
+
+**Anti-pattern avoidance.** Explicitly listing what NOT to do (corporate filler, buried actions, vague timelines, passive voice) is as important as listing what to do. Language models tend to fall into cliched patterns unless you name and forbid them. The anti-patterns act as guardrails that keep the output sharp.
+
+**Self-critique checklist.** Asking the model to review its own draft against specific criteria before outputting it adds a revision pass that catches the most common failure modes: missing deadlines, wrong tone for the channel, filler language, and the "so what?" test.
+
+**Output formatting constraints.** Specifying word count ranges per channel and structural requirements (headline, context, changes, actions, timeline, tradeoffs, help) gives the model a scaffold to fill rather than a blank page. Constrained generation produces more consistently useful output than open-ended generation.
 
 ## Usage Tips
 

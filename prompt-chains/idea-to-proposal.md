@@ -4,6 +4,18 @@ Take a rough idea and develop it into a complete, structured proposal with an ex
 
 **Difficulty:** Intermediate
 
+---
+
+## Naive vs. Engineered
+
+**What most people do:** Dump their idea into a single prompt and ask "write me a proposal." The result is a generic document that sounds plausible but lacks depth. The problem statement is vague, the solution section reads like a product brochure, the risks are hand-waved away, and the executive summary is just a shorter version of the same vague content.
+
+**Why that falls flat:** Writing a good proposal requires at least five distinct thinking modes: creative exploration, critical analysis, structural design, persuasive writing, and ruthless compression. Asking a model to do all five in one pass means it never fully explores the idea before evaluating it, never fully evaluates it before structuring it, and never fully structures it before writing it. You get a document that looks like a proposal but does not survive scrutiny.
+
+**What this workflow produces instead:** Each step does one job well. The brainstorm expands the idea without judging it. The validation stress-tests it without trying to fix it. The outline structures the argument without writing prose. The full proposal writes from a solid foundation. The executive summary compresses a complete argument, not a half-formed one.
+
+The difference shows up in review meetings. Single-prompt proposals get questions the author cannot answer. Workflow-built proposals have already answered those questions in Step 2.
+
 ## When to Use
 
 - You have a project idea, technical initiative, or process change that needs a written proposal to get buy-in.
@@ -16,15 +28,33 @@ Take a rough idea and develop it into a complete, structured proposal with an ex
 - You need a formal business case with financial modeling. This chain produces a technical/strategic proposal, not a finance document.
 - The decision has already been made and you need a design document. A proposal argues for something; a design document specifies how to build it.
 
-## Chain Overview
+## Workflow Recipe
 
-This chain has five steps. Each step refines and builds on the previous one, moving from rough to polished.
+### What You Start With
 
-1. **Brainstorm.** Expand the initial idea into a rich set of possibilities, angles, and implications. The goal is breadth, not polish. This step surfaces things you have not thought of yet.
-2. **Validate.** Pressure-test the brainstorm output against real-world constraints: technical feasibility, organizational readiness, risks, and competing alternatives. This is where weak ideas get strengthened or killed early.
-3. **Outline.** Structure the surviving, validated ideas into a proposal outline with clear sections, arguments, and evidence needs. This step forces logical organization before prose.
-4. **Full proposal.** Write the complete proposal document based on the outline. This is the main deliverable.
-5. **Executive summary.** Condense the full proposal into a 1-page summary for decision-makers. This step comes last because writing a good summary requires understanding the full argument.
+- A rough idea: maybe a few sentences, maybe a few paragraphs, maybe just a problem you have been thinking about
+- Some context about your team, audience, and constraints (even if incomplete)
+- The need to turn this into a document that will convince someone to say yes
+
+### What You End With
+
+- A complete, structured proposal document ready for leadership review
+- A 1-page executive summary that stands on its own
+- An idea that has been pressure-tested against real constraints before you invested hours in polishing it
+
+### The Steps
+
+This workflow has five steps. Each step refines and builds on the previous one, moving from rough to polished.
+
+1. **Brainstorm.** Expand the initial idea into a rich set of possibilities, angles, and implications. The goal is breadth, not polish. This step surfaces things you have not thought of yet. *Output: expanded scope, stakeholder map, open questions, and precedents.*
+
+2. **Validate.** Pressure-test the brainstorm output against real-world constraints: technical feasibility, organizational readiness, risks, and competing alternatives. This is where weak ideas get strengthened or killed early. *Output: feasibility ratings, risk assessment, alternatives analysis, and a go/no-go verdict.*
+
+3. **Outline.** Structure the surviving, validated ideas into a proposal outline with clear sections, arguments, and evidence needs. This step forces logical organization before prose. *Output: a detailed section-by-section outline with argument flow and evidence gaps identified.*
+
+4. **Full proposal.** Write the complete proposal document based on the outline. This is the main deliverable. *Output: a polished markdown proposal document ready for review.*
+
+5. **Executive summary.** Condense the full proposal into a 1-page summary for decision-makers. This step comes last because writing a good summary requires understanding the full argument. *Output: a 300-500 word executive summary that stands alone as a decision-support document.*
 
 Running the validation step before the outline prevents a common failure: writing a polished proposal for an idea that falls apart under scrutiny. Better to discover problems in Step 2 than in a review meeting.
 
@@ -98,6 +128,8 @@ ANTI-PATTERNS TO AVOID:
 ```
 
 ---
+
+> **CHECKPOINT: Review the brainstorm before proceeding.** Read through the expanded scope, stakeholder map, and open questions. Did the brainstorm surface angles you had not considered? Are the "must answer" questions actually answerable? If the brainstorm missed something important about your context, add it now. Do not evaluate the ideas yet; that is Step 2's job. Once you are satisfied with the breadth of exploration, paste the brainstorm output into Step 2.
 
 ## Step 2: Validate
 
@@ -183,6 +215,8 @@ ANTI-PATTERNS TO AVOID:
 
 ---
 
+> **CHECKPOINT: Decide whether to proceed.** This is the most important checkpoint. If the validation verdict says "do not proceed," take that seriously. If it says "proceed with changes," make those changes to the brainstorm output before moving on. If specific risks were flagged as dealbreakers, address them now or accept them explicitly. This is cheaper than discovering them in a review meeting. Once you have a clear "proceed" signal, paste outputs from Steps 1 and 2 into Step 3.
+
 ## Step 3: Outline
 
 ```
@@ -266,6 +300,8 @@ ANTI-PATTERNS TO AVOID:
 
 ---
 
+> **CHECKPOINT: Refine the outline before writing.** Does the section order build a logical argument? Are the "evidence gaps" things you can actually fill in? Does the outline match your organization's proposal format, or do you need to add or remove sections? If your organization has a specific template, adjust the outline now. It is much easier to restructure an outline than to restructure a finished document. Once the outline is solid, paste outputs from Steps 1, 2, and 3 into Step 4.
+
 ## Step 4: Full Proposal
 
 ```
@@ -346,6 +382,8 @@ ANTI-PATTERNS TO AVOID:
 
 ---
 
+> **CHECKPOINT: Review the full proposal before summarizing.** Read the proposal as your decision-maker would. Is the problem statement compelling? Is the ask clear? Are the cost and timeline estimates honest? Would you fund this based on what is written? Mark sections that need strengthening, but focus on substance over style. The executive summary can only be as good as the proposal it summarizes. Once the proposal is solid, paste it into Step 5.
+
 ## Step 5: Executive Summary
 
 ```
@@ -418,7 +456,17 @@ ANTI-PATTERNS TO AVOID:
 
 ---
 
-## Tips for Running This Chain
+## Why This Works
+
+Prompt chaining produces better proposals than a single prompt for three specific reasons.
+
+**Creative and critical thinking are separated.** Step 1 brainstorms without judging. Step 2 judges without brainstorming. When you ask a model to do both at once, it self-censors during ideation and pulls punches during evaluation. Separating the two lets each mode operate at full strength.
+
+**The idea is validated before the document is written.** Most proposal failures happen because the underlying idea has a fatal flaw that a polished document only obscures. Step 2 surfaces these flaws while the cost of changing direction is low. By the time you reach Step 4, you are writing about a tested idea, not an untested one.
+
+**Compression happens last, not first.** When you write a summary and a proposal in one prompt, the model tends to write the summary first (in its head) and then pad it to fill the proposal. This workflow inverts that: the full argument is built first, then compressed. That is why the executive summary actually stands on its own instead of just being the introduction repeated.
+
+## Tips for Running This Workflow
 
 - **Spend time on the initial idea description.** The more context you provide in Step 1, the better the brainstorm and every subsequent step will be. Include the problem, your proposed approach, who cares, and any constraints you know about.
 - **Do not skip Step 2 (validation).** It is tempting to jump from brainstorm to outline, but the validation step is where bad ideas get caught. If the validation says "do not proceed," listen to it or address the specific concerns before continuing.

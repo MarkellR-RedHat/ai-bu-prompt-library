@@ -4,6 +4,14 @@ A prompt for conducting a structured root cause analysis of an incident or recur
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Help me figure out why our API went down yesterday."
+
+**What you get:** A speculative list of possible causes ("maybe it was a deployment," "perhaps the database was overloaded") with no structured reasoning, no evidence requirements, and no remediation plan. The output looks like brainstorming, not analysis. You could have generated the same list by staring at a whiteboard for five minutes.
+
+**This prompt** produces a full root cause analysis: a precise problem statement, a Fishbone diagram with factors categorized and marked as CONFIRMED, SUSPECTED, or RULED OUT, a 5 Whys chain with confidence levels and branching when multiple causes converge, classified root causes (technical, process, organizational), and tiered remediation with priorities and owner roles. The difference is between guessing at causes and building a traceable chain of reasoning from symptom to systemic fix that you can present to leadership and use to prevent recurrence.
+
 ## When to use
 
 - You have just resolved an incident and need to write a thorough post-mortem that goes beyond surface-level symptoms.
@@ -127,6 +135,22 @@ EDGE CASE HANDLING:
 Format your output with clear Markdown headers for each step.
 Use tables where they improve readability.
 ```
+
+## Why This Works
+
+**Expert persona with specific credentials.** The prompt assigns the role of "a senior site reliability engineer with 15+ years of experience conducting blameless post-mortems." This is not decoration. It tells the model to think like someone who has seen hundreds of incidents and knows the difference between a symptom and a root cause. The "blameless" framing is especially important because it suppresses the model's tendency to stop at "human error" as an explanation.
+
+**Dual-framework analysis (Fishbone plus 5 Whys).** Using two complementary frameworks produces better results than either alone. The Fishbone diagram casts a wide net across six categories (People, Process, Technology, Environment, Measurement, Management) to identify all contributing factors. The 5 Whys chain then drills deep on the most significant factors. Breadth plus depth.
+
+**Evidence classification (CONFIRMED, SUSPECTED, RULED OUT).** Requiring each factor to be labeled with its evidence status prevents the model from presenting speculation as fact. This is critical in post-mortem work, where acting on unverified assumptions can lead to wrong fixes. It also builds a natural investigation checklist for follow-up.
+
+**Chain-of-thought with branching.** The 5 Whys section explicitly allows branching when multiple causes contribute at the same level, and it includes confidence ratings (HIGH, MEDIUM, LOW) at each step. This prevents the common failure of forcing a complex incident into a single linear narrative when the reality involves multiple converging causes.
+
+**Tiered remediation.** The three-tier structure (immediate fix, short-term improvement, long-term systemic change) ensures the analysis produces actions at every time horizon. Without this structure, post-mortems tend to produce either quick patches that do not prevent recurrence or ambitious long-term plans that never get started.
+
+**Anti-pattern avoidance.** The explicit instruction to never stop at "human error," never conflate correlation with causation, and never write vague recommendations targets the three most common failures in root cause analysis. These are patterns the model would otherwise reproduce because they appear frequently in its training data.
+
+These techniques combine to produce the difference shown above: a rigorous, evidence-based analysis with classified findings and actionable remediation, rather than a speculative list of guesses.
 
 ## Usage Tips
 

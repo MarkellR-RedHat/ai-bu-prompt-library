@@ -4,6 +4,19 @@ Transform raw customer notes, call transcripts, and scattered data points into a
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:**
+> "Write a case study outline based on these customer notes." [pastes notes]
+
+**What you get:** A surface-level summary that restates your notes in slightly different words, uses vague phrases like "improved performance" and "significant cost savings" without any numbers, and reads more like a marketing blurb than a credible engineering story. Missing data points go unmentioned, so you do not realize the gaps until you are halfway through the draft.
+
+**This prompt produces:** A structured, 11-section outline with quantified before/after metrics for every result, explicit flags for any data gaps ([NEEDS DATA]) or unverified claims ([NEEDS VALIDATION]), a narrative arc that follows situation-complication-resolution-result, and a key quote placeholder that sounds like a real person rather than a press release. The outline is designed to be shared directly with the customer contact for accuracy review before you invest time in drafting.
+
+**The difference:** One gives you a polished-sounding summary that hides its gaps. The other gives you an honest blueprint that shows you exactly what you have and what you still need to go get.
+
+---
+
 ## When to use
 
 - Turning messy customer interview notes or call transcripts into a structured case study outline
@@ -206,6 +219,24 @@ you find before returning the output.
 
 [PASTE_RAW_NOTES_HERE]
 ```
+
+## Why This Works
+
+This prompt is built around the specific failure modes that plague case study development, and each technique targets a real problem:
+
+- **Persona framing with audience specificity.** The model is positioned as a senior technical writer whose audience includes "engineering leaders, procurement teams, and technical practitioners who are skeptical of vague marketing language." This dual framing (writer role plus skeptical reader) produces output that is both well-structured and evidence-grounded, because the model is implicitly writing for the hardest audience to convince.
+
+- **Chain-of-thought with data extraction first.** The five-step process starts with extracting and categorizing raw data before any writing happens. This ordering matters because case study outlines fail most often when the writer starts structuring the narrative before understanding what data actually exists. By front-loading the extraction step, the prompt forces the model to inventory the evidence before building the story around it.
+
+- **Explicit gap detection.** The [NEEDS DATA] and [NEEDS VALIDATION] markers are a deliberate design choice. Most prompts produce output that papers over missing information with vague language. This prompt instructs the model to flag gaps explicitly, which transforms the outline from a finished-looking document into a diagnostic tool that tells you exactly what follow-up questions to ask.
+
+- **Metric validation with before/after requirements.** Requiring every metric to include a baseline, a result, and a source prevents the most common case study sin: stating outcomes without context. "Reduced latency by 40%" is meaningless without knowing the starting point. This constraint forces specificity.
+
+- **Anti-pattern catalog targeting marketing drift.** The seven anti-patterns (vague outcomes, product-first narrative, jargon without context, missing the "why," generic quotes, ignoring failures, burying the lede) are the exact patterns that make case studies feel untrustworthy to technical readers. Naming them explicitly keeps the output grounded.
+
+- **Edge case handling for real-world messiness.** Anonymous customers, ongoing deployments, conflicting data sources, sparse notes: these are not edge cases in practice, they are the norm. Covering them in the prompt means the model adapts its approach rather than silently producing a weaker outline.
+
+The comparison above highlights the fundamental issue: a naive prompt treats case study generation as a summarization task, which misses the point entirely. A case study is a structured argument backed by evidence. This prompt encodes that structure, including the evidence standards, gap detection, and narrative arc, so the output serves as a real working document rather than a first-draft placeholder.
 
 ## Usage Tips
 

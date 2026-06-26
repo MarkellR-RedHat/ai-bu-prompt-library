@@ -4,6 +4,14 @@ Create a structured, time-boxed demo script that walks through a real engineerin
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Write a demo script for llm-d showing multi-adapter serving on OpenShift."
+
+**What you get:** A loose sequence of commands with no talking points, no expected outputs, no timing estimates, and no failure scenario. The script works as a personal cheat sheet for someone who already knows the product, but it is not reproducible by a teammate and it is not structured enough to rehearse against a clock.
+
+**This prompt** produces a complete demo script with a clear narrative arc (problem, solution, proof), a pre-demo checklist for environment setup, numbered steps with exact commands and expected outputs, talking points calibrated to the audience, a realistic failure scenario with recovery, timing estimates that fit within the stated limit, and a specific closing action for the audience. The difference: you can hand this script to a colleague who has never given this demo before, and they can deliver it cold.
+
 ## When to use
 
 - Preparing a live demo for a conference talk, meetup, or workshop where you will run real commands in a terminal or interact with a live system.
@@ -133,6 +141,20 @@ Output format:
   ## Closing (takeaway sentence and specific next step)
   ## Total Estimated Time (sum of all step times, compared to the time limit)
 ```
+
+## Why This Works
+
+**Narrative arc as a structural requirement.** Step 2 of the reasoning process requires defining a one-sentence problem statement and a one-sentence resolution before drafting any steps. This transforms the demo from a disconnected list of commands into a story with a beginning, middle, and proof point. Audiences remember stories; they forget command sequences.
+
+**Four-element step structure.** Every step must include the exact command, expected output, a talking point, and a timing estimate. This constraint produces steps that are simultaneously useful as a reference document (command and output) and as a presentation guide (talking point and timing). Most demo scripts only have the commands, which means the presenter is improvising everything else.
+
+**Intentional failure scenario.** Step 5 requires including a deliberate failure and recovery. This is a credibility technique: showing what happens when something breaks, and that the product handles it gracefully, builds more trust than a flawless happy path. The prompt specifies that the failure must be realistic and relevant, not contrived.
+
+**Anti-pattern enforcement for live demos.** The prompt bans marketing language, "imagine this works" hand-waving, and filler talking points like "as you can see." These are the exact behaviors that make technical demos feel rehearsed in the bad way. Engineering audiences respond to precision and honesty, not polish.
+
+**Time budget with buffer.** The self-critique checklist verifies that total estimated time fits within the stated limit with at least 60 seconds of buffer. This catches the most common demo failure: running over time because every step takes slightly longer than planned, and there is no margin for unexpected delays.
+
+**Pre-demo checklist for reproducibility.** Step 3 requires an exhaustive list of prerequisites with version numbers. This makes the demo reproducible by anyone with access to the environment, which is critical for team demos, customer presentations, and recorded backups.
 
 ## Usage Tips
 

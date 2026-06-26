@@ -4,6 +4,14 @@
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Help me identify the stakeholders for my project."
+
+**What you get:** A generic list of roles (executive sponsor, project manager, end users, IT team) with no assessment of who actually has power, who cares, or what to do about any of them. It reads like a textbook definition of stakeholder management. You end up with names in a list and no strategy for engaging them.
+
+**This prompt** produces a complete stakeholder map with influence and interest ratings (1-5) justified by evidence, placement on a four-quadrant grid (Manage Closely, Keep Satisfied, Keep Informed, Monitor), analysis of alliances and tensions, identification of stakeholders whose position might shift, and a concrete engagement plan for each person or group with specific channels, frequencies, key messages, and actions needed. The difference is between a flat list of names and a strategic engagement plan that tells you who to talk to, how often, what to say, and what to ask for.
+
 ## When to Use
 
 - You are launching a new project, product, or initiative and need to understand who cares and who has power.
@@ -169,6 +177,22 @@ Output format:
 
 **Review Schedule:** [When to revisit this map]
 ```
+
+## Why This Works
+
+**Program manager persona.** The prompt assigns the role of "an experienced program manager and organizational strategist." This produces output oriented toward action and engagement rather than academic stakeholder theory. The model thinks about how to move stakeholders, not just how to categorize them.
+
+**Systematic stakeholder discovery.** Step 1 does not just ask for stakeholders; it probes six specific categories (decision makers, implementers, end users, influencers, affected parties, external parties). This structured discovery catches the stakeholders you are most likely to miss, which are typically the affected parties and influencers who lack formal roles but can quietly block progress.
+
+**Dual-axis assessment with justification.** Rating each stakeholder on both influence (1-5) and interest (1-5) with a one-sentence justification forces the model to think carefully about each placement. The justification requirement prevents lazy scoring and makes the ratings auditable. Without justifications, influence-interest grids tend to cluster everyone in the top-right quadrant, which defeats the purpose.
+
+**Dynamics and risk identification.** Step 4 goes beyond the static grid to identify alliances, tensions, and potential shifts. This is the section that transforms a stakeholder map from a snapshot into a strategic tool. Knowing that a currently low-interest VP could become high-interest if the budget overruns is actionable intelligence that a static list never provides.
+
+**Engagement plan with specificity.** The engagement plan requires five specific elements per stakeholder: channel, frequency, key message, action needed, and risk if ignored. This level of specificity makes the output directly executable. Compare this to the naive output of "keep stakeholders informed," which gives you no idea what to actually do.
+
+**Anti-pattern avoidance.** The explicit warnings against listing only people you already talk to, rating everyone as high-influence, confusing job title with actual influence, and writing identical engagement plans for everyone target the specific ways stakeholder maps fail in practice.
+
+These techniques combine to produce the difference shown above: a strategic engagement plan with prioritized actions instead of a generic list of roles with no strategy attached.
 
 ## Usage Tips
 

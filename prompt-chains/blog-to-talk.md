@@ -4,6 +4,18 @@ Transform an existing blog post into a polished conference talk proposal. This c
 
 **Difficulty:** Intermediate
 
+---
+
+## Naive vs. Engineered
+
+**What most people do:** Paste their blog post into a single prompt and ask "turn this into a conference talk proposal." The result is a CFP submission that reads like a compressed version of the blog post. The abstract is generic, the talk structure is "intro, body, conclusion" with no narrative arc, and the proposal does not demonstrate why this talk would be good on stage rather than on a screen.
+
+**Why that falls flat:** Blog posts and conference talks are fundamentally different media. A blog post can include dense code blocks, detailed comparisons, and nuanced caveats that readers absorb at their own pace. A talk has to hold attention in real time, build understanding progressively, and leave the audience with memorable takeaways. A single prompt cannot perform the translation between these formats because it tries to preserve everything from the blog post instead of making hard editorial choices about what to keep, cut, and transform.
+
+**What this workflow produces instead:** Four focused steps that mirror what an experienced speaker actually does. First, extract the core argument and evidence from the blog post. Second, make ruthless editorial decisions about what works on stage and what does not. Third, design a talk structure with timing, transitions, and a narrative arc. Fourth, write the CFP submission grounded in all of that preparation.
+
+The difference is obvious to CFP reviewers. Single-prompt proposals describe a topic. Workflow-built proposals describe a talk.
+
 ## When to Use
 
 - You have a published blog post (or draft) and want to submit a talk based on it.
@@ -16,14 +28,32 @@ Transform an existing blog post into a polished conference talk proposal. This c
 - The blog post covers a topic you are not prepared to present on. A chain cannot fix a knowledge gap.
 - You need a full slide deck. This chain produces a talk structure and CFP, not finished slides.
 
-## Chain Overview
+## Workflow Recipe
 
-This chain has four steps. Each one builds directly on the output of the previous step, so order matters.
+### What You Start With
 
-1. **Summarize the blog post.** Compress the full post into a structured summary that captures the argument, evidence, and audience. This gives the LLM (and you) a clean, portable representation of the content to work from in later steps.
-2. **Extract key points for a live audience.** Blog posts and talks have different strengths. Readers can re-read a paragraph; an audience cannot. This step identifies which points will land in a talk setting and flags what needs to be cut or restructured.
-3. **Build talk structure.** Arrange the surviving points into a talk arc with timing estimates. This is where the content becomes a presentation rather than an article.
-4. **Generate CFP submission.** Write the actual proposal text, abstract, and speaker notes using everything produced so far.
+- A published blog post (or solid draft) that you want to turn into a conference talk
+- A target conference or CFP deadline in mind
+- Knowledge of the talk slot length (25, 40, or 50 minutes)
+
+### What You End With
+
+- A complete, ready-to-submit CFP proposal with title, abstract, detailed description, and outline
+- A structured talk design with timing, transitions, opening lines, and closing lines
+- Clear editorial decisions about what to keep, cut, and transform from the blog post
+- Speaker preparation notes for practicing and refining the talk
+
+### The Steps
+
+This workflow has four steps. Each one builds directly on the output of the previous step, so order matters.
+
+1. **Summarize the blog post.** Compress the full post into a structured summary that captures the argument, evidence, and audience. This gives the model (and you) a clean, portable representation of the content to work from in later steps. *Output: core argument, supporting evidence, audience profile, key takeaways, and gaps.*
+
+2. **Extract key points for a live audience.** Blog posts and talks have different strengths. Readers can re-read a paragraph; an audience cannot. This step identifies which points will land in a talk setting and flags what needs to be cut or restructured. *Output: keep/cut/transform lists with specific reasoning, audience hook, and missing elements.*
+
+3. **Build talk structure.** Arrange the surviving points into a talk arc with timing estimates. This is where the content becomes a presentation rather than an article. *Output: title options, narrative arc, section breakdown with timing, opening and closing lines, and a backup plan.*
+
+4. **Generate CFP submission.** Write the actual proposal text, abstract, and speaker notes using everything produced so far. *Output: a complete, polished CFP submission ready to paste into a submission form.*
 
 Running the steps in order means each prompt has the right context. Skipping the extraction step, for example, tends to produce talks that read like someone narrating their blog post, which is a common and painful failure mode.
 
@@ -75,6 +105,8 @@ ANTI-PATTERNS TO AVOID:
 ```
 
 ---
+
+> **CHECKPOINT: Verify the summary before proceeding.** Does the core argument match what you actually want to talk about, or did the model latch onto a secondary point? Is the target audience description accurate for the conference you are targeting? Are there pieces of supporting evidence that the summary missed? If the summary does not represent your blog post accurately, correct it now. Every subsequent step builds on this summary. Once it is right, paste it into Step 2.
 
 ## Step 2: Extract Key Points for a Live Audience
 
@@ -136,6 +168,8 @@ ANTI-PATTERNS TO AVOID:
 ```
 
 ---
+
+> **CHECKPOINT: Make your editorial decisions before proceeding.** This is where you exercise judgment as the speaker. Review the keep, cut, and transform lists. Do you agree with the cuts? Some points that work poorly as verbal explanations might be essential to your argument; if so, move them back to "keep" and note that they need a strong visual or demo. Do you agree with the transformations? Override anything that does not feel right. You know your material and your audience better than the model does. Once you have finalized your editorial decisions, paste the outputs from Steps 1 and 2 into Step 3.
 
 ## Step 3: Build Talk Structure
 
@@ -200,6 +234,8 @@ ANTI-PATTERNS TO AVOID:
 ```
 
 ---
+
+> **CHECKPOINT: Test the talk structure before proceeding.** Read through the section breakdown and imagine delivering it. Does the timing feel realistic? (A common mistake is underestimating how long live demos take.) Does the narrative arc build tension and deliver resolution? Try reading the opening and closing lines out loud. If they feel stiff or unnatural, rewrite them in your own voice. Adjust the time slot in Step 3 if you realize 25 minutes is not enough or 50 minutes is too many. Once the structure feels deliverable, paste all previous outputs into Step 4.
 
 ## Step 4: Generate CFP Submission
 
@@ -275,7 +311,17 @@ ANTI-PATTERNS TO AVOID:
 
 ---
 
-## Tips for Running This Chain
+## Why This Works
+
+Prompt chaining produces better CFP submissions than a single prompt for three specific reasons.
+
+**Editorial decisions happen explicitly.** Step 2 forces you (and the model) to make specific keep/cut/transform decisions about every piece of content. In a single prompt, these decisions happen implicitly and badly: the model tries to include everything, which produces a talk outline that is really just a compressed blog post.
+
+**The talk structure is designed, not generated.** Step 3 builds the talk arc from curated points rather than from the raw blog post. This means the structure serves the audience's experience rather than mirroring the blog's structure. Conference talks that follow the same outline as the blog post they are based on are almost always worse than talks designed for the stage.
+
+**The CFP is grounded in preparation.** CFP reviewers can tell the difference between "I will talk about X" and "I have structured a talk about X with these specific sections, this timing, and this narrative arc." Step 4 writes the CFP submission with three steps of preparation behind it, which makes the proposal specific and credible rather than vague and aspirational.
+
+## Tips for Running This Workflow
 
 - **Copy the full output** of each step into the placeholder for the next step. Do not summarize or edit between steps unless you spot a factual error.
 - **Adjust the time slot** in Step 3 before running it. A 25-minute talk and a 50-minute talk have very different structures.

@@ -4,6 +4,14 @@
 
 **Difficulty:** Advanced
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Assess the health of my engineering team."
+
+**What you get:** A generic checklist of things to look at (morale, velocity, communication) with no connection to your team's actual situation. The output reads like a blog post about team health, not a diagnostic tool. You finish reading it and still do not know what to do on Monday.
+
+**This prompt** produces a structured diagnostic with a signal-by-signal dashboard (GREEN/YELLOW/RED), assessments across four dimensions (Delivery, Collaboration, Sustainability, Purpose), a ranked list of the top 3 issues with both quick actions and structural fixes, strengths worth protecting, and a data-gathering plan for any gaps. The difference is between reading a generic article about team health and getting a specific, evidence-based assessment that tells you what is wrong, what is right, and what to do next.
+
 ## When to use
 
 - You suspect something is off with your team but cannot pinpoint what it is
@@ -177,6 +185,22 @@ EDGE CASE HANDLING:
   discrepancy explicitly and recommend investigating which one is more
   accurate.
 ```
+
+## Why This Works
+
+**Persona framing with analogical reasoning.** The prompt casts the model as "an experienced engineering director who assesses team health with the rigor of a site reliability engineer diagnosing a system." This analogy is deliberate: it tells the model to look at leading indicators, distinguish symptoms from root causes, and give actionable recommendations rather than platitudes. The SRE framing produces sharper, more systematic output than a generic management advisor persona would.
+
+**Structured signal inventory.** Instead of asking the model to guess at team health, the prompt provides a detailed inventory of 12 specific signals for the user to fill in. This forces the analysis to be grounded in real data rather than speculation. The model cannot hallucinate problems when the inputs are explicit.
+
+**Multi-dimensional assessment framework.** The four dimensions (Delivery, Collaboration, Sustainability, Purpose) ensure the analysis covers the full picture. Without this structure, both humans and models tend to fixate on delivery metrics and miss sustainability or purpose issues that are equally important but less visible.
+
+**Two-tier remediation (quick action plus structural fix).** For each issue, the prompt requires both a two-week tactical action and a quarter-level structural change. This prevents the common failure of recommending only short-term patches that treat symptoms, or only long-term changes that offer no immediate relief.
+
+**Self-critique and anti-pattern avoidance.** The checklist catches common diagnostic errors: inventing signals, catastrophizing one red indicator, recommending vague actions like "improve communication," or ignoring sustainability because delivery looks fine. These are the exact mistakes that make most team health assessments useless.
+
+**Edge case handling.** The prompt explicitly addresses situations like sparse data, an all-green dashboard, brand-new teams, and gut-feeling contradictions. This prevents the model from forcing a template onto situations where the template does not fit.
+
+These techniques combine to produce the difference shown above: a real diagnostic with ranked, actionable findings instead of a generic article that tells you what team health is without telling you anything about your team.
 
 ## Usage Tips
 

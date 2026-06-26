@@ -4,6 +4,14 @@
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Write OKRs for my platform team this quarter."
+
+**What you get:** Vague objectives like "Improve platform reliability" with key results that are really just tasks in disguise ("Launch new monitoring dashboard," "Complete migration"). No baselines, no target numbers, no deadlines, no distinction between activity and outcome. The OKRs look fine on a slide but cannot actually be measured or tracked.
+
+**This prompt** produces objectives that describe outcomes (not activities), key results with specific metrics, baselines, targets, and deadlines in the format "Verb metric from baseline to target by date," validation of whether each key result is actually measurable, balance checks to catch perverse incentives, and alignment notes connecting team OKRs to company-level goals. The difference is between OKRs that sit in a document and get forgotten and OKRs that function as a real accountability tool because everyone can independently verify whether they were achieved.
+
 ## When to Use
 
 - You are kicking off quarterly or annual planning and need to draft OKRs from scratch.
@@ -107,6 +115,22 @@ Present each OKR set in this structure:
 **Risks and dependencies:** [Anything that could block progress]
 **Measurement notes:** [Where the data comes from, any instrumentation gaps]
 ```
+
+## Why This Works
+
+**Strategy advisor persona.** The prompt assigns the role of "a senior strategy and operations advisor with deep experience in OKR frameworks." This produces output from someone who has seen hundreds of badly written OKRs and knows the specific failure modes, not a generic writing assistant. The model applies OKR-specific judgment like distinguishing objectives from key results and outcomes from activities.
+
+**Prescribed key result format.** The explicit format "[Verb] [metric] from [baseline] to [target] by [date]" is a structural constraint that eliminates the most common OKR failure: key results that are not measurable. By requiring a baseline and a target number, the prompt forces quantification. Without this constraint, models produce key results like "Improve API reliability" with no way to tell whether it was achieved.
+
+**Measurability validation.** Step 3 asks three specific questions about each key result: Can someone independently verify it? Is the metric already tracked? Is the target grounded in data? This built-in validation catches the key results that look measurable but are not because the instrumentation does not exist yet or the target was pulled from thin air.
+
+**Balance and incentive checking.** Step 4 checks that key results cover different dimensions (speed, quality, adoption) and flags potential perverse incentives. This catches the common trap where all key results measure the same thing, or where optimizing one key result degrades something the team cares about but did not measure.
+
+**Anti-pattern avoidance with specific examples.** The anti-patterns section names six concrete failures: metrics with no instrument, milestones disguised as key results, sandbagging, too many key results, conflating objectives with key results, and percentages without absolute numbers. Each one is a real pattern the model would otherwise reproduce. Naming them specifically suppresses them.
+
+**Edge case handling for vague inputs.** The prompt handles common input problems: goals that are too broad (ask clarifying questions), goals that are actually tasks (reframe as outcomes), and competing priorities (surface the tension). This prevents the model from silently producing weak OKRs from weak inputs.
+
+These techniques combine to produce the difference shown above: OKRs with real numbers, real baselines, and real accountability instead of aspirational statements that cannot be measured or tracked.
 
 ## Usage Tips
 

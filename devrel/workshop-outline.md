@@ -4,6 +4,14 @@ Design a hands-on workshop with precise learning objectives, timed sections, pra
 
 **Difficulty:** Advanced
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Create a workshop outline for teaching llm-d on OpenShift. It should be 2 hours for intermediate users."
+
+**What you get:** A list of section titles with rough time estimates, no exercise details, no verification checkpoints, no troubleshooting guidance, and no instructor notes. The outline looks reasonable on paper but falls apart in a live room because exercises take longer than expected, attendees hit environment issues with no documented fixes, and the instructor has no backup plan when something breaks.
+
+**This prompt** produces a workshop with timed sections that add up correctly, step-by-step exercises with exact commands, verification checkpoints for every section, common-issue guides that TAs can reference in real time, timing buffers with explicit cut instructions, and a complete pre-workshop setup checklist. The difference: an instructor who has never seen the material before can pick up this outline and deliver the workshop without additional preparation.
+
 ## When to use
 
 - Building a workshop for a major conference (KubeCon, DevConf, Red Hat Summit, FOSDEM)
@@ -222,6 +230,18 @@ EDGE CASE HANDLING:
 - If the number of TAs is zero, flag this as a risk in the instructor
   notes and recommend simplifying exercises or reducing max attendees.
 ```
+
+## Why This Works
+
+**Multi-stage reasoning with dependency awareness.** The six-step reasoning chain (audience analysis, learning arc, time budget, exercise design, failure mode analysis, instructor notes) forces the model to build each layer on the previous one. The learning arc shapes the exercises, the exercises shape the time budget, and the time budget shapes the buffer plan. Without this structure, AI-generated workshops produce disconnected sections with timing that does not add up.
+
+**Failure mode analysis as a first-class step.** Most workshop outlines skip troubleshooting entirely. This prompt dedicates an entire reasoning step to identifying 3-5 things that commonly go wrong per exercise and writing one-line fixes. This is what separates a workshop that works in a conference room of 30 people from one that only works on the author's laptop.
+
+**Time budget arithmetic.** The prompt requires the model to calculate total available minutes, subtract fixed overhead (opening, closing, breaks), and distribute the remainder across sections with explicit buffer allocation. The self-critique checklist verifies that all section times add up to the total duration. This catches the most common workshop design error: sections that collectively exceed the time slot.
+
+**Checkpoint-driven exercise design.** Every exercise ends with a verification checkpoint that tells the attendee whether they succeeded. This is critical for self-pacing in a room with mixed skill levels. Without checkpoints, fast attendees wait while slow attendees silently fall behind, and no one knows who is stuck.
+
+**Instructor notes and backup plans.** The output includes a pre-workshop setup checklist, timing buffer instructions (which sections to cut if running late), and a backup plan for environment failures. These operational details are what make the difference between a polished workshop and a stressful one.
 
 ## Usage Tips
 

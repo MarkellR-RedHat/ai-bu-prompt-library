@@ -4,6 +4,16 @@ Build a structured incident timeline from raw logs, Slack messages, alerts, and 
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+Most people dump a Slack thread into an AI tool and type something like:
+
+> **Naive prompt:** "Create a timeline from these incident messages."
+
+**What you get:** A cleaned-up list of the Slack messages in roughly the order they appeared, missing events from other sources, with no gap analysis, no detection delay calculation, no distinction between reliable automated timestamps and approximate human-reported times, and no confidence assessment. It looks organized, but it silently drops contradictions and fills gaps with plausible-sounding guesses.
+
+**This prompt** produces a fact-based, multi-source timeline with every event categorized and sourced, gaps explicitly flagged instead of papered over, timestamp conflicts called out, key milestones identified and measured, and a confidence rating that tells the review team where the weak spots are. The difference is the gap between "incident started around 2pm" and a structured table showing detection at 14:01, alert at 14:03, human response at 14:06, with an 8-minute gap from 14:14 to 14:22 flagged for follow-up because the decision to kill the migration was made during that period with no written record.
+
 ## When to use
 
 - Building a timeline for a post-mortem after a production incident, when raw data is scattered across Slack threads, alert systems, and deployment logs
@@ -98,6 +108,20 @@ Edge case handling:
 Raw data (paste Slack messages, logs, alerts, and notes below):
 [PASTE_RAW_DATA_HERE]
 ````
+
+## Why This Works
+
+This prompt applies forensic rigor to incident reconstruction through several specific techniques:
+
+- **Two-pass reading process** (first pass for overall understanding, second pass for event extraction): This prevents the model from latching onto the first event it sees and building a narrative around it. The overview pass establishes context that makes the detail pass more accurate.
+- **Source hierarchy for timestamp resolution** ("prefer automated system timestamps over human-reported times"): This single instruction eliminates a major class of timeline errors. PagerDuty says the alert fired at 14:03; a Slack message says "alert came in around 2pm." Without explicit guidance, the model might average these or pick arbitrarily. With this rule, it uses the reliable source and flags the discrepancy.
+- **Explicit gap detection** (flag every gap longer than 5 minutes): This is the most important technique in the prompt. Naive timelines present a smooth narrative; real incidents have gaps where activity happened but was not recorded. Forcing the model to flag gaps instead of filling them with speculation produces a timeline the team can actually trust and improve.
+- **Event categorization** (DETECTION, COMMUNICATION, DIAGNOSIS, ACTION, ESCALATION, RESOLUTION, OTHER): Tagging each event by type makes patterns visible. A timeline full of COMMUNICATION events with few DIAGNOSIS events tells you the team was talking but not investigating. This kind of pattern is invisible in an uncategorized list.
+- **Anti-pattern avoidance** (seven rules including "do not speculate," "do not editorialize," and "do not assign blame"): These rules are what make the timeline suitable for a blameless post-mortem. Without them, the model tends to construct a narrative that implies fault, which poisons the review process.
+- **Confidence assessment** (HIGH, MEDIUM, LOW with explanation): Requiring the model to rate its own confidence and explain the rating prevents false precision. A timeline presented as authoritative when it has significant gaps is worse than no timeline at all, because the team makes decisions based on incomplete information they believe is complete.
+- **Milestone-based metrics** (detection delay, response time, total duration): Automatically calculating these metrics from the timeline data gives the post-mortem team concrete numbers to discuss and compare against SLOs, which is far more useful than qualitative assessments like "response was slow."
+
+The core principle is that an incident timeline is an evidence-based document, not a story. The naive prompt produces a story. This prompt produces evidence.
 
 ## Usage Tips
 

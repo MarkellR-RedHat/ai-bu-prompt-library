@@ -4,6 +4,14 @@
 
 **Difficulty:** Advanced
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Write some feedback for my direct report about their behavior in a meeting."
+
+**What you get:** A vague, softened paragraph that reads like a corporate template. Something like "I noticed you could improve your communication in meetings. Consider being more mindful of others' contributions." No specific behavior cited, no impact described, no actionable recommendation. The person receiving it would have no idea what to actually change.
+
+**This prompt** produces SBI-structured feedback (Situation, Behavior, Impact) with a concrete forward-looking recommendation, a ready-to-deliver draft calibrated to your delivery method, and coaching notes on how to present it. The difference is between feedback that gets ignored because it is too vague and feedback that drives real behavior change because the person knows exactly what happened, why it mattered, and what to do differently.
+
 ## When to use
 
 - You observed a specific behavior or outcome and want to deliver clear written feedback
@@ -145,6 +153,20 @@ EDGE CASE HANDLING:
 - If the feedback is for a peer or cross-team colleague, adjust the tone to
   be collaborative rather than directive; you do not have positional authority.
 ```
+
+## Why This Works
+
+**Persona framing with domain expertise.** The prompt assigns the role of "a seasoned engineering leader who writes clear, direct, and actionable feedback." This primes the model to produce feedback in the voice of someone who has delivered hundreds of difficult conversations, not a generic writing assistant. The result reads like something a real manager would say.
+
+**Framework enforcement (SBI).** By explicitly requiring the Situation-Behavior-Impact structure plus a forward-looking recommendation, the prompt prevents the model from producing unstructured opinions. The SBI framework is well-established in management practice, and encoding it in the prompt means even someone who has never heard of SBI gets the benefit of it.
+
+**Input separation of facts from interpretations.** Step 1 instructs the model to parse the user's context and separate observable facts from assumptions about intent. This is the single most common failure in feedback writing: people describe their interpretation ("they were dismissive") instead of the behavior ("they interrupted twice"). The prompt catches this automatically.
+
+**Anti-pattern avoidance.** The explicit list of what not to do (feedback sandwiches, vague praise, attributing intent, softening to confusion) targets the most common ways feedback fails. Models are especially prone to the "feedback sandwich" pattern because it appears frequently in training data. Naming it as an anti-pattern directly suppresses it.
+
+**Delivery method calibration.** The prompt adjusts tone based on whether the feedback will be written async, spoken in a 1:1, or included in a review document. This matters because the same words land differently in an email than in a face-to-face conversation. Without this calibration, the model defaults to a one-size-fits-all tone.
+
+These techniques together produce the difference shown above: specific, grounded feedback that respects the recipient and actually changes behavior, rather than a vague corporate template that gets filed and forgotten.
 
 ## Usage Tips
 

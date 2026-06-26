@@ -1,6 +1,66 @@
 # AI BU Prompt Library
 
-A curated, tested collection of prompts for common AI Business Unit tasks. Each prompt is engineered for consistent, high-quality output with chain-of-thought reasoning, self-critique loops, and explicit anti-pattern avoidance. Organized by role and use case, ready to copy-paste.
+> "The difference between a mediocre prompt and a great one is the difference between 'it's fine I guess' and 'how did it produce something this good?'"
+
+Most people who use AI daily have never been taught prompt engineering. They type a reasonable request, get a reasonable result, and assume that is just how AI works. It is not. The gap between a naive prompt and an engineered prompt is not incremental. It is the gap between output you throw away and output you ship.
+
+This library is a collection of prompts that have been engineered, tested, and refined for real work. Each prompt applies a specific set of techniques (role setting, chain-of-thought reasoning, self-critique loops, anti-pattern avoidance) that make the difference between "okay" and "how did it know to do that?"
+
+## See the Difference
+
+Here is what this library changes. Same task, two approaches:
+
+<table>
+<tr>
+<th width="50%">What most people type</th>
+<th width="50%">What this library gives you</th>
+</tr>
+<tr>
+<td>
+
+```
+Write a status update on my project.
+```
+
+</td>
+<td>
+
+Uses the [Stakeholder Update](communication/stakeholder-update.md) prompt with role setting, output format specification, self-critique checklist, and anti-pattern avoidance.
+
+</td>
+</tr>
+<tr>
+<td>
+
+**What you get:**
+
+A rambling paragraph mixing accomplishments, risks, and vague plans with no consistent structure. Buries the critical risk in the middle. Uses filler like "The team has been working hard." Runs long. Different every time you run it. You spend 20 minutes rewriting it before sending.
+
+</td>
+<td>
+
+**What you get:**
+
+**Status: At Risk**
+CI pipeline stability has degraded, putting the July 30 GA release at risk if not resolved by July 10.
+
+**Key Accomplishments**
+- Completed API gateway migration across all three regions, reducing p99 latency by 40%
+- Onboarded 3 new partner teams to shared auth service (11 of 14 target teams)
+
+**Risks and Blockers**
+- CI pipeline flakiness increased test failure rate from 2% to 12%. Mitigation: SRE investigating; resolution expected July 10.
+
+**Asks**
+- Need VP-Eng approval on staging environment budget by July 5.
+
+*Scannable. Consistent. Status at the top, risks with mitigations, asks with deadlines. Ready to send.*
+
+</td>
+</tr>
+</table>
+
+That is not a cherry-picked example. Every prompt in this library produces this kind of difference because every prompt applies the same set of engineering techniques. The [Prompt Engineering Guide](meta/prompt-engineering-guide.md) explains exactly what those techniques are and how to apply them yourself.
 
 ## Start Here
 
@@ -138,21 +198,26 @@ Guides on prompt engineering techniques and how to evaluate prompt quality.
 
 | Guide | Description |
 |-------|-------------|
-| [Prompt Engineering Guide](meta/prompt-engineering-guide.md) | How to write great prompts, with the techniques used in this library |
+| [Prompt Engineering Guide](meta/prompt-engineering-guide.md) | The definitive reference for every technique used in this library, with real examples and before/after comparisons |
 | [Testing Prompts](meta/testing-prompts.md) | How to evaluate whether a prompt is actually good |
 
 ## What Makes These Prompts Different
 
-Every prompt in this library uses these techniques:
+Every prompt in this library applies these techniques consistently. They are not optional additions; they are the reason the output quality is different.
 
-1. **Role and context setting** - Each prompt starts with a clear role ("You are a senior SRE...") and context, so the model knows what expertise to apply.
-2. **Chain-of-thought reasoning** - Step-by-step instructions that walk the model through the thinking process, not just the output format.
-3. **Self-critique checklist** - Each prompt includes a verification checklist the model runs before delivering output, catching common mistakes.
-4. **Anti-pattern avoidance** - Explicit instructions about what NOT to do, based on real failure modes we have observed.
-5. **Edge case handling** - Instructions for unusual inputs (empty data, ambiguous requirements, missing context).
-6. **Output format specification** - Detailed structure so output is consistent and scannable.
+1. **Role and context setting** - Each prompt starts with a specific expert role ("You are a senior SRE with 15+ years of experience conducting blameless post-mortems...") and names the audience. This is not decoration. It determines the vocabulary, depth, and framing of the entire response.
 
-For a deep dive, read the [Prompt Engineering Guide](meta/prompt-engineering-guide.md).
+2. **Chain-of-thought reasoning** - Step-by-step reasoning instructions that walk the model through the thinking process, not just the output format. The model reasons through the problem before producing an answer, which reduces errors and catches considerations that a direct answer would miss.
+
+3. **Self-critique checklist** - Each prompt includes a verification checklist the model runs before delivering output. This catches severity miscalibration, missing evidence, vague recommendations, and other failure modes that naive prompts let through.
+
+4. **Anti-pattern avoidance** - Explicit instructions about what NOT to do, based on real failure modes observed across hundreds of prompt runs. These block filler phrases, feedback sandwiches, optimism bias, jargon overload, and the other default behaviors that make AI output feel generic.
+
+5. **Edge case handling** - Instructions for unusual inputs: empty data, ambiguous requirements, missing context, overly broad goals. Instead of hallucinating an answer, the model asks clarifying questions or flags gaps.
+
+6. **Output format specification** - Detailed structure so output is consistent and scannable across runs. The same prompt produces structurally identical output whether you run it on Monday or Friday, with sparse notes or dense ones.
+
+For a deep dive into each technique with real examples and before/after comparisons, read the [Prompt Engineering Guide](meta/prompt-engineering-guide.md).
 
 ## Contributing
 

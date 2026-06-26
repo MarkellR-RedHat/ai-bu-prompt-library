@@ -4,6 +4,14 @@
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Help me prepare for my 1:1 with my direct report tomorrow."
+
+**What you get:** A generic list of conversation starters like "How are things going?" and "Any blockers?" with no connection to your actual team context, no time structure, and no follow-up tracking. You could have written that list yourself in two minutes.
+
+**This prompt** produces a complete, context-specific prep document with an anchor topic, categorized open-ended questions drawn from your real inputs, a time-blocked agenda with buffer, a difficult-conversation script when needed, and a self-critique pass to catch vague or unusable output. The difference is between walking into a 1:1 with generic small talk and walking in with a focused plan that makes the conversation actually productive.
+
 ## When to use
 
 - You have a recurring 1:1 coming up and want to make the most of the time
@@ -148,6 +156,20 @@ EDGE CASE HANDLING:
 - If multiple difficult topics exist, recommend splitting them across two
   meetings rather than cramming them into one session.
 ```
+
+## Why This Works
+
+**Persona framing.** The prompt opens by assigning the model the role of "an experienced engineering manager." This constrains the output to practical, management-specific advice rather than generic productivity tips. Without a persona, the model defaults to a bland assistant voice that produces surface-level suggestions.
+
+**Structured chain-of-thought.** The seven numbered steps force the model to reason through the preparation in a deliberate sequence: review context, categorize topics, draft questions, identify the anchor, allocate time, handle difficult conversations, and define listening signals. Each step builds on the previous one, which prevents the model from jumping straight to a list of generic questions.
+
+**Output formatting.** By specifying the exact sections, table structure, and checklist format, the prompt ensures the output is immediately usable. You can paste it into your notes app and walk into the meeting. Without format constraints, the model produces a wall of prose that requires extra work to turn into something actionable.
+
+**Self-critique checklist.** The checklist at the end forces the model to evaluate its own output against quality criteria before presenting it. This catches common failures like yes/no questions, missing follow-ups, or overly rigid agendas. It functions as a built-in quality gate.
+
+**Anti-pattern avoidance.** Explicitly listing what NOT to do (generic questions, corporate jargon, scripting the entire meeting) is as important as listing what to do. Models tend to default to safe, bland output. Naming the specific failure modes steers the output away from those defaults.
+
+These techniques combine to produce the difference shown above: instead of a generic question list, you get a structured, context-aware document that respects your time and your report's.
 
 ## Usage Tips
 

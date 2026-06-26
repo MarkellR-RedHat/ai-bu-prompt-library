@@ -4,6 +4,14 @@ A prompt for systematically evaluating competing technical options against weigh
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Compare gRPC vs REST for our internal services."
+
+**What you get:** A surface-level comparison that reads like a blog post: "gRPC is faster, REST is simpler, it depends on your use case." No weighted criteria, no evidence-backed ratings, no analysis of second-order effects, no risk assessment, and no clear recommendation. You end up exactly where you started, except now you have spent ten minutes reading what you already knew.
+
+**This prompt** produces a structured analysis with a clear decision frame, 6-10 precisely defined and weighted evaluation criteria, an evidence-backed comparison matrix, second-order effects over a 2+ year horizon, a risk assessment with mitigations, and a recommendation that explicitly states what you are trading away and under what conditions the recommendation would change. The difference is between a "here are some pros and cons" list and a defensible engineering decision that you can present to a review board, put in an ADR, and revisit with confidence when circumstances shift.
+
 ## When to use
 
 - You are choosing between two or more technical approaches (libraries, architectures, protocols, vendors) and need a defensible recommendation.
@@ -147,6 +155,22 @@ EDGE CASE HANDLING:
 Format your output with clear Markdown headers for each step.
 Use tables for the comparison matrix and risk assessment.
 ```
+
+## Why This Works
+
+**Principal engineer persona.** The prompt assigns the role of someone with deep experience in systems architecture who has a "bias toward clarity over cleverness." This framing produces output that prioritizes honest assessment over impressive-sounding analysis. Without it, the model tends toward a balanced-but-unhelpful "both options have merits" conclusion.
+
+**Multi-step structured reasoning.** The seven-step sequence (frame, define criteria, evaluate, analyze second-order effects, assess risks, recommend, self-critique) forces the model to build the analysis methodically rather than jumping to a conclusion. Each step depends on the previous one, creating a chain of reasoning that is easy to audit and challenge.
+
+**Weighted criteria with precise definitions.** Requiring each criterion to be defined precisely ("what does scalability mean in this context?") and weighted (CRITICAL, HIGH, MEDIUM, LOW) prevents the model from using vague buzzwords. It also forces prioritization: if everything is critical, nothing is. This mirrors how real engineering decision-making works.
+
+**Second-order effects analysis.** Step 4 asks what each choice makes easier, what it forecloses, what risks it introduces, and how it affects hiring and team structure over 2-3 years. Most trade-off analyses only look at immediate pros and cons. The second-order analysis is where the real insight lives, and most people skip it because they do not think to ask.
+
+**Self-critique checklist.** The checklist catches confirmation bias (strawmanning the less-preferred option), vague criteria, missing reversibility analysis, and recommendations that ignore real downsides. These are the failure modes that make trade-off analyses unreliable, and explicitly checking for them produces noticeably more honest output.
+
+**Edge case handling.** The prompt addresses near-ties (recommend a proof of concept), lopsided results (check for biased framing), constraint-eliminated options (say so directly), and highly reversible decisions (suggest spending less time analyzing). This prevents the model from applying the same heavyweight process regardless of the situation.
+
+These techniques combine to produce the difference shown above: a defensible, evidence-backed recommendation instead of a pros-and-cons list that leaves the decision unmade.
 
 ## Usage Tips
 

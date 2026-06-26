@@ -4,6 +4,16 @@ A structured prompt for generating clear, well-organized pull request descriptio
 
 **Difficulty:** Beginner
 
+## Naive vs. Engineered
+
+Most people open a PR and type something like:
+
+> **Naive prompt:** "Write a PR description for this diff."
+
+**What you get:** A summary that restates the file names that changed. "Updated router.go. Modified config. Added tests." No explanation of why anything changed, no guidance for reviewers on where to focus, no risk assessment, and no testing details. The reviewer still has to read every line of the diff blind, which is exactly the problem a good description is supposed to solve.
+
+**This prompt** produces a structured description with a clear summary, motivation linked to the actual issue, changes grouped by component with explanations of why each change was made, a specific review order telling reviewers where to start and what to scrutinize, testing details, and an honest risk assessment with rollback instructions. The difference is the gap between "updated selectReplica function" and "replaced round-robin replica selection with cache-aware selection that reduces cold-start latency by up to 40%; start your review at gateway/router.go lines 45 to 92."
+
 ## When to use
 
 - Opening a pull request and you need a clear description that helps reviewers understand the full scope of the change
@@ -103,6 +113,19 @@ Edge case handling:
 Diff:
 [PASTE_DIFF_HERE]
 ````
+
+## Why This Works
+
+This prompt turns a diff into a reviewer-optimized document by combining several techniques:
+
+- **Audience-aware framing** ("read by code reviewers, team leads, and future engineers"): Telling the model who will read the output changes what it writes. A description for reviewers emphasizes what to scrutinize. A description for future engineers emphasizes why the change was made. This prompt addresses both audiences explicitly.
+- **Seven-section structure** (Summary, Motivation, What Changed, How to Review, Testing, Risks, Screenshots): Each section serves a distinct purpose in the review process. Motivation prevents "why did we do this?" questions. How to Review prevents wasted time on unimportant files. Risks prevents post-merge surprises. Without this structure, the model produces a flat narrative that buries the important information.
+- **Chain-of-thought reasoning** (six-step process starting with "read the entire diff before writing anything"): Forces the model to understand the full scope before it starts writing, which prevents descriptions that peter out or miss connections between related changes across files.
+- **Anti-pattern avoidance** (seven rules including "do not write 'No risks' when there are clearly risks" and "do not just list the files that changed"): These target the specific ways PR descriptions fail. The "No risks" anti-pattern is particularly important because it forces honest risk assessment instead of the reflexive "low risk" that reviewers have learned to ignore.
+- **Unrelated change separation**: Explicitly requiring a separate subsection for opportunistic cleanups prevents reviewers from confusing a typo fix with the core logic change, which is a common source of review friction.
+- **Review order guidance**: The "How to Review" section is the highest-value part of the description for large PRs. By requiring the model to suggest which files to read first and what logic to scrutinize, it transforms the reviewer's experience from "wade through 500 lines" to "start here, then check this."
+
+The fundamental shift is that a naive prompt produces a description for the author (what I did). This prompt produces a description for the reviewer (what you need to know).
 
 ## Usage Tips
 

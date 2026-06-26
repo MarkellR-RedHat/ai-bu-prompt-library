@@ -4,6 +4,14 @@ Generate a structured, checkpoint-driven tutorial outline that moves the reader 
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Create a tutorial outline for deploying a model with llm-d on OpenShift."
+
+**What you get:** A list of 8-10 section titles with one-sentence descriptions, no prerequisite details, no verification checkpoints, and no troubleshooting guidance. The outline reads like a table of contents, not a plan for a hands-on tutorial. Anyone who tries to write the tutorial from this outline will need to redesign every section from scratch.
+
+**This prompt** produces an outline with explicit audience assumptions, precise prerequisites (tool names, versions, access levels), sections scoped to equal time blocks, binary pass/fail checkpoints at every stage, a troubleshooting section drawn from real failure modes, and actionable next steps. The difference: the outline is detailed enough that a technical writer can fill in the commands and ship it, or an engineer can follow it as a rough guide immediately.
+
 ## When to use
 
 - Creating a hands-on tutorial for product documentation, a docs site, or a developer portal.
@@ -161,6 +169,18 @@ Not full code listings.)
   config file change that only takes effect later), combine that section with the
   next one so every section ends with a verifiable result.
 ```
+
+## Why This Works
+
+**Six-stage reasoning with dependency mapping.** The prompt walks the model through audience analysis, scope and dependency mapping, section design, checkpoint design, failure mode analysis, and self-critique. This progression ensures that prerequisites surface early, sections build on each other logically, and nothing is left as an orphaned step with no verification.
+
+**Checkpoint-driven design.** Every section must end with a concrete checkpoint: a command to run, an output to observe, or a state to verify. The prompt requires checkpoints to be binary (pass or fail), explicitly banning vague checks like "verify it looks correct." This constraint is what separates a tutorial that readers can follow independently from one that requires an instructor standing nearby.
+
+**Failure mode analysis as a required step.** The prompt dedicates an entire reasoning stage to identifying 1-2 common errors per section, including at least one environment or version mismatch error. Most tutorial outlines skip error handling entirely, which means readers hit their first error and abandon the tutorial. Anticipating failures keeps readers on the path.
+
+**Section scoping constraints.** The prompt enforces 4-7 sections, each taking roughly equal time, with rules to split sections over 15 minutes and merge sections under 3 minutes. These constraints prevent the common failure of tutorial outlines that have one massive "Deploy everything" section followed by three trivial sections.
+
+**Anti-pattern catalog tuned for tutorials.** The seven anti-patterns (long conceptual intros, vague checkpoints, assumed tools, skipped error handling, bundled actions, marketing language, generic next steps) are specific to tutorial content. They target the exact mistakes that make tutorials fail in practice, not generic writing advice.
 
 ## Usage Tips
 

@@ -4,6 +4,14 @@
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Help me decide between Kubernetes and OpenShift for our infrastructure."
+
+**What you get:** A generic comparison of features and trade-offs that reads like a product comparison blog post. No weighting of what matters to your team, no scoring against your specific constraints, no sensitivity analysis, and no clear recommendation. You finish reading and still do not know which one to pick.
+
+**This prompt** produces a structured decision matrix with must-have filters that eliminate non-starters, 5-10 weighted criteria with definitions so everyone interprets them the same way, scored evaluations with justifications for every rating, calculated weighted totals, sensitivity analysis showing which assumptions could flip the outcome, and a recommendation that acknowledges trade-offs and open questions. The difference is between a feature comparison you could find online and a rigorous, customized decision artifact that documents your reasoning and survives scrutiny from stakeholders who disagree.
+
 ## When to Use
 
 - You are choosing between multiple vendors, tools, platforms, or architectural approaches and need a defensible comparison.
@@ -141,6 +149,22 @@ Output format:
 
 **Open Questions:** [What data is still missing, what to revisit, and when]
 ```
+
+## Why This Works
+
+**Decision analyst persona.** The prompt assigns the role of "a senior technical program manager and decision analyst." This produces output that is structured for decision-making rather than general comparison. The model focuses on making trade-offs explicit and producing a defensible recommendation, not just listing features.
+
+**Must-have filters before scoring.** Step 1 separates pass/fail constraints from scored criteria and eliminates disqualified options before the scoring begins. This prevents wasted analysis on options that were never viable and mirrors how experienced decision-makers actually operate: filter first, then evaluate.
+
+**Weighted criteria with forced differentiation.** The prompt requires weights from 1 to 5 and explicitly warns against making everything a 5. This forces the user (and the model) to make hard choices about what matters most. Without forced differentiation, every criterion gets equal weight and the matrix degenerates into a simple average that hides priorities.
+
+**Justified scores.** Requiring a brief justification for every score is the single most important quality control in the matrix. A number without a justification is an opinion. A number with a justification is a claim you can audit, challenge, and update. This also prevents confirmation bias, where the preferred option gets inflated scores across the board.
+
+**Sensitivity analysis.** Step 6 identifies which weights or scores, if changed by one point, would flip the outcome. This transforms the matrix from a static artifact into a diagnostic tool. If the decision hinges on a single uncertain score, you know exactly where to invest more research. Without sensitivity analysis, close decisions feel definitive when they should not.
+
+**Anti-pattern avoidance.** The explicit warnings against confirmation bias in scoring, vague criteria, equal weights, and treating the matrix as the final answer target the specific ways decision matrices fail. The last point is especially important: the matrix is an input to the decision, not a replacement for judgment.
+
+These techniques combine to produce the difference shown above: a rigorous, auditable decision artifact instead of a generic feature comparison that leaves the decision unmade.
 
 ## Usage Tips
 

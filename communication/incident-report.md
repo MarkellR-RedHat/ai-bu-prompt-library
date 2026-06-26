@@ -4,6 +4,14 @@ A prompt for writing blameless, thorough incident post-mortems that capture what
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Write a post-mortem for our database outage last Tuesday."
+
+**What you get:** A surface-level incident summary that restates the trigger without identifying the root cause, lists vague action items like "improve monitoring," and skips the blameless framing. The timeline has gaps, the lessons learned section is generic, and the document does not hold up in an incident review meeting.
+
+**This prompt** produces a structured, blameless post-mortem with a chronological timeline built from messy raw input, a root cause analysis that goes three "whys" deep, specific and prioritized action items with owners, and honest acknowledgment of what went well, what did not, and where the team got lucky. The difference: your post-mortem becomes a document the team actually learns from, not a checkbox artifact that sits in a wiki unread.
+
 ## When to use
 
 - Writing a post-mortem after a production incident has been fully resolved and the dust has settled.
@@ -140,6 +148,18 @@ Before presenting your final output, verify each of the following. If any check 
 - Bold section headers.
 - Number action items.
 ```
+
+## Why This Works
+
+**Persona framing with domain expertise.** Assigning the role of "senior SRE with 10+ years of experience writing blameless post-mortems" sets the tone, vocabulary, and analytical depth. The model writes with the rigor of someone who has been through hundreds of incidents, not as a generic text generator.
+
+**Structured reasoning chain.** The seven-step process (read, build timeline, identify root cause, list contributing factors, draft action items, write the report, self-critique) mirrors how experienced incident responders actually think. Each step produces an intermediate artifact that feeds into the next, preventing the model from jumping straight to a shallow summary.
+
+**Anti-pattern enforcement.** Naming specific failure modes (blame language, vague action items, hero narratives, speculation without flagging) prevents the model from falling into the patterns that make most AI-generated post-mortems useless. These anti-patterns are drawn from real organizational failure patterns in incident documentation.
+
+**Blameless framing as a constraint.** The prompt explicitly requires blameless language and provides concrete examples of what blame looks like versus what systemic analysis looks like. This is not just a tone choice; it changes how the model reasons about causation, pushing it toward process and system gaps rather than individual mistakes.
+
+**Self-critique with specific checks.** The checklist forces the model to verify that the root cause goes deeper than the trigger, that action items are specific, that timeline gaps are explained, and that the summary is executive-readable. This second pass catches the most common quality problems before the output reaches you.
 
 ## Usage Tips
 

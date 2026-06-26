@@ -4,6 +4,14 @@ Draft a technically precise, empathetic response to a community question that re
 
 **Difficulty:** Intermediate
 
+## Naive vs. Engineered
+
+**Naive prompt:** "Help me respond to this GitHub issue about a routing error in llm-d."
+
+**What you get:** A response that opens with "Great question! Thanks for reaching out!" followed by a generic troubleshooting suggestion to "check the docs" or "upgrade to the latest version." No version-specific guidance, no working code snippet, no acknowledgment of what information is missing from the report.
+
+**This prompt** produces a response that gets to the technical substance immediately, includes copy-paste-ready commands for the specific version, states assumptions explicitly, asks targeted clarifying questions instead of open-ended ones, and links to specific documentation pages rather than top-level sites. The difference: the community member can solve their problem in one round of conversation instead of three.
+
 ## When to use
 
 - Responding to a GitHub issue or discussion where a user needs troubleshooting help or guidance on correct usage.
@@ -133,6 +141,18 @@ EDGE CASE HANDLING:
 - If you genuinely do not know the answer: say so. Suggest who or where
   to ask (a specific maintainer, SIG, or channel) rather than guessing.
 ```
+
+## Why This Works
+
+**Persona framing with credibility signals.** The prompt positions the responder as "a senior developer advocate responding to the open source community." This sets the right tone: technically precise, peer-to-peer, and direct. Without this framing, the model defaults to customer support language that undermines credibility with developer audiences.
+
+**Six-step classification and reasoning.** The process starts with classifying the question type (troubleshooting, how-to, bug report, feature request), then separating what is known from what is missing, then checking for common pitfalls. This structured analysis prevents the model from jumping to an answer before understanding the question, which is the most common failure mode in community responses.
+
+**Anti-pattern avoidance for developer audiences.** The prompt forbids filler greetings ("Great question!"), minimizing language ("simply" or "just"), pseudocode snippets, and vague doc links. These specific prohibitions target the exact behaviors that make AI-generated community responses feel robotic and unhelpful. Developer communities have low tolerance for fluff.
+
+**Ambiguity handling as a design element.** Instead of guessing when information is missing, the prompt instructs the model to state its assumptions explicitly and ask one or two specific clarifying questions. This produces responses that are useful even when the question is incomplete, and it trains the community member to provide better information next time.
+
+**Self-critique focused on accuracy.** The checklist asks whether code snippets actually work, whether product versions are specified, whether anything stated as fact is uncertain, and whether timelines are being promised. This catches the most dangerous failure mode in community responses: confidently wrong technical advice.
 
 ## Usage Tips
 

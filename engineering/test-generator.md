@@ -4,6 +4,16 @@ A structured prompt for generating comprehensive, production-quality test suites
 
 **Difficulty:** Beginner
 
+## Naive vs. Engineered
+
+Most people paste a function and type something like:
+
+> **Naive prompt:** "Write tests for this code."
+
+**What you get:** Three or four happy-path tests that verify the code works when everything goes right. Assertions check `is not None` instead of specific values. Test names are generic (`test_1`, `test_2`). No edge cases, no error path coverage, no boundary values, and mocks are applied to internal functions instead of external dependencies, so the tests break every time you refactor.
+
+**This prompt** produces a categorized test suite covering happy paths, boundary values, error handling, integration points, and state transitions, with descriptive names, specific assertions, and mocks applied at the right boundaries. The difference is the gap between `test_create_order_works` asserting `result is not None` and `test_create_order_with_empty_cart_raises_validation_error` asserting the exact error message text.
+
 ## When to use
 
 - Adding tests to existing code that has little or no test coverage and you need a solid starting point
@@ -114,6 +124,19 @@ Edge case handling:
 - If the code has optional parameters with defaults, test both with and without the optional parameters.
 - If the code truncates or rounds values, test the boundary where truncation occurs.
 ````
+
+## Why This Works
+
+This prompt uses structured categorization and explicit quality standards to produce tests that actually catch bugs:
+
+- **Five-category test organization** (happy path, edge cases, error handling, integration points, state and sequence): Forces the model to think about the code from five different angles instead of just testing the obvious path. Most bugs hide in edge cases and error paths, which are exactly the categories a naive prompt skips entirely.
+- **Boundary value enumeration** (empty inputs, single-element collections, MAX_INT, null values, Unicode strings): Providing a concrete checklist of boundary types to consider prevents the model from testing only with "normal" values. This is where the highest-value test cases live.
+- **Naming and assertion conventions** (descriptive names stating scenario and outcome, specific value assertions): Requiring `test_create_order_with_empty_cart_raises_validation_error` instead of `test_3` means a failing test name alone tells you what broke. Requiring exact value assertions instead of `is not None` means the test actually catches regressions.
+- **Anti-pattern avoidance** (seven rules including "do not mock the function under test" and "do not write a single test that tests five things"): These block the most common AI-generated test failures. Without them, the model produces tests that pass when the code is broken, mock the wrong things, and combine too many assertions into a single test.
+- **Self-critique checklist**: Makes the model verify coverage completeness before presenting the suite. The question "would these tests catch the bug if someone broke this code tomorrow?" is the ultimate test quality check, and forcing the model to answer it improves output significantly.
+- **Arrange-Act-Assert structure**: Requiring this pattern makes every test readable and consistent, which matters because tests are documentation. A reviewer can scan the test suite and understand the code's behavior without reading the implementation.
+
+The core improvement is that the naive prompt generates tests that prove the code works. This prompt generates tests that would catch it if the code stopped working.
 
 ## Usage Tips
 

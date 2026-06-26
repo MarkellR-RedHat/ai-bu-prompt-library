@@ -4,6 +4,16 @@ A prompt for preparing for a meeting by organizing relevant context, identifying
 
 **Difficulty:** Beginner
 
+## Naive vs. Engineered
+
+Most people prompt something like this:
+
+> **Naive prompt:** "Help me prepare for my meeting tomorrow about the routing proposal."
+
+**What you get:** A generic list of things to think about ("review the agenda," "prepare questions," "be ready to take notes") that could apply to any meeting in any industry. You walk in no more prepared than before.
+
+**This prompt** produces a prep document tailored to your specific meeting: who has the most at stake, what tensions will surface, what questions will move the group toward a decision, and what landmines to watch for. The difference: instead of generic advice you could have written yourself, you get a stakeholder-aware briefing that makes you the most prepared person in the room.
+
 ## When to use
 
 - Preparing for a meeting where you need to be up to speed on multiple topics and want a structured way to organize your thinking.
@@ -175,6 +185,24 @@ EDGE CASES:
 Keep the total prep document under 500 words (excluding the stakeholder map).
 Be specific and actionable. Every sentence should help me walk into the meeting ready.
 ```
+
+## Why This Works
+
+This prompt uses several techniques that compound to produce meeting prep that is genuinely useful, not a checklist of obvious advice:
+
+- **Persona framing.** "You are an experienced engineering leader who is excellent at preparing for meetings" sets the model's perspective as someone who understands meeting dynamics, organizational politics, and how decisions actually get made. This shifts the output from generic preparation tips to context-aware tactical guidance.
+
+- **Role-aware output.** The prompt explicitly captures your role in the meeting and tailors the output accordingly. Talking points for a presenter look different from talking points for someone providing input or just listening. Without this signal, the model defaults to one-size-fits-all advice.
+
+- **Structured output formatting.** Sections like Stakeholder Map, Decisions Expected, and Risks and Landmines force the model to think beyond "what topics will be discussed" and into "what dynamics will play out and how should I navigate them." This is the difference between knowing the agenda and being ready for the meeting.
+
+- **Anti-pattern avoidance.** Blocking generic filler ("be prepared," "listen actively") and script-sounding talking points pushes the model to generate specific, grounded content. The constraint against ignoring meeting duration prevents over-preparation for short syncs.
+
+- **Edge case handling.** Dedicated instructions for 1:1s, external meetings, and first-time recurring meetings prevent the model from using a single template for fundamentally different meeting types.
+
+- **Self-critique checklist.** The verification step catches common failures like questions that are really just restatements of what you already know, or prep documents that take longer to read than the meeting itself.
+
+These techniques together explain the difference shown in the comparison above: the naive prompt produces advice you already knew, while this prompt produces a briefing document you would actually review in the five minutes before the meeting.
 
 ## Usage Tips
 
