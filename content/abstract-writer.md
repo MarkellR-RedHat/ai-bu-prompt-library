@@ -2,6 +2,20 @@
 
 Write a concise, well-structured abstract for a conference talk, paper, or technical presentation.
 
+**Difficulty:** Intermediate
+
+## When to use
+
+- You are submitting a proposal to a CFP and need a polished abstract that stands out.
+- You are writing a paper abstract and want to nail the problem-solution-takeaway structure.
+- You are creating a description for an internal tech talk or brown bag session.
+- You need to hit a specific word count and want a draft that lands close to the limit on the first pass.
+
+## When NOT to use
+
+- You are writing a full paper introduction. Use the blog-intro prompt or write it manually, since an abstract and an introduction serve different purposes.
+- The CFP requires a specific format you already have a template for. Fill in the template directly instead.
+
 ## Prompt
 
 ```
@@ -29,7 +43,7 @@ Requirements:
 - Include the venue name in the prompt so the tone matches. A KubeCon abstract reads differently than an internal brown bag.
 - After generating, read the abstract out loud. If you stumble, it is too complex.
 - Many reviewers skim. Put the most important sentence first.
-- If the CFP asks for "what attendees will learn," make that explicit in the TAKEAWAY field.
+- If the CFP asks for "what attendees will learn," make that explicit in the [TAKEAWAY] field.
 
 ## Example Output
 

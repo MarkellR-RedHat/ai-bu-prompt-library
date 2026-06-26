@@ -2,6 +2,22 @@
 
 A prompt for systematic debugging that walks through root cause analysis instead of jumping to guesses.
 
+**Difficulty:** Intermediate
+
+## When to use
+
+- You have been stuck on a bug for more than 30 minutes and need a structured approach
+- You are dealing with a cryptic error message or stack trace that does not clearly point to a root cause
+- You want a systematic, methodical process instead of random trial-and-error guessing
+- You are debugging in an unfamiliar codebase where you do not know the code paths well
+- You have multiple possible causes and need help narrowing them down efficiently
+
+## When NOT to use
+
+- The bug is a simple typo or syntax error you can spot by reading the code. Just fix it.
+- You need to debug a live production system in real time. Use your observability tools (dashboards, traces, logs) first, then bring findings here for analysis.
+- The issue is flaky test infrastructure unrelated to your application code. Fix the test environment instead.
+
 ## Prompt
 
 ```

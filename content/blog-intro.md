@@ -2,6 +2,21 @@
 
 Write a compelling introduction for a technical blog post that hooks the reader and sets up the rest of the article.
 
+**Difficulty:** Beginner
+
+## When to use
+
+- You are writing a technical blog post and need a strong opening hook.
+- You are stuck on the first paragraph and need to break through writer's block.
+- You are writing for Red Hat or upstream project blogs and want a direct, practical tone.
+- You have the topic and audience nailed down but need help translating that into an engaging opener.
+- You want to generate a few intro options and pick the strongest one to edit from.
+
+## When NOT to use
+
+- The blog post is already drafted and just needs editing. Use a revision prompt or edit manually instead.
+- You are writing non-technical or marketing-focused content where a different voice is needed.
+
 ## Prompt
 
 ```

@@ -2,6 +2,22 @@
 
 A prompt for writing clear internal announcements that give people the information they need and the context for why it matters.
 
+**Difficulty:** Beginner
+
+## When to use
+
+- Announcing a process change, tool migration, or new policy to your engineering organization.
+- Communicating a team restructure or role change that affects workflows.
+- Sharing a new project kickoff or milestone with cross-functional partners.
+- Rolling out a deprecation or sunsetting plan where teams need to take action by a deadline.
+- Sending a follow-up announcement with updated timelines or scope changes.
+
+## When NOT to use
+
+- The announcement involves sensitive HR matters such as layoffs, PIPs, or compensation changes. Work with your People team on messaging.
+- You are writing an external press release or customer communication. Those require a different review and approval process.
+- The announcement is a reply in an ongoing thread. This prompt is designed for standalone, net-new communications.
+
 ## Prompt
 
 ```text
@@ -29,7 +45,7 @@ Constraints:
 - Keep the announcement under 250 words for Slack, under 400 words for email, or under 600 words for blog posts.
 
 Here are the raw details:
-[PASTE_RAW_NOTES_OR_DETAILS_HERE]
+[RAW_NOTES_OR_DETAILS]
 ```
 
 ## Usage Tips

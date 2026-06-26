@@ -2,6 +2,20 @@
 
 A prompt for distilling technical papers into structured, actionable summaries that capture the key contributions, methods, and implications.
 
+**Difficulty:** Intermediate
+
+## When to use
+
+- Reviewing a paper before a team discussion so everyone starts from a shared understanding.
+- Deciding whether a paper is worth a full read based on its core contributions and relevance.
+- Sharing paper highlights in a Slack channel or meeting without asking people to read the whole thing.
+- Building a reading list for the team and need a consistent summary format to compare papers.
+
+## When NOT to use
+
+- You need a detailed critique or peer review of methodology, statistical rigor, or experimental design. Read the full paper and apply domain expertise.
+- You are summarizing internal design docs or RFCs. Use a dedicated RFC summary prompt instead, since those documents have a different structure and audience.
+
 ## Prompt
 
 ```

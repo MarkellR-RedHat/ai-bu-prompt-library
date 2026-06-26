@@ -2,6 +2,20 @@
 
 Craft a LinkedIn post that shares technical content in a professional, informative way without sounding like marketing copy.
 
+**Difficulty:** Beginner
+
+## When to use
+
+- You are sharing a blog post or project release and want to write a thoughtful post around it.
+- You are announcing a talk or event and want to give people a reason to attend.
+- You are sharing a lesson learned from engineering work and want to frame it for a broad technical audience.
+- You are promoting open source work and want the post to focus on the substance, not the hype.
+
+## When NOT to use
+
+- You are writing official Red Hat corporate communications. Use approved channels and the corporate social media process instead.
+- You are posting about sensitive topics like layoffs, acquisitions, or organizational changes. These require review from comms and legal.
+
 ## Prompt
 
 ```

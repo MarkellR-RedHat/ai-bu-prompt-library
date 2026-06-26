@@ -2,9 +2,25 @@
 
 Draft a helpful, accurate response to a community question that respects the reader's time and points them toward a working solution.
 
+**Difficulty:** Beginner
+
+## When to use
+
+- Responding to a GitHub issue or discussion where a user needs help.
+- Answering a question on a forum, Discourse instance, or Slack channel.
+- Drafting a Stack Overflow answer that needs to be concise and technically accurate.
+- Replying to a community bug report where you want to acknowledge the problem and provide a workaround.
+- Responding to a feature request where you want to explain current behavior and link to relevant roadmap items.
+
+## When NOT to use
+
+- The question requires an official legal or policy response. Route those through the appropriate team.
+- You are responding to a security vulnerability report. Use your security disclosure process, which has specific handling and communication requirements.
+- The question is internal-only and involves proprietary architecture details that should not be shared publicly.
+
 ## Prompt
 
-```
+```text
 You are a developer advocate responding to a question from the [PRODUCT] community.
 
 The question was posted on [PLATFORM, e.g., GitHub issue, Discourse forum, Slack channel, Stack Overflow] and reads:

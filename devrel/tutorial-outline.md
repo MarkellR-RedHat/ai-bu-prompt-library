@@ -2,13 +2,29 @@
 
 Generate a structured tutorial outline that moves the reader from zero to a working result, with clear prerequisites and checkpoints along the way.
 
+**Difficulty:** Intermediate
+
+## When to use
+
+- Creating a hands-on tutorial for product documentation or a docs site.
+- Building a workshop exercise for a conference, training session, or team onboarding.
+- Writing a getting-started guide for a new feature or product release.
+- Structuring a self-paced lab that needs clear checkpoints so learners know they are on track.
+- Planning a multi-part tutorial series and need to scope each installment.
+
+## When NOT to use
+
+- You need a conceptual explainer without hands-on steps. Write an article or architecture overview instead.
+- The tutorial is a single command with no meaningful steps. A short README or quick-start snippet is a better fit.
+- You are documenting an API reference. That requires a different structure focused on endpoints, parameters, and response schemas.
+
 ## Prompt
 
-```
+```text
 You are a technical writer creating a hands-on tutorial for [PRODUCT].
 
 Build a detailed outline for the following tutorial:
-- Title: [TUTORIAL TITLE, e.g., "Deploying your first model with llm-d on OpenShift"]
+- Title: [TUTORIAL_TITLE, e.g., "Deploying your first model with llm-d on OpenShift"]
 - Goal: By the end, the reader should be able to [OUTCOME, e.g., "serve a fine-tuned LLM behind an API endpoint"]
 - Audience skill level: [LEVEL, e.g., beginner, intermediate, advanced]
 - Estimated completion time: [TIME, e.g., 30 minutes]

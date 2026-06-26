@@ -2,6 +2,22 @@
 
 A prompt for conducting a thorough, structured code review that checks for correctness, security, performance, and maintainability.
 
+**Difficulty:** Intermediate
+
+## When to use
+
+- Reviewing a pull request before merging, especially when the changeset touches unfamiliar code
+- Doing a self-review of your own code before requesting human review
+- Checking code written in a language or framework you are less familiar with
+- Getting a second opinion on a tricky changeset when no other reviewers are available
+- Reviewing a patch from an external contributor who may not know your project's conventions
+
+## When NOT to use
+
+- The code needs a full security audit. Engage your security team for that; this prompt catches surface-level issues, not deep vulnerability analysis.
+- You need to verify runtime behavior. Write tests or run the code instead. Static review cannot catch timing-dependent bugs or environment-specific failures.
+- The changeset is trivial (renaming a variable, fixing a typo). A quick read is faster than setting up this prompt.
+
 ## Prompt
 
 ```

@@ -2,6 +2,22 @@
 
 A prompt for writing blameless incident post-mortems that capture what happened, why it happened, and how to prevent it from happening again.
 
+**Difficulty:** Intermediate
+
+## When to use
+
+- Writing a post-mortem after a production incident has been fully resolved.
+- Documenting a near-miss that did not cause user impact but needs follow-up action items.
+- Preparing for an incident review meeting and need a structured starting draft.
+- Consolidating scattered Slack threads, war room notes, and on-call logs into a single coherent timeline.
+- Generating action items from raw incident notes when you are too tired after the incident to write them from scratch.
+
+## When NOT to use
+
+- The incident is still ongoing. Focus on resolution first, then write the post-mortem afterward.
+- You need a customer-facing incident communication. That requires a different tone, audience awareness, and approval process.
+- The incident involves a security breach or data exposure. Follow your security disclosure process, which has specific formatting and distribution requirements.
+
 ## Prompt
 
 ```text
@@ -33,12 +49,12 @@ Constraints:
 - Keep the total length under 800 words.
 
 Here are the raw incident details:
-[PASTE_RAW_NOTES_SLACK_THREADS_OR_TIMELINE_HERE]
+[RAW_NOTES_SLACK_THREADS_OR_TIMELINE]
 ```
 
 ## Usage Tips
 
-- Copy/paste directly from your Slack incident channel or war room notes. The prompt handles messy, out-of-order input well.
+- Copy and paste directly from your Slack incident channel or war room notes. The prompt handles messy, out-of-order input well.
 - After generating the report, review the action items carefully. The prompt produces reasonable placeholders, but ownership and priority always need human judgment.
 - For Sev1 incidents, pair this with your organization's formal review template. Use the generated report as a starting draft, then adapt it to match required formatting.
 - Run a follow-up prompt asking "What monitoring or alerting gaps does this incident reveal?" to generate additional action items you may have missed.

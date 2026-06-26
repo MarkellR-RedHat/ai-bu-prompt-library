@@ -2,6 +2,22 @@
 
 A prompt for generating comprehensive test cases that cover happy paths, edge cases, and failure modes.
 
+**Difficulty:** Beginner
+
+## When to use
+
+- Adding tests to existing code that has little or no test coverage
+- Expanding test coverage for edge cases and error handling on code that already has basic tests
+- Writing tests in a language or framework you are less experienced with
+- Bootstrapping a test suite for a new module or service
+- You need a starting point for tests and plan to review and refine them before committing
+
+## When NOT to use
+
+- The code has complex stateful behavior that requires integration tests against real infrastructure (databases, message queues, external APIs). Write those tests manually with proper test fixtures.
+- You need performance or load tests. Those require different tooling, test environments, and an approach that is fundamentally different from unit and functional tests.
+- The code is a thin wrapper with no logic. Testing a pass-through function adds maintenance cost without value.
+
 ## Prompt
 
 ```

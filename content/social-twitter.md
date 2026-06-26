@@ -2,6 +2,19 @@
 
 Create a concise Twitter/X thread that breaks down technical content into a series of punchy, self-contained tweets.
 
+**Difficulty:** Beginner
+
+## When to use
+
+- You are breaking down a complex technical concept into bite-sized pieces for a broad audience.
+- You are sharing a conference talk or blog post and want to give people the key points up front.
+- You are building a narrative around a project milestone, release, or benchmark result.
+
+## When NOT to use
+
+- You just need a quick one-off tweet that does not require a thread. Write it directly instead.
+- You are posting on behalf of an official Red Hat social media account. Use the social team's process and approved tooling.
+
 ## Prompt
 
 ```

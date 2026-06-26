@@ -2,6 +2,20 @@
 
 A prompt for mapping out the players, trends, and dynamics in a technology area to support strategic planning and investment decisions.
 
+**Difficulty:** Advanced
+
+## When to use
+
+- Planning a new product or feature investment and need to understand who else is building in the space.
+- Preparing a strategy presentation for leadership that requires a clear view of the competitive and technical terrain.
+- Onboarding onto an unfamiliar technology area and need a structured orientation to the key players and trends.
+- Identifying partnership or acquisition targets by mapping where gaps exist and who is filling them.
+
+## When NOT to use
+
+- You need a narrow competitive analysis of a single product. Use the competitive-analysis prompt instead, which goes deeper on one player.
+- You need validated market sizing with revenue numbers, TAM/SAM/SOM breakdowns, or investor-grade financial data. Engage an analyst firm for that level of rigor.
+
 ## Prompt
 
 ```

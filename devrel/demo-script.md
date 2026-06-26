@@ -2,9 +2,25 @@
 
 Create a structured, time-boxed demo script that walks through a real workflow and lands a clear takeaway for your audience.
 
+**Difficulty:** Intermediate
+
+## When to use
+
+- Preparing a live demo for a conference talk or meetup presentation.
+- Creating a recorded demo for a blog post, video, or social media clip.
+- Building a demo for a customer or partner meeting where you need to show, not just tell.
+- Rehearsing a demo and need a structured script with talking points and expected outputs.
+- Building a demo that includes a deliberate failure scenario to show resilience or error handling.
+
+## When NOT to use
+
+- You need a full tutorial with step-by-step explanations and prerequisite setup. Use the tutorial-outline prompt instead.
+- The demo is purely slides-based with no live interaction or terminal work.
+- You are writing a product data sheet or feature comparison. That is marketing collateral, not a demo.
+
 ## Prompt
 
-```
+```text
 You are a developer advocate preparing a live demo for [PRODUCT].
 
 Write a demo script for the following:

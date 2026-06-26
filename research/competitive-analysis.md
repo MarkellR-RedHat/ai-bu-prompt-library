@@ -2,6 +2,21 @@
 
 A prompt for producing a structured, evidence-based analysis of a competitor's product to inform positioning and engineering decisions.
 
+**Difficulty:** Advanced
+
+## When to use
+
+- Preparing for a product strategy discussion and need a structured breakdown of a specific competitor.
+- Evaluating a new entrant in your space to understand whether it changes your positioning or roadmap.
+- Building a competitive positioning deck and need consistent analysis across multiple products.
+- Informing engineering priorities based on gaps and weaknesses in a competitor's offering.
+
+## When NOT to use
+
+- You need real-time or exact pricing data. Check the vendor's website or sales materials directly, since LLMs may have outdated or approximate figures.
+- You need a formal analyst-grade market report with validated revenue numbers, market share data, or investor-facing analysis. Engage an analyst firm for that.
+- You want a broad technology landscape view across many players. Use the market-landscape prompt instead of running this prompt a dozen times.
+
 ## Prompt
 
 ```

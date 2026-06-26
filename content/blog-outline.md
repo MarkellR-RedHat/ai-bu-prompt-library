@@ -2,6 +2,19 @@
 
 Create a structured outline for a technical blog post with logical flow and clear section purposes.
 
+**Difficulty:** Beginner
+
+## When to use
+
+- You are starting a new blog post from scratch and need a skeleton to write against.
+- You have scattered notes, bullet points, or ideas and need to organize them into a structured post.
+- You are planning a multi-part blog series and want to map out what each post covers.
+
+## When NOT to use
+
+- You already have a clear outline and just need to write the content. Jump straight into drafting instead.
+- The post is a quick update or announcement that does not need a detailed structure. Use the team-announcement prompt instead.
+
 ## Prompt
 
 ```
@@ -28,7 +41,7 @@ Structure the outline so that:
 ## Usage Tips
 
 - Setting the post length matters. A SHORT post should have 3-4 sections. A LONG post can handle 6-8.
-- For tutorial posts, set the GOAL to something like "walk the reader through deploying X from scratch."
+- For tutorial posts, set the [GOAL] to something like "walk the reader through deploying X from scratch."
 - For comparison posts, ask the outline to include a summary table.
 - Once you have the outline, you can feed each section back to an LLM one at a time for drafting.
 

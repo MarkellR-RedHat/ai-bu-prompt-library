@@ -2,6 +2,22 @@
 
 A prompt for evaluating system architecture with a focus on scalability, reliability, and operational readiness.
 
+**Difficulty:** Advanced
+
+## When to use
+
+- Evaluating a new system design before committing to implementation
+- Reviewing an existing system before a major scaling effort or migration
+- Preparing for an architecture review meeting and you want to identify gaps ahead of time
+- Assessing operational readiness before a GA launch or production rollout
+- Onboarding onto a new team and you need to quickly understand the strengths and risks of an existing system
+
+## When NOT to use
+
+- The system is a prototype, proof of concept, or throwaway experiment. Applying production-grade review criteria to throwaway code wastes time.
+- You need a detailed capacity plan with specific numbers. Run load tests and benchmark your infrastructure instead. This prompt identifies architectural risks, not exact throughput limits.
+- You need a compliance or regulatory audit. Engage your compliance team for that.
+
 ## Prompt
 
 ```

@@ -2,6 +2,22 @@
 
 A prompt for drafting concise executive updates that keep leadership informed without burying them in details.
 
+**Difficulty:** Beginner
+
+## When to use
+
+- Writing a weekly or biweekly project status update for leadership.
+- Preparing for a leadership review meeting and need a structured summary.
+- Summarizing progress for cross-functional partners who are not embedded in day-to-day work.
+- Consolidating messy standup notes, Jira exports, or Slack threads into a clean update.
+- Catching up stakeholders after a period of heads-down execution.
+
+## When NOT to use
+
+- The update requires financial data or budget details. Work with your PM or finance partner to get the numbers right before drafting.
+- You are writing a formal quarterly business review. QBRs require a different format, depth, and review process.
+- The project is in active crisis. Write an incident report instead of a status update.
+
 ## Prompt
 
 ```text
@@ -26,7 +42,7 @@ Constraints:
 - Do not pad with filler or pleasantries. Be direct.
 
 Here is the raw information to work from:
-[PASTE_RAW_NOTES_OR_BULLET_POINTS_HERE]
+[RAW_NOTES_OR_BULLET_POINTS]
 ```
 
 ## Usage Tips
