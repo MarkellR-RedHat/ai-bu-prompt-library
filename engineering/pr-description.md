@@ -153,7 +153,7 @@ The fundamental shift is that a naive prompt produces a description for the auth
 - Pair this with the code-review prompt to self-review your PR before requesting human reviewers. The description helps you catch scope creep (unrelated changes) and missing test coverage.
 - If your team has a PR template, include it in the prompt context so the model follows the same structure.
 - Add the related issue or ticket number so the model can frame the motivation around the actual problem being solved, not a generic explanation.
-- **Related tool:** After your PR merges, [shipped-digest](https://github.com/MarkellR-RedHat/shipped-digest) can roll it into a weekly summary of everything the team shipped. If you use `claude-commands`, the `/changelog` and `/release-notes` slash commands can generate release-facing summaries from the same diff.
+- **Related tool:** If you use `claude-commands`, the `/changelog` and `/release-notes` slash commands can generate release-facing summaries from the same diff.
 
 ## Example Output
 
