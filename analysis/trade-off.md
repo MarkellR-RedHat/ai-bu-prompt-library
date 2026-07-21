@@ -206,7 +206,7 @@ These techniques combine to produce the difference shown above: a defensible, ev
 - Run the analysis twice with different weightings on the criteria to see how sensitive the recommendation is to your assumptions about what matters most.
 - Use the "Conditions that would change your recommendation" section as a living checklist. Revisit it when circumstances shift.
 - Share the comparison matrix with stakeholders before the full write-up. It surfaces disagreements about criteria weights early, which is where most real debates happen.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/competitive-snapshot` slash command can provide competitive context that informs the alternatives considered in a tradeoff analysis.
+- **Slash command connection:** If you use `claude-commands`, the `/competitive-snapshot` slash command can provide competitive context that informs the alternatives considered in a tradeoff analysis.
 
 ## Example Output
 

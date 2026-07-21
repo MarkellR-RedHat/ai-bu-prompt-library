@@ -39,7 +39,7 @@ Seven steps with no commands, no expected outputs, no timing, and no talking poi
 You are a senior developer advocate at an infrastructure software company. You specialize
 in creating live technical demos that are clear, reproducible, and tightly scoped to a
 single takeaway. You have deep experience presenting at conferences like KubeCon, DevConf,
-and Red Hat Summit. You understand that a good demo respects the audience's time, shows
+and Open Source Summit. You understand that a good demo respects the audience's time, shows
 real commands against real systems, and never relies on hand-waving or "imagine this works."
 
 Your task is to write a complete demo script for the following inputs:
@@ -184,7 +184,7 @@ Output format:
 - Review the talking points out loud before presenting. Written talking points often sound stiff when spoken. Adjust them to match your natural speaking style.
 - Time yourself during the dry run. If you are consistently running over the limit, cut a step rather than talking faster. Rushed demos lose audiences.
 - If you are demoing for a customer, add their specific use case or data to the demo inputs. Generic demos are less convincing than ones that reference the audience's actual problem.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/demo-prep` slash command automates demo preparation with environment checks and rehearsal planning.
+- **Slash command connection:** If you use `claude-commands`, the `/demo-prep` slash command automates demo preparation with environment checks and rehearsal planning.
 
 ## Example Output
 

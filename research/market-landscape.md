@@ -16,7 +16,7 @@ Most people prompt something like this:
 
 A list you could build from 10 minutes of Googling. No segmentation between inference engines, serving platforms, and gateway/routing layers. No trend analysis. No assessment of which gaps matter. No recommendation on what your team should actually build, watch, or ignore.
 
-**This prompt** produces a segmented landscape map with maturity assessments, technology trends with adoption timelines, specific gaps and unmet needs scored by practitioner pain level, and actionable recommendations for your organization. For Red Hat AI building llm-d, that means recommendations like "Invest in multi-model serving with GPU sharing and isolation, since this is the highest-pain unmet need and aligns directly with our Kubernetes-native, OpenShift-integrated approach. Watch the gateway/routing segment but do not build our own; integrate with LiteLLM and Kong instead." The difference: instead of a directory of names, you get a strategic terrain map that tells your leadership team where to invest, what to watch, and which threats require a near-term response.
+**This prompt** produces a segmented landscape map with maturity assessments, technology trends with adoption timelines, specific gaps and unmet needs scored by practitioner pain level, and actionable recommendations for your organization. For a team building llm-d, that means recommendations like "Invest in multi-model serving with GPU sharing and isolation, since this is the highest-pain unmet need and aligns directly with our Kubernetes-native approach. Watch the gateway/routing segment but do not build our own; integrate with LiteLLM and Kong instead." The difference: instead of a directory of names, you get a strategic terrain map that tells your leadership team where to invest, what to watch, and which threats require a near-term response.
 
 ## When to use
 
@@ -45,7 +45,7 @@ technology area that a product and engineering leadership team can use for strat
 Technology Area: [TECHNOLOGY_AREA, e.g., "Kubernetes-native LLM inference"]
 Scope: [SCOPE, e.g., "open source and commercial projects targeting production deployments"]
 Time Horizon: [TIME_HORIZON, e.g., "current state plus 12-month outlook"]
-Our Position: [ORGANIZATION_OR_PROJECT, e.g., "Red Hat AI, building llm-d"]
+Our Position: [ORGANIZATION_OR_PROJECT, e.g., "the llm-d project"]
 
 Follow these steps carefully:
 
@@ -221,7 +221,7 @@ These techniques together explain the difference shown in the comparison above: 
 - Run this prompt quarterly with the same scope parameters to track how the landscape evolves. Compare the outputs to identify new entrants, exits, and shifts in competitive dynamics.
 - Cross-reference the "Gaps and Unmet Needs" section with your product roadmap. Gaps that align with your existing capabilities or planned features are the highest-value opportunities.
 - Share the landscape map with your sales and solutions engineering teams. They encounter competitive dynamics daily and can validate or challenge the analysis with field experience.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/competitive-snapshot` slash command can supplement the landscape with detailed analysis of specific players.
+- **Slash command connection:** If you use `claude-commands`, the `/competitive-snapshot` slash command can supplement the landscape with detailed analysis of specific players.
 
 ## Example Output
 
@@ -242,7 +242,7 @@ These techniques together explain the difference shown in the comparison above: 
 > 4. **Graceful model updates without downtime**: Rolling out a new model version without dropping in-flight requests or requiring manual traffic shifting remains difficult across most platforms. Current workaround: blue-green deployments with manual cutover scripts. Pain level: medium.
 > 5. **Unified observability across the inference stack**: Tracing a request from API gateway through router, scheduler, and inference engine requires stitching together multiple observability tools. No single solution provides end-to-end visibility. Pain level: high.
 >
-> ### Implications for Red Hat AI / llm-d
+> ### Implications for llm-d
 > 1. **Invest in multi-model serving with GPU sharing and isolation**: This is the highest-pain unmet need and aligns directly with our Kubernetes-native approach. We should prioritize this for the next two releases.
 > 2. **Watch the gateway/routing segment but do not build our own**: This segment is fragmenting and no winner is clear. Integrate with LiteLLM and Kong rather than building a competing gateway.
 > 3. **Partner with the vLLM community on standardized benchmarking**: Contributing to an industry benchmarking standard positions us as a neutral player and gives us influence over how serving platforms are evaluated.

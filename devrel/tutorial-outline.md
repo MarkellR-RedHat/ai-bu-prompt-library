@@ -210,7 +210,7 @@ Not full code listings.)
 - Include the exact version numbers you tested against. "Install oc CLI" is not sufficient. "Install oc CLI v4.15.2" is.
 - When writing checkpoints, include the expected output verbatim when possible. "You should see `status: Ready`" is far more useful than "verify the status."
 - Keep troubleshooting entries focused on errors that actually happen in practice. If you have run through the tutorial yourself, you already know what breaks. Document those first.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/write-docs` slash command can generate the API documentation that a tutorial references.
+- **Slash command connection:** If you use `claude-commands`, the `/write-docs` slash command can generate the API documentation that a tutorial references.
 
 ## Example Output
 

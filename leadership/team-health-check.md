@@ -241,7 +241,7 @@ These techniques combine to produce the difference shown above: a real diagnosti
 5. Track your top 3 issues over time. If the same issue appears in consecutive quarters, the structural fix is not working and you need to escalate or try a different approach.
 6. Use the "Strengths to Protect" section when making tradeoffs. If a proposed change threatens a known strength, that is a real cost to weigh.
 7. If you manage multiple teams, run this for each one and compare the patterns. Cross-team issues (like heavy on-call load or unclear priorities) often point to organizational problems, not team-level ones.
-8. **Slash command connection:** If you use `ai-bu-claude-commands`, the `/retro` slash command can surface recurring themes from past retrospectives that feed into the team health assessment.
+8. **Slash command connection:** If you use `claude-commands`, the `/retro` slash command can surface recurring themes from past retrospectives that feed into the team health assessment.
 
 ## Example Output
 

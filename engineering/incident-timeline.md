@@ -146,7 +146,7 @@ The core principle is that an incident timeline is an evidence-based document, n
 - If the incident spanned more than 4 hours, consider breaking the raw data into phases (e.g., detection, diagnosis, mitigation) and running the prompt on each phase separately. Then combine the results.
 - For recurring incidents, run this prompt on each occurrence and then compare the timelines side by side. Patterns in detection delays or repeated diagnostic dead ends become obvious when you line up multiple timelines.
 - Include PagerDuty or OpsGenie alert data if available. The alert routing history (who was paged, when they acknowledged, whether it escalated) is some of the most reliable timestamp data you can get.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/retro` slash command can take this timeline and generate a full retrospective, and `/summarize-thread` can extract incident data from long GitHub or Slack threads.
+- **Slash command connection:** If you use `claude-commands`, the `/retro` slash command can take this timeline and generate a full retrospective, and `/summarize-thread` can extract incident data from long GitHub or Slack threads.
 
 ## Example Output
 

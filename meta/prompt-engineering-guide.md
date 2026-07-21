@@ -1,6 +1,6 @@
 # Prompt Engineering Guide
 
-Everything you need to know about writing prompts that actually work. This guide walks through every technique used in the AI BU Prompt Library, with real examples and before/after comparisons showing why each one matters.
+Everything you need to know about writing prompts that actually work. This guide walks through every technique used in this prompt library, with real examples and before/after comparisons showing why each one matters.
 
 If you use AI tools every day and your results are "okay but not great," this will show you exactly what is missing. The gap between mediocre prompts and engineered prompts comes down to a set of specific, learnable techniques that make the model work harder and produce output you can actually use.
 
@@ -43,8 +43,8 @@ What you get: A generic paragraph that opens with "In today's rapidly evolving c
 
 **After (with role and context):**
 ```
-You are a senior technical writer at Red Hat with deep experience writing
-for engineering audiences. Your job is to write a strong introduction
+You are a senior technical writer at a major infrastructure company with
+deep experience writing for engineering audiences. Your job is to write a strong introduction
 (4-7 sentences) for a blog post.
 
 TOPIC: How llm-d schedules GPU inference workloads on Kubernetes
@@ -56,9 +56,9 @@ What you get: A tight introduction that opens with the specific pain of GPU sche
 
 The [Blog Intro](../content/blog-intro.md) prompt opens with:
 
-> `You are a senior technical writer at Red Hat with deep experience writing for engineering audiences.`
+> `You are a senior technical writer at a major infrastructure company with deep experience writing for engineering audiences.`
 
-This is not just a generic role. It specifies seniority (which calibrates quality expectations), the company (which sets organizational context), and the audience (engineering, not marketing). Compare this to the [Root Cause Analysis](../analysis/root-cause.md) prompt:
+This is not just a generic role. It specifies seniority (which calibrates quality expectations), the kind of company (which sets organizational context), and the audience (engineering, not marketing). Compare this to the [Root Cause Analysis](../analysis/root-cause.md) prompt:
 
 > `You are a senior site reliability engineer with 15+ years of experience conducting blameless post-mortems and root cause analyses in large-scale distributed systems.`
 

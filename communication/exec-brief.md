@@ -187,7 +187,7 @@ revise the brief until it passes.
 - Run the output through a "so what?" test. For every sentence, ask: does the executive need this to make a decision or understand the situation? If not, cut it.
 - When multiple stakeholders will read the brief, optimize for the most senior person in the distribution list. Everyone else can handle content that is slightly above their level, but an overly technical brief will lose the senior reader.
 - Test readability by reading the brief out loud. If any sentence requires a second read to parse, rewrite it.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/explain-for-customer` slash command helps translate complex technical topics into accessible language, which pairs well with executive briefs on technical subjects.
+- **Slash command connection:** If you use `claude-commands`, the `/explain-for-customer` slash command helps translate complex technical topics into accessible language, which pairs well with executive briefs on technical subjects.
 
 ## Example Output
 
@@ -197,7 +197,7 @@ revise the brief until it passes.
 >
 > **Background**
 >
-> llm-d is an open source platform that runs large language model (LLM) inference workloads on OpenShift. It reduces GPU costs by intelligently routing requests to nodes that already have the model loaded in memory, avoiding expensive cold starts. The platform team has been building it for 6 months and currently runs 3 internal models in pre-production. Adoption is a strategic priority because it enables Red Hat customers to run AI workloads on their existing OpenShift infrastructure rather than relying on third-party inference APIs.
+> llm-d is an open source platform that runs large language model (LLM) inference workloads on OpenShift. It reduces GPU costs by intelligently routing requests to nodes that already have the model loaded in memory, avoiding expensive cold starts. The platform team has been building it for 6 months and currently runs 3 internal models in pre-production. Adoption is a strategic priority because it enables customers to run AI workloads on their existing OpenShift infrastructure rather than relying on third-party inference APIs.
 >
 > **Current status**: On Track
 >

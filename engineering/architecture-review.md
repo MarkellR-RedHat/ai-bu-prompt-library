@@ -175,7 +175,7 @@ The fundamental difference is that the naive approach gives you a textbook revie
 - Replace `[DEPLOYMENT_ENVIRONMENT]` with your cloud provider, orchestration platform (OpenShift, EKS, GKE), and region topology (single region, multi-region, hybrid).
 - This prompt works best when you give it real constraints. Include details like "we run on OpenShift 4.14 in us-east-1 only" or "the team is 4 engineers and we do not have a dedicated SRE" so the recommendations are grounded in your actual situation.
 - For multi-team systems, run the review separately for each team's domain and then once for the cross-team integration points.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/tldr-repo` slash command can quickly summarize an unfamiliar codebase before you run an architecture review on it.
+- **Slash command connection:** If you use `claude-commands`, the `/tldr-repo` slash command can quickly summarize an unfamiliar codebase before you run an architecture review on it.
 
 ## Example Output
 

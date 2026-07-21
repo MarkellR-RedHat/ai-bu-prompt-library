@@ -21,7 +21,7 @@ Write a compelling, technically grounded introduction for a blog post that hooks
 
 - You are writing a technical blog post and need a strong opening that earns the reader's attention in the first three sentences.
 - You are stuck on the first paragraph and need a structured way to break through writer's block.
-- You are writing for Red Hat, upstream project blogs, or engineering community publications and want a direct, practical tone.
+- You are writing for upstream project blogs or engineering community publications and want a direct, practical tone.
 - You have the topic and audience nailed down but need help translating that into an engaging opener that frames the problem clearly.
 - You want to generate multiple intro options, compare them against concrete quality criteria, and pick the strongest one to edit from.
 - You need an intro that bridges a specific pain point to a technical solution without sounding like a product pitch.
@@ -37,13 +37,13 @@ Write a compelling, technically grounded introduction for a blog post that hooks
 ## Prompt
 
 ```
-You are a senior technical writer at Red Hat with deep experience writing for engineering audiences. Your job is to write a strong introduction (4-7 sentences) for a blog post.
+You are a senior technical writer at a major infrastructure company with deep experience writing for engineering audiences. Your job is to write a strong introduction (4-7 sentences) for a blog post.
 
 INPUTS (fill these in before running):
 - TOPIC: [Describe the specific technical topic. Be precise. Example: "How llm-d schedules GPU inference workloads on Kubernetes without a custom operator"]
 - AUDIENCE: [Who will read this? Example: "Platform engineers running Kubernetes clusters with GPU nodes" or "Python developers building LLM-powered applications"]
 - KEY_TAKEAWAY: [What is the single most important thing the reader should learn or do after reading the full post? Example: "How to configure llm-d's scheduler to replace their current GPU scheduling workaround"]
-- TONE_REFERENCE: [Optional. Link or name of a blog post whose tone you want to match. Example: "Red Hat Developer blog" or "Kubernetes project blog"]
+- TONE_REFERENCE: [Optional. Link or name of a blog post whose tone you want to match. Example: "Kubernetes project blog" or "Cloudflare engineering blog"]
 
 STEP-BY-STEP REASONING INSTRUCTIONS:
 
@@ -157,7 +157,7 @@ the user should verify before using the intro.]
 
 This prompt combines several deliberate prompt engineering techniques, each pulling its weight:
 
-- **Persona framing.** Assigning the model the role of "senior technical writer at Red Hat" anchors its output in a specific voice and standard. Without a persona, the model defaults to a generic, middle-of-the-road style that reads like no one in particular wrote it.
+- **Persona framing.** Assigning the model the role of "senior technical writer at a major infrastructure company" anchors its output in a specific voice and standard. Without a persona, the model defaults to a generic, middle-of-the-road style that reads like no one in particular wrote it.
 
 - **Chain-of-thought reasoning.** The step-by-step instructions (identify the pain point, establish stakes, bridge to solution, give a reason to keep reading) force the model to think through the intro's structure before writing. This prevents the common failure mode where the model produces a grammatically correct paragraph that has no narrative arc.
 
@@ -181,7 +181,7 @@ The visible difference from the comparison above comes down to this: the naive p
 - If the intro feels generic on the first run, add more detail to your TOPIC. Swap "monitoring microservices" for "using OpenTelemetry to trace latency spikes across 50+ microservices in a production cluster."
 - Review the self-critique checklist output carefully. If the model flags a failure and revises, compare both versions. Sometimes the original is actually stronger.
 - For multi-part blog series, mention in the TOPIC that this is part of a series and which part. The intro should orient returning readers without alienating new ones.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/blog-from-pr` slash command can generate a full blog post from a PR, and this prompt can refine the intro that command produces.
+- **Slash command connection:** If you use `claude-commands`, the `/blog-from-pr` slash command can generate a full blog post from a PR, and this prompt can refine the intro that command produces.
 
 ## Example Output
 

@@ -168,7 +168,7 @@ The core improvement is that the naive prompt generates tests that prove the cod
 - For large modules, focus on one function or class at a time. Ask for the most complex or highest-risk function first, then expand.
 - After generating, review the tests for correctness before adding them to your test suite. Pay special attention to the expected values in assertions, especially for math-heavy or stateful code. AI-generated tests sometimes assert what the code currently does, not what it should do.
 - If the generated tests reveal that the code does not handle a case you expected it to handle, that is a real finding. Add the test and fix the code.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, pair this with the `/blog-from-pr` slash command to document the tests and the code they cover in a blog post.
+- **Slash command connection:** If you use `claude-commands`, pair this with the `/blog-from-pr` slash command to document the tests and the code they cover in a blog post.
 
 ## Example Output
 

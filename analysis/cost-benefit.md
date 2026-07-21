@@ -246,7 +246,7 @@ These techniques combine to produce the difference shown above: a rigorous, hone
 - For large investments, pair this prompt with the trade-off prompt to first select the best implementation approach, then run cost-benefit on the winning approach.
 - Share the sensitivity analysis section with finance stakeholders. It speaks their language and builds credibility for the technical team's planning rigor.
 - Revisit the analysis at project milestones (25%, 50%, 75% complete) to check whether the original assumptions still hold. Early detection of cost overruns or benefit shortfalls saves money.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/what-next` slash command can help prioritize which cost-benefit analyses to run first when evaluating multiple competing project proposals.
+- **Slash command connection:** If you use `claude-commands`, the `/what-next` slash command can help prioritize which cost-benefit analyses to run first when evaluating multiple competing project proposals.
 
 ## Example Output
 

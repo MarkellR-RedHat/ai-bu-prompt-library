@@ -155,7 +155,7 @@ Edge case handling:
   interest), place them in the higher-engagement quadrant and note the
   ambiguity. It is safer to over-engage than under-engage.
 - If the project is cross-organizational, create separate maps per
-  organization or business unit and then a combined view.
+  organization or division and then a combined view.
 - If the user names more than 20 individual stakeholders, suggest grouping
   by role or team to keep the map actionable.
 - If any placeholder fields are left unfilled (e.g., "[INITIATIVE]" or
@@ -169,9 +169,9 @@ Edge case handling:
   the stakeholder categories you propose, since domain-specific
   influencers and regulatory bodies may not follow standard patterns.
 - If the initiative involves more than 20 stakeholders across multiple
-  business units, create a tiered map: a summary-level map with grouped
+  divisions, create a tiered map: a summary-level map with grouped
   stakeholders for leadership audiences, and detailed sub-maps per
-  business unit for operational use. A single flat map with 25+ entries
+  division for operational use. A single flat map with 25+ entries
   becomes unreadable and loses its prioritization value.
 
 Output format:
@@ -229,7 +229,7 @@ These techniques combine to produce the difference shown above: a strategic enga
 - Use the engagement plan as a checklist, not a suggestion. Assign owners to each engagement action and track completion.
 - If you are mapping stakeholders for a politically sensitive initiative, keep the detailed notes confidential and share only the summary grid with broader audiences.
 - Consider creating a "before and after" version: map stakeholders at project kickoff, then re-map at the midpoint to see what shifted.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/what-next` slash command can help prioritize which stakeholder conversations to schedule first based on the map's influence and interest ratings.
+- **Slash command connection:** If you use `claude-commands`, the `/what-next` slash command can help prioritize which stakeholder conversations to schedule first based on the map's influence and interest ratings.
 
 ## Example Output
 

@@ -191,7 +191,7 @@ These techniques combine to produce the difference shown above: a rigorous, evid
 - Use the SUSPECTED vs. CONFIRMED distinction to build a follow-up investigation checklist for factors you have not yet verified.
 - Pair this with a remediation tracking tool (Jira, GitHub Issues, etc.) and create one ticket per recommendation with the priority and owner role from the output.
 - For recurring incidents, run this analysis on the current occurrence, then compare it with past post-mortems to identify patterns in root causes that were not fully addressed.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/retro` slash command can generate a full retrospective from the root cause analysis output.
+- **Slash command connection:** If you use `claude-commands`, the `/retro` slash command can generate a full retrospective from the root cause analysis output.
 
 ## Example Output
 

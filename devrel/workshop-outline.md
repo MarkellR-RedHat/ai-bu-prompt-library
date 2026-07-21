@@ -18,8 +18,8 @@ Six lines that add up to 2 hours on paper but fall apart in a live room. "Hands-
 
 ## When to use
 
-- Building a workshop for a major conference (KubeCon, DevConf, Red Hat Summit, FOSDEM)
-- Creating an internal training session for your team, org, or business unit
+- Building a workshop for a major conference (KubeCon, DevConf, Open Source Summit, FOSDEM)
+- Creating an internal training session for your team or org
 - Designing a hands-on lab for customer enablement or partner training
 - Structuring a multi-hour training that needs strict timekeeping across sections
 - Converting existing documentation or tutorials into a live, guided workshop format
@@ -270,7 +270,7 @@ EDGE CASE HANDLING:
 - Include a pre-workshop email template in your instructor notes. Attendees who show up without prerequisites installed will derail the first 30 minutes.
 - If you are running the workshop with TAs, share the outline with them at least 48 hours in advance so they can run through the exercises and anticipate questions.
 - Print the "common issues" sections as a separate quick-reference sheet for TAs. During the session, they need fast answers, not a 10-page document.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/demo-prep` slash command can generate the live demo portion that fits within a workshop section.
+- **Slash command connection:** If you use `claude-commands`, the `/demo-prep` slash command can generate the live demo portion that fits within a workshop section.
 
 ## Example Output
 

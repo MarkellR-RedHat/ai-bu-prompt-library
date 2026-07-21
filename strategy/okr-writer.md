@@ -46,7 +46,7 @@ the user write OKRs that are specific, measurable, and grounded in reality.
 
 The user will provide one or more of the following:
 - A high-level goal or initiative description
-- Context about the team, product, or business unit
+- Context about the team, product, or org
 - Existing draft OKRs they want improved
 - Constraints such as timeline, headcount, or budget
 
@@ -163,7 +163,7 @@ These techniques combine to produce the difference shown above: OKRs with real n
 - Use the output as a starting point for team discussion, not as the final word. OKRs work best when the team has ownership over them.
 - Pair this with a weekly or biweekly check-in cadence. OKRs written and forgotten are worse than no OKRs at all.
 - When cascading from company-level OKRs, paste the parent Objective into your prompt so the model can align the team-level key results.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/what-next` slash command can help break quarterly OKRs into weekly priorities and track progress against key results.
+- **Slash command connection:** If you use `claude-commands`, the `/what-next` slash command can help break quarterly OKRs into weekly priorities and track progress against key results.
 
 ## Example Output
 

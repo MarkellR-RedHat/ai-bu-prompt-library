@@ -209,7 +209,7 @@ These techniques together explain the difference shown in the comparison above: 
 - Run this prompt on your own RFC before submitting it for review. If the summary reveals gaps or unclear tradeoffs, address them in the RFC before others find them.
 - Keep a library of RFC summaries indexed by topic. Over time, this becomes a searchable decision log that helps you avoid revisiting decisions that were already made.
 - When the "Alternatives Considered" section is empty or thin, treat that as a yellow flag. It usually means the author either did not explore the design space or is not sharing their reasoning.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/summarize-thread` slash command can extract discussion context from related GitHub threads to complement the RFC summary.
+- **Slash command connection:** If you use `claude-commands`, the `/summarize-thread` slash command can extract discussion context from related GitHub threads to complement the RFC summary.
 
 ## Example Output
 

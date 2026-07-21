@@ -141,7 +141,7 @@ The core insight is that debugging is an information-gathering process, not a gu
 - If you do not have all the input fields, fill in what you have and write "Not yet available" for the rest. The model will ask follow-up questions for missing information.
 - This prompt works best in a multi-turn conversation. After the model suggests a diagnostic step, run it and paste the results back. The model will update its hypothesis ranking based on the new evidence and suggest the next step.
 - Keep a running log of what you tried and what you saw. This is useful both for the debugging session and for documenting the fix later.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/retro` slash command can turn your debugging session into a structured retrospective once the issue is resolved.
+- **Slash command connection:** If you use `claude-commands`, the `/retro` slash command can turn your debugging session into a structured retrospective once the issue is resolved.
 
 ## Example Output
 

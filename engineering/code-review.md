@@ -129,7 +129,7 @@ The visible difference between the naive and engineered approach comes down to t
 - If you want the review focused on a single concern (for example, only security), remove the other categories from the prompt to keep the model focused.
 - Run this prompt on your own code before requesting human review. It catches the mechanical issues, freeing your human reviewers to focus on design and architectural concerns.
 - Pair this with the test-generator prompt to verify that the fixes you apply are covered by tests.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/review` slash command automates code review on your current diff with similar structured output.
+- **Slash command connection:** If you use `claude-commands`, the `/review` slash command automates code review on your current diff with similar structured output.
 
 ## Example Output
 

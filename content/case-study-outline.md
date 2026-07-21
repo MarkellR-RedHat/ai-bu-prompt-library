@@ -247,7 +247,7 @@ The comparison above highlights the fundamental issue: a naive prompt treats cas
 - If the customer is anonymous, replace identifiable details in your raw notes before pasting. The prompt will also scrub, but defense in depth matters.
 - After generating the outline, schedule a follow-up call with the customer to fill in every [NEEDS DATA] and [NEEDS VALIDATION] gap before drafting.
 - Pair this with an executive brief prompt if you need a one-page version for leadership or a short version for analyst briefings.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/explain-for-customer` slash command can help translate technical implementation details into customer-friendly language for the case study narrative.
+- **Slash command connection:** If you use `claude-commands`, the `/explain-for-customer` slash command can help translate technical implementation details into customer-friendly language for the case study narrative.
 - Run the prompt twice with the same notes and compare the outputs. Differences between runs often highlight areas where the notes are ambiguous and need clarification.
 - Share the generated outline with the customer contact for accuracy review before investing time in a full draft. This catches errors early and builds trust.
 - Keep a running document of resolved [NEEDS DATA] items across case studies. Patterns in missing data reveal gaps in your customer interview process that you can fix upstream.
@@ -261,7 +261,7 @@ The comparison above highlights the fundamental issue: a naive prompt treats cas
 >
 > **Customer snapshot**
 > - Fortune 500 retailer with 2,000+ stores and $48B in annual revenue
-> - AI/ML platform team of 22 engineers supporting 6 business units
+> - AI/ML platform team of 22 engineers supporting 6 product lines
 > - Running 15+ LLMs for product recommendations, search ranking, and customer support automation
 > - Previous infrastructure: self-managed vLLM instances on bare-metal GPU servers across two data centers
 >

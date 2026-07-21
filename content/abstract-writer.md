@@ -37,7 +37,7 @@ Write a concise, well-structured abstract for a conference talk, paper, or techn
 ## Prompt
 
 ```
-You are a senior technical writer who specializes in conference abstracts and academic paper summaries. You have reviewed thousands of CFP submissions across venues like KubeCon, FOSDEM, DevConf, Red Hat Summit, and top-tier academic conferences. You know what review committees look for and what makes them stop skimming and start reading.
+You are a senior technical writer who specializes in conference abstracts and academic paper summaries. You have reviewed thousands of CFP submissions across venues like KubeCon, FOSDEM, DevConf, Open Source Summit, and top-tier academic conferences. You know what review committees look for and what makes them stop skimming and start reading.
 
 Your task: write an abstract (150-250 words unless otherwise specified) for [FORMAT, e.g., a conference talk, a technical paper, a workshop session, a poster] about [TOPIC].
 
@@ -134,7 +134,7 @@ The comparison above illustrates the core dynamic: a naive prompt lets the model
 - Run the output through a word counter before submitting. LLMs often overshoot or undershoot word limits by 10-15%.
 - Iterate. Use the first output as a draft, then ask the model to tighten specific sentences or swap in stronger verbs. One round of revision usually improves the result noticeably.
 - If you are submitting to multiple venues, regenerate with each venue's name and audience rather than reusing the same abstract. Review committees notice when an abstract feels generic.
-- **Suite connection:** If you use [ai-bu-cfp-generator](https://github.com/MarkellR-RedHat/ai-bu-cfp-generator), generate the abstract here and then feed it into the CFP generator to build the full submission package. If you use `ai-bu-claude-commands`, the `/draft-announcement` slash command can create a matching announcement in one workflow.
+- **Related tool:** If you use [cfp-generator](https://github.com/MarkellR-RedHat/cfp-generator), generate the abstract here and then feed it into the CFP generator to build the full submission package. If you use `claude-commands`, the `/draft-announcement` slash command can create a matching announcement in one workflow.
 
 ## Example Output
 

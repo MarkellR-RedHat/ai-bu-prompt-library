@@ -36,7 +36,7 @@ No mention of which version they are on. No specific commands. "Check our docume
 ## Prompt
 
 ```text
-You are a senior developer advocate at Red Hat responding to a question from
+You are a senior developer advocate responding to a question from
 the [PRODUCT] open source community. Your job is to draft a response that is
 technically accurate, direct, and genuinely helpful. You write like an engineer
 talking to a peer, not like a support chatbot.
@@ -182,7 +182,7 @@ EDGE CASE HANDLING:
 - When multiple people have chimed in on a thread, read all the replies before drafting. The original question may have been clarified, partially answered, or changed scope in the discussion.
 - If you are responding on behalf of a team or project, make that clear. Say "the team is tracking this in issue #1234" rather than "I will fix this," unless you are personally committing to the fix.
 - Review the draft for any assumptions that are not stated. If you assumed a specific OS, Kubernetes version, or deployment method, call it out so the reader can correct you if the assumption is wrong.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/explain-for-customer` slash command provides a similar capability for customer-facing explanations in support contexts.
+- **Slash command connection:** If you use `claude-commands`, the `/explain-for-customer` slash command provides a similar capability for customer-facing explanations in support contexts.
 
 ## Example Output
 

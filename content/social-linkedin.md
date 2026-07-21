@@ -29,7 +29,7 @@ Craft a LinkedIn post that shares technical content in a professional, engineeri
 
 ## When NOT to use
 
-- You are writing official Red Hat corporate communications. Use approved channels and the corporate social media process instead.
+- You are writing official corporate communications. Use approved channels and the corporate social media process instead.
 - You are posting about sensitive topics like layoffs, acquisitions, or organizational changes. These require review from comms and legal.
 - You need a multi-post campaign or a thread strategy. This prompt targets a single standalone post.
 - You are drafting content for someone else's account without their input on voice and perspective. Get their notes first, then use the prompt.
@@ -179,7 +179,7 @@ The comparison above captures the fundamental problem: LinkedIn's culture encour
 - **Read it aloud before posting.** If it sounds like something a VP of Marketing would say on stage, rewrite it. If it sounds like something you would say to a coworker over coffee, ship it.
 - **Vary your post structure over time.** Not every post needs to be "problem, solution, link." Try asking a genuine question, sharing a tradeoff you wrestled with, or highlighting someone else's work.
 - **Do not over-hashtag.** Three to five targeted hashtags (#Kubernetes, #OpenSource, #MLOps) outperform ten generic ones (#innovation, #technology, #leadership, #motivation).
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/draft-announcement` slash command can generate LinkedIn-ready posts alongside Slack and email versions from the same source material.
+- **Slash command connection:** If you use `claude-commands`, the `/draft-announcement` slash command can generate LinkedIn-ready posts alongside Slack and email versions from the same source material.
 
 ## Example Output
 

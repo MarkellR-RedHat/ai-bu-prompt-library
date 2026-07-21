@@ -170,7 +170,7 @@ These techniques together explain the difference shown in the comparison above: 
 - Pair with a follow-up prompt asking the model to compare two paper summaries side by side if you are evaluating competing approaches.
 - If the paper introduces a system with open-source code, run the summary prompt first, then separately evaluate the code quality and maintenance status.
 - After generating the summary, scan the "[UNCERTAINTY]" flags. These are your starting points for deeper reading if the paper turns out to be relevant.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/competitive-snapshot` slash command can provide industry context that complements a paper summary for strategic discussions.
+- **Slash command connection:** If you use `claude-commands`, the `/competitive-snapshot` slash command can provide industry context that complements a paper summary for strategic discussions.
 
 ## Example Output
 

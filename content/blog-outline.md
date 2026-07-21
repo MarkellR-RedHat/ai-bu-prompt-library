@@ -220,7 +220,7 @@ The core insight behind the comparison above: a naive prompt asks the model to p
 - **Feed sections to a drafting prompt one at a time.** Once you have the outline, use each section's heading, purpose, and key points as the input for a separate drafting prompt. This keeps each section focused and prevents drift.
 - **Use the transition sentences as a revision tool.** If a transition feels forced or awkward, the two sections it connects may be in the wrong order or may not belong next to each other.
 - **Run the self-critique checklist yourself too.** The model checks its own work, but a human pass catches things the model misses, especially around audience tone and organizational priorities.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/blog-from-pr` slash command generates a full blog post from a PR, and this outline prompt can structure the content before drafting.
+- **Slash command connection:** If you use `claude-commands`, the `/blog-from-pr` slash command generates a full blog post from a PR, and this outline prompt can structure the content before drafting.
 
 ## Example Output
 

@@ -194,7 +194,7 @@ These techniques combine to produce the difference shown above: a rigorous, audi
 - Revisit the matrix if new information surfaces. Decision matrices are living documents during the evaluation period.
 - Use the sensitivity analysis section to focus follow-up research. If the decision hinges on one uncertain score, invest time there.
 - For high-stakes decisions, have two people score independently and then compare. Divergent scores reveal assumptions worth discussing.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/retro` slash command can surface past decision outcomes that inform criteria weighting for future decisions.
+- **Slash command connection:** If you use `claude-commands`, the `/retro` slash command can surface past decision outcomes that inform criteria weighting for future decisions.
 
 ## Example Output
 
@@ -218,7 +218,7 @@ These techniques combine to produce the difference shown above: a rigorous, audi
 | Team ramp-up time (4) | 3 | Team has some Kubernetes experience; estimated 2-3 months to production readiness | 4 | OpenShift abstracts many low-level details; estimated 1-2 months to production readiness |
 | Ecosystem and community support (3) | 5 | Largest open source community, broadest ecosystem of tools and extensions | 4 | Strong community, but some tooling is OpenShift-specific and less portable |
 | Security and compliance tooling (5) | 3 | Requires manual configuration of pod security, network policies, and audit logging | 5 | Built-in security context constraints, integrated image scanning, and audit logging out of the box |
-| Long-term flexibility (3) | 5 | No vendor lock-in; portable across any infrastructure | 3 | Tightly coupled to Red Hat ecosystem; migration away would be costly |
+| Long-term flexibility (3) | 5 | No vendor lock-in; portable across any infrastructure | 3 | Tightly coupled to one vendor's ecosystem; migration away would be costly |
 
 **Totals:**
 
@@ -232,9 +232,9 @@ These techniques combine to produce the difference shown above: a rigorous, audi
 - If "Long-term flexibility" weight increases from 3 to 5, Kubernetes pulls ahead by 1 point. This criterion is the most likely to shift the outcome.
 - The decision is moderately sensitive to the security and compliance scoring. If the team invests in automating Kubernetes security tooling, that score could rise to 4, narrowing the gap further.
 
-**Recommendation:** OpenShift is the stronger choice given the team's current priorities around security, compliance, and operational simplicity. The trade-off is higher licensing cost and reduced portability. This trade-off is acceptable if the team expects to stay in the Red Hat ecosystem for the next 3+ years.
+**Recommendation:** OpenShift is the stronger choice given the team's current priorities around security, compliance, and operational simplicity. The trade-off is higher licensing cost and reduced portability. This trade-off is acceptable if the team expects to stay on OpenShift for the next 3+ years.
 
 **Open Questions:**
-- Get a formal quote from Red Hat for the OpenShift subscription to validate the cost assumptions.
+- Get a formal quote from the vendor for the OpenShift subscription to validate the cost assumptions.
 - Confirm whether the existing team's Kubernetes experience transfers directly to OpenShift or if additional training is needed.
 - Revisit the "long-term flexibility" criterion in 18 months. If multi-cloud becomes a strategic priority, the weight on this criterion should increase.

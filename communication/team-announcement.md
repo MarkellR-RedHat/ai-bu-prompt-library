@@ -173,7 +173,7 @@ email typically does not).
 - Pair the announcement with a follow-up plan. If the change is significant, schedule a reminder announcement at the midpoint of any deadline and again one week before the deadline closes.
 - Test your draft with the "hallway test": show it to someone uninvolved and ask them to tell you what the announcement says. If they cannot summarize it in one sentence, the headline needs work.
 - When using this for recurring announcements (weekly migration updates, monthly deprecation reminders), keep a running thread or document that links all prior announcements so people can see the full history.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/draft-announcement` slash command generates multi-channel announcements (Slack, email, blog) from the same source material in one pass.
+- **Slash command connection:** If you use `claude-commands`, the `/draft-announcement` slash command generates multi-channel announcements (Slack, email, blog) from the same source material in one pass.
 
 ## Example Output
 

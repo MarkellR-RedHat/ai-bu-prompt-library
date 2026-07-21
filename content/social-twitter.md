@@ -30,7 +30,7 @@ Craft a technically sharp Twitter/X thread that breaks down complex topics into 
 ## When NOT to use
 
 - You just need a quick one-off tweet that does not require a thread. Write it directly instead.
-- You are posting on behalf of an official Red Hat social media account. Use the social team's process and approved tooling.
+- You are posting on behalf of an official corporate social media account. Use the social team's process and approved tooling.
 - The content is confidential, pre-announcement, or under embargo. Do not use AI to draft social posts for unreleased material.
 - You need long-form argumentation or nuance that cannot survive the 280-character constraint. Write a blog post instead.
 
@@ -195,7 +195,7 @@ The comparison above illustrates the core problem with naive thread generation: 
 - **Test character counts manually.** LLMs frequently miscount characters. Paste each tweet into a character counter before publishing.
 - **Front-load the value.** Assume most readers will only see tweets 1-3. Put the most important information there.
 - **Use concrete numbers.** "Reduces latency" is forgettable. "Reduces p99 latency from 800ms to 200ms on A100s" is memorable and shareable.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/draft-announcement` slash command generates social-ready posts alongside other announcement formats from the same source material.
+- **Slash command connection:** If you use `claude-commands`, the `/draft-announcement` slash command generates social-ready posts alongside other announcement formats from the same source material.
 
 ## Example Output
 

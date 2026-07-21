@@ -204,7 +204,7 @@ These techniques combine to produce the difference shown above: instead of a gen
 4. Do not read the prep document to your report like a script. Use it as a reference, then have a real conversation.
 5. After the meeting, revisit the "Signals to Listen For" section and jot down what you actually noticed. This builds your pattern-recognition over time.
 6. If you use this weekly, keep a running document and paste previous action items into the "Last 1:1 key takeaways" field. Continuity matters.
-7. **Slash command connection:** If you use `ai-bu-claude-commands`, the `/what-next` slash command can help identify the most important topics for the 1:1 based on current team priorities and open work items.
+7. **Slash command connection:** If you use `claude-commands`, the `/what-next` slash command can help identify the most important topics for the 1:1 based on current team priorities and open work items.
 
 ## Example Output
 

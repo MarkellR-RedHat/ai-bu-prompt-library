@@ -167,7 +167,7 @@ The comparison above comes down to information density. A naive prompt produces 
 - If your newsletter has a strict character or word limit, set that in the `[WORD_LIMIT]` field. The self-critique checklist will enforce it.
 - Run the prompt twice with different tones (e.g., "technical-conversational" and "executive-brief") to get two versions you can choose between or combine.
 - When writing blurbs for a curated newsletter with multiple entries, run the prompt once per entry but keep the audience and tone fields consistent. This gives you a uniform voice across the whole issue.
-- **Slash command connection:** If you use `ai-bu-claude-commands`, the `/draft-announcement` slash command generates multi-channel announcements, and this prompt can produce the newsletter-specific version from the same source material.
+- **Slash command connection:** If you use `claude-commands`, the `/draft-announcement` slash command generates multi-channel announcements, and this prompt can produce the newsletter-specific version from the same source material.
 - Use the "Key detail used" and "Audience fit note" fields in the output to quickly validate whether the blurb hit the right angle. If the key detail is weak, your source content may need a stronger hook.
 - For community-facing newsletters, set the tone to "community-friendly" and mention the open source project name in the description. This helps the AI frame the blurb around contribution and adoption, not just internal impact.
 - If the blurb still feels generic after one pass, add a line to `[OPTIONAL_CONTEXT]` like "Emphasize the performance improvement" or "Focus on the developer experience angle." Constraints produce better output.

@@ -1,14 +1,14 @@
-# AI BU Prompt Library
+# prompt-library
 
-**35+ engineered prompts for the work you already do, tuned to produce output you actually ship.**
+**35+ engineered prompts for the work you already do. The output is meant to be shippable, not "a good starting point."**
 
-## The Problem
+## why this exists
 
-You type a reasonable prompt. You get a reasonable result. You spend the next 20 minutes rewriting it before you can send it to anyone.
+You type a reasonable prompt. You get a reasonable result. Then you spend 20 minutes rewriting it before you can send it to anyone.
 
-That is the default AI experience for most teams, and it is a massive waste of time. The gap between a naive prompt and an engineered one is not incremental. It is the difference between output you throw away and output you ship.
+That was my default AI experience for a long time, and honestly it's most people's. The gap between a naive prompt and an engineered one isn't incremental. It's the difference between output you throw away and output you ship. So I started saving the prompts that actually worked, tightening them up, and this library is the result.
 
-## Naive Prompt vs. Engineered Prompt
+## naive prompt vs. engineered prompt
 
 Same task. Two approaches. One of them is ready to send.
 
@@ -64,17 +64,17 @@ Scannable. Consistent. Status at the top, risks with mitigations, asks with dead
 </tr>
 </table>
 
-Every prompt in this library produces this kind of difference because every prompt uses the same engineering techniques. The [Prompt Engineering Guide](meta/prompt-engineering-guide.md) explains exactly what those techniques are.
+Every prompt in the library aims for this kind of difference, because every prompt uses the same set of techniques. The [Prompt Engineering Guide](meta/prompt-engineering-guide.md) explains exactly what those techniques are.
 
-## Quick Start
+## quick start
 
 ```bash
 # Clone the library
-git clone https://github.com/MarkellR-RedHat/ai-bu-prompt-library.git
-cd ai-bu-prompt-library
+git clone https://github.com/MarkellR-RedHat/prompt-library.git
+cd prompt-library
 
 # Or run the installer to set it up in one step
-curl -fsSL https://raw.githubusercontent.com/MarkellR-RedHat/ai-bu-prompt-library/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/MarkellR-RedHat/prompt-library/main/install.sh | bash
 ```
 
 Then pick a prompt, fill in the `[BRACKETED]` placeholders, and paste it into your LLM of choice.
@@ -86,7 +86,7 @@ Then pick a prompt, fill in the `[BRACKETED]` placeholders, and paste it into yo
 3. **[Code Review](engineering/code-review.md)** (Intermediate) - Paste a diff, get structured feedback across correctness, security, and performance.
 4. **[Prompt Engineering Guide](meta/prompt-engineering-guide.md)** - Learn the techniques behind every prompt.
 
-## All Prompts
+## all the prompts
 
 ### Content
 
@@ -180,9 +180,9 @@ Multi-step workflows where each prompt feeds into the next. These produce better
 | [Prompt Engineering Guide](meta/prompt-engineering-guide.md) | Every technique used in this library, with examples and before/after comparisons |
 | [Testing Prompts](meta/testing-prompts.md) | How to evaluate whether a prompt is actually good |
 
-## Why These Prompts Work
+## why these prompts work
 
-Every prompt applies these techniques consistently:
+Every prompt applies the same techniques consistently:
 
 | Technique | What it does | Why it matters |
 |-----------|-------------|----------------|
@@ -195,32 +195,32 @@ Every prompt applies these techniques consistently:
 
 For a deep dive into each technique: [Prompt Engineering Guide](meta/prompt-engineering-guide.md).
 
-## Workflow: How This Fits the AI BU Suite
+## how this fits with my other repos
 
-The prompt library is the starting point. Use a prompt in any LLM chat interface. When you want to automate the same task inside Claude Code, reach for the matching tool.
+The prompt library is the starting point: paste a prompt into any LLM chat interface. When you want to automate the same task inside Claude Code, I usually have a matching tool.
 
-| Prompt | AI BU Tool | How they connect |
+| Prompt | Tool | How they connect |
 |--------|-----------|------------------|
-| [Abstract Writer](content/abstract-writer.md) | [cfp-generator](https://github.com/MarkellR-RedHat/ai-bu-cfp-generator) | Generate the abstract here, then build the full CFP submission |
-| [Blog Intro](content/blog-intro.md) / [Blog Outline](content/blog-outline.md) | [claude-commands](https://github.com/MarkellR-RedHat/ai-bu-claude-commands) `/blog-from-pr` | Refine the intro or structure content before drafting |
-| [Stakeholder Update](communication/stakeholder-update.md) | [status-report](https://github.com/MarkellR-RedHat/ai-bu-status-report) | Prompt for ad-hoc updates, tool for recurring weekly reports |
+| [Abstract Writer](content/abstract-writer.md) | [cfp-generator](https://github.com/MarkellR-RedHat/cfp-generator) | Generate the abstract here, then build the full CFP submission |
+| [Blog Intro](content/blog-intro.md) / [Blog Outline](content/blog-outline.md) | [claude-commands](https://github.com/MarkellR-RedHat/claude-commands) `/blog-from-pr` | Refine the intro or structure content before drafting |
+| [Stakeholder Update](communication/stakeholder-update.md) | [status-report](https://github.com/MarkellR-RedHat/status-report) | Prompt for ad-hoc updates, tool for recurring weekly reports |
 | [Code Review](engineering/code-review.md) | Claude Code's built-in `/review` command | Automates code review on your current diff |
-| [PR Description](engineering/pr-description.md) | [shipped-digest](https://github.com/MarkellR-RedHat/ai-bu-shipped-digest) | PR descriptions feed into weekly shipped digests |
-| [Competitive Analysis](research/competitive-analysis.md) | [competitive-watch](https://github.com/MarkellR-RedHat/ai-bu-competitive-watch) | Deep one-off analysis here, continuous monitoring there |
-| [Incident Report](communication/incident-report.md) | [claude-commands](https://github.com/MarkellR-RedHat/ai-bu-claude-commands) `/retro` | Generates retros, extracts incident data |
-| [Team Announcement](communication/team-announcement.md) | [claude-commands](https://github.com/MarkellR-RedHat/ai-bu-claude-commands) `/draft-announcement` | Multi-channel announcements |
-| [Demo Script](devrel/demo-script.md) | [claude-commands](https://github.com/MarkellR-RedHat/ai-bu-claude-commands) `/demo-prep` | Automates demo preparation with environment checks |
-| [Community Response](devrel/community-response.md) | [claude-commands](https://github.com/MarkellR-RedHat/ai-bu-claude-commands) `/explain-for-customer` | Customer-facing explanations in support contexts |
-| [Architecture Review](engineering/architecture-review.md) | [claude-commands](https://github.com/MarkellR-RedHat/ai-bu-claude-commands) `/tldr-repo` | Summarizes an unfamiliar codebase before review |
-| [Meeting Prep](research/meeting-prep.md) | [daily-briefing](https://github.com/MarkellR-RedHat/ai-bu-daily-briefing) | Prompt for specific meetings, tool for daily context |
+| [PR Description](engineering/pr-description.md) | [shipped-digest](https://github.com/MarkellR-RedHat/shipped-digest) | PR descriptions feed into weekly shipped digests |
+| [Competitive Analysis](research/competitive-analysis.md) | [competitive-watch](https://github.com/MarkellR-RedHat/competitive-watch) | Deep one-off analysis here, continuous monitoring there |
+| [Incident Report](communication/incident-report.md) | [claude-commands](https://github.com/MarkellR-RedHat/claude-commands) `/retro` | Generates retros, extracts incident data |
+| [Team Announcement](communication/team-announcement.md) | [claude-commands](https://github.com/MarkellR-RedHat/claude-commands) `/draft-announcement` | Multi-channel announcements |
+| [Demo Script](devrel/demo-script.md) | [claude-commands](https://github.com/MarkellR-RedHat/claude-commands) `/demo-prep` | Automates demo preparation with environment checks |
+| [Community Response](devrel/community-response.md) | [claude-commands](https://github.com/MarkellR-RedHat/claude-commands) `/explain-for-customer` | Customer-facing explanations in support contexts |
+| [Architecture Review](engineering/architecture-review.md) | [claude-commands](https://github.com/MarkellR-RedHat/claude-commands) `/tldr-repo` | Summarizes an unfamiliar codebase before review |
+| [Meeting Prep](research/meeting-prep.md) | [daily-briefing](https://github.com/MarkellR-RedHat/daily-briefing) | Prompt for specific meetings, tool for daily context |
 
 Each prompt's Usage Tips section notes the specific connections. The prompts work in any LLM chat interface. The tools work in Claude Code. Use whichever fits, or combine them.
 
-## Real-World Tip
+## the tip i keep repeating
 
-The biggest time savings come from the prompts you did not expect to reuse. The [Stakeholder Update](communication/stakeholder-update.md) prompt, for example, was built for weekly status emails. In practice, the team uses it before every cross-functional meeting: paste your messy notes, get a structured brief in 30 seconds, walk in with talking points instead of scrambling to recall what happened last sprint. One engineer reported cutting meeting prep from 15 minutes to under 2 by keeping a running notes file and running the prompt right before standup.
+The biggest time savings come from the prompts you didn't expect to reuse. [Stakeholder Update](communication/stakeholder-update.md) was built for weekly status emails, but I end up using it before every cross-functional meeting: paste messy notes, get a structured brief in 30 seconds, walk in with talking points instead of scrambling to recall what happened last sprint. Keep a running notes file and run the prompt right before standup, and meeting prep goes from 15 minutes to under 2.
 
-## Contributing
+## contributing
 
 1. Pick the right category folder (or propose a new one).
 2. Read the [Prompt Engineering Guide](meta/prompt-engineering-guide.md) for structure and technique requirements.
@@ -230,6 +230,6 @@ The biggest time savings come from the prompts you did not expect to reuse. The 
 
 **Style rules:** Direct, practical voice. No em dashes. No marketing language. All variable inputs use `[BRACKET]` placeholders. Every prompt includes a self-critique checklist and at least 5 anti-patterns.
 
-## License
+## license
 
 Apache License 2.0

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #
-# AI BU Prompt Library Installer
+# prompt-library installer
 # Clones the prompt library and verifies the setup.
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/MarkellR-RedHat/ai-bu-prompt-library/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/MarkellR-RedHat/prompt-library/main/install.sh | bash
 #
 # Or run directly:
 #   ./install.sh [target-directory]
@@ -12,8 +12,8 @@
 
 set -euo pipefail
 
-REPO_URL="https://github.com/MarkellR-RedHat/ai-bu-prompt-library.git"
-DEFAULT_DIR="ai-bu-prompt-library"
+REPO_URL="https://github.com/MarkellR-RedHat/prompt-library.git"
+DEFAULT_DIR="prompt-library"
 INSTALL_DIR="${1:-$DEFAULT_DIR}"
 
 # ---------------------------------------------------------------------------

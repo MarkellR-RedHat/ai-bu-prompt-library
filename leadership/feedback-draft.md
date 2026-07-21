@@ -192,7 +192,7 @@ These techniques together produce the difference shown above: specific, grounded
 4. For constructive feedback, always deliver it privately first. Never use AI-drafted constructive feedback in a public setting without a private conversation.
 5. Read the draft out loud before delivering it. If it sounds robotic or overly formal, revise it in your own voice. The prompt gives you structure; your authenticity gives it credibility.
 6. If you are writing feedback for a review cycle, run this prompt once per key observation rather than trying to cram everything into one pass.
-7. **Slash command connection:** If you use `ai-bu-claude-commands`, the `/retro` slash command can surface specific examples from past sprint retrospectives that provide evidence for the feedback.
+7. **Slash command connection:** If you use `claude-commands`, the `/retro` slash command can surface specific examples from past sprint retrospectives that provide evidence for the feedback.
 
 ## Example Output
 
