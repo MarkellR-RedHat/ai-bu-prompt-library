@@ -179,7 +179,7 @@ fails, revise the draft before returning it.
 - Use the self-critique checklist as your own review tool, too. After the AI produces a draft, read through the eight checks yourself before sending. The checklist catches the most common failure modes.
 - When your project status is genuinely "At Risk" or "Blocked," do not soften the language. Direct, honest updates build more trust over time than optimistic ones that age poorly.
 - Pair this prompt with a "risks and mitigations" deep-dive prompt if your risk section consistently runs long. Keep the stakeholder update concise and link to the detailed risk analysis separately.
-- **Suite connection:** For recurring weekly reports, use [ai-bu-status-report](../ai-bu-status-report) instead of running this prompt manually each time. This prompt is for ad-hoc or one-off updates where you need more control over the output. If you use `ai-bu-claude-commands`, the `/draft-announcement` slash command can generate stakeholder-facing announcements, and the `/release-notes` slash command handles release-specific status communication.
+- **Suite connection:** For recurring weekly reports, use [ai-bu-status-report](https://github.com/MarkellR-RedHat/ai-bu-status-report) instead of running this prompt manually each time. This prompt is for ad-hoc or one-off updates where you need more control over the output. If you use `ai-bu-claude-commands`, the `/draft-announcement` slash command can generate stakeholder-facing announcements, and the `/release-notes` slash command handles release-specific status communication.
 
 ## Example Output
 

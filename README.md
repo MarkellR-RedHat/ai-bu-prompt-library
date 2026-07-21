@@ -201,18 +201,18 @@ The prompt library is the starting point. Use a prompt in any LLM chat interface
 
 | Prompt | AI BU Tool | How they connect |
 |--------|-----------|------------------|
-| [Abstract Writer](content/abstract-writer.md) | [cfp-generator](../ai-bu-cfp-generator) | Generate the abstract here, then build the full CFP submission |
-| [Blog Intro](content/blog-intro.md) / [Blog Outline](content/blog-outline.md) | [claude-commands](../ai-bu-claude-commands) `/blog-from-pr` | Refine the intro or structure content before drafting |
-| [Stakeholder Update](communication/stakeholder-update.md) | [status-report](../ai-bu-status-report) | Prompt for ad-hoc updates, tool for recurring weekly reports |
-| [Code Review](engineering/code-review.md) | [claude-commands](../ai-bu-claude-commands) `/review` | Automates code review on your current diff |
-| [PR Description](engineering/pr-description.md) | [shipped-digest](../ai-bu-shipped-digest) | PR descriptions feed into weekly shipped digests |
-| [Competitive Analysis](research/competitive-analysis.md) | [competitive-watch](../ai-bu-competitive-watch) | Deep one-off analysis here, continuous monitoring there |
-| [Incident Report](communication/incident-report.md) | [claude-commands](../ai-bu-claude-commands) `/retro` | Generates retros, extracts incident data |
-| [Team Announcement](communication/team-announcement.md) | [claude-commands](../ai-bu-claude-commands) `/draft-announcement` | Multi-channel announcements |
-| [Demo Script](devrel/demo-script.md) | [claude-commands](../ai-bu-claude-commands) `/demo-prep` | Automates demo preparation with environment checks |
-| [Community Response](devrel/community-response.md) | [claude-commands](../ai-bu-claude-commands) `/explain-for-customer` | Customer-facing explanations in support contexts |
-| [Architecture Review](engineering/architecture-review.md) | [claude-commands](../ai-bu-claude-commands) `/tldr-repo` | Summarizes an unfamiliar codebase before review |
-| [Meeting Prep](research/meeting-prep.md) | [daily-briefing](../ai-bu-daily-briefing) | Prompt for specific meetings, tool for daily context |
+| [Abstract Writer](content/abstract-writer.md) | [cfp-generator](https://github.com/MarkellR-RedHat/ai-bu-cfp-generator) | Generate the abstract here, then build the full CFP submission |
+| [Blog Intro](content/blog-intro.md) / [Blog Outline](content/blog-outline.md) | [claude-commands](https://github.com/MarkellR-RedHat/ai-bu-claude-commands) `/blog-from-pr` | Refine the intro or structure content before drafting |
+| [Stakeholder Update](communication/stakeholder-update.md) | [status-report](https://github.com/MarkellR-RedHat/ai-bu-status-report) | Prompt for ad-hoc updates, tool for recurring weekly reports |
+| [Code Review](engineering/code-review.md) | Claude Code's built-in `/review` command | Automates code review on your current diff |
+| [PR Description](engineering/pr-description.md) | [shipped-digest](https://github.com/MarkellR-RedHat/ai-bu-shipped-digest) | PR descriptions feed into weekly shipped digests |
+| [Competitive Analysis](research/competitive-analysis.md) | [competitive-watch](https://github.com/MarkellR-RedHat/ai-bu-competitive-watch) | Deep one-off analysis here, continuous monitoring there |
+| [Incident Report](communication/incident-report.md) | [claude-commands](https://github.com/MarkellR-RedHat/ai-bu-claude-commands) `/retro` | Generates retros, extracts incident data |
+| [Team Announcement](communication/team-announcement.md) | [claude-commands](https://github.com/MarkellR-RedHat/ai-bu-claude-commands) `/draft-announcement` | Multi-channel announcements |
+| [Demo Script](devrel/demo-script.md) | [claude-commands](https://github.com/MarkellR-RedHat/ai-bu-claude-commands) `/demo-prep` | Automates demo preparation with environment checks |
+| [Community Response](devrel/community-response.md) | [claude-commands](https://github.com/MarkellR-RedHat/ai-bu-claude-commands) `/explain-for-customer` | Customer-facing explanations in support contexts |
+| [Architecture Review](engineering/architecture-review.md) | [claude-commands](https://github.com/MarkellR-RedHat/ai-bu-claude-commands) `/tldr-repo` | Summarizes an unfamiliar codebase before review |
+| [Meeting Prep](research/meeting-prep.md) | [daily-briefing](https://github.com/MarkellR-RedHat/ai-bu-daily-briefing) | Prompt for specific meetings, tool for daily context |
 
 Each prompt's Usage Tips section notes the specific connections. The prompts work in any LLM chat interface. The tools work in Claude Code. Use whichever fits, or combine them.
 
